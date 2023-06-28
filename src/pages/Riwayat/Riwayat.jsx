@@ -32,7 +32,7 @@ function Riwayat() {
 
     const [userData, setUserData] = useState([]);
     const [searching, setSearching] = useState([]);
-    const [search, setSearch] = useState([]);
+    const [search, setSearch] = useState(false);
     const [visible, setVisible] = useState(false);
     const [visibleFilter, setVisibleFilter] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -87,6 +87,7 @@ function Riwayat() {
         const hasilPencarian = userData?.transaction?.map(pemesanan => {
           if (pemesanan.kode_booking === kode) {
             Hasil.push(pemesanan);
+            setSearch('true');
             return pemesanan
           }
         });
@@ -150,28 +151,15 @@ function Riwayat() {
         {/* {if(hasilPencarian !== undefined || hasilPencarian !== null){
           return 
         }} */}
-        {userData.length == 0 ? (<RiwayatKosong/>)  : (<CardRiwayat data={userData.transaction}/>)}
+        {/* {search} */}
+        
+        {/* {userData.length == 0 ? (<RiwayatKosong/>)  :  */}
+        (<CardRiwayat data={userData.transaction}/>)
+         {/* } */}
         {/* : hasilPencarian !== undefined || hasilPencarian !== null ? <CardRiwayat data={Hasil}/> */}
         {/* hasilPencarian !== undefined || hasilPencarian !== null ? (
           <CardRiwayat data={Hasil} />
         ) :  */}
-        {filterData.length === 0
-                  ?
-                  trigger
-                    ?
-                    defaultData?.data?.map((data) => {
-                      return (
-                        <></>
-                      )
-                    })
-                    :
-                    <td colSpan={6}>Data tidak ditemukan</td>
-                  :
-                  filterData.map((data) => {
-                    return (
-                      <></>
-                    )
-                  })}
         </div>
       </>
   );

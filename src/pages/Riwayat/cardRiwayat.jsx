@@ -138,10 +138,11 @@ const cardRiwayat = (props) => {
             {/* Tampilkan informasi riwayat pemesanan lainnya */}
             <div className="text-left mt-6 grid grid-cols-2 mx-auto max-w-4xl">
                 <div>
-                    {props?.data?.map(riwayat => (
+                {props?.data?.length > 0 ? (
+                    props?.data?.map(riwayat => (
                         <div className="col-12 pb-4">
                             <div className="text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
-                            <Card className="p-0 button justify-center hover:border-4 border-binar-purple" onClick={() => pickDetailHandler(riwayat.id)}>
+                            <Card className="p-0 button justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                                 <div className="mx-4 mb-4">
                                     {getStatus(riwayat.status)}
                                 </div>
@@ -183,7 +184,11 @@ const cardRiwayat = (props) => {
                                 </div>
                             </Card>
                         </div>
-                    ))}
+                    ))
+                ) : (
+                    <RiwayatKosong/>
+                )}
+                    
                 </div>
                 <div>
 
