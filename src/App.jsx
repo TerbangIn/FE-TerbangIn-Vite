@@ -9,6 +9,9 @@ import ResetPassword from "./pages/resetPassword";
 import Riwayat from "./pages/Riwayat/Riwayat";
 import Beranda from './pages/Beranda/Beranda';
 import Chekout from './pages/Payment/chekout';
+import Akun from './pages/Akun/Akun';
+import Notifikasi from './pages/Notifikasi/Notifikasi';
+import About from "./components/about/aboutUs";
 import Payment from './pages/Payment/payment';
 import Success from './pages/Payment/payment-success';
 import TiketHabis from "./components/TiketHabis";
@@ -42,6 +45,9 @@ function App() {
           <Route path="/PencarianEmpty" element={<PencarianEmpty />} />
           <Route path="/HasilPencarian" element={<HasilPencarian />} />
           <Route path="/riwayat" element={<Riwayat />} />
+          <Route path="/akun" element={<Akun />} />
+          <Route path="/notifikasi" element={<Notifikasi />} />
+          <Route path="/about" element={<About />} />
           <Route path='/checkout' exact Component={Chekout} />
           <Route path='/payment' exact Component={Payment} />
           <Route path='/payment-success' exact Component={Success} />

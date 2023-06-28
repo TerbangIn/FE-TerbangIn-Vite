@@ -12,6 +12,7 @@ import "../../index.css";
 import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
 import { Calendar } from 'primereact/calendar';
+import RiwayatKosong from "./riwayatKosong";
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -101,8 +102,8 @@ function Riwayat() {
       } else {
         console.log('Data tidak ditemukan');
       }
-      // console.log(userData.transaction.map(e=> e.tiket.map(a=> a.flight.first_class_price)))
 
+      console.log(userData);
     return (
         <>
         <Navbar></Navbar>
@@ -146,9 +147,31 @@ function Riwayat() {
             </div>
         </Card>
         {/* <CardRiwayat data={userData.transaction} /> */}
-        {hasilPencarian !== undefined || hasilPencarian !== null ? (
+        {/* {if(hasilPencarian !== undefined || hasilPencarian !== null){
+          return 
+        }} */}
+        {userData.length == 0 ? (<RiwayatKosong/>)  : (<CardRiwayat data={userData.transaction}/>)}
+        {/* : hasilPencarian !== undefined || hasilPencarian !== null ? <CardRiwayat data={Hasil}/> */}
+        {/* hasilPencarian !== undefined || hasilPencarian !== null ? (
           <CardRiwayat data={Hasil} />
-        ) : (<CardRiwayat data={userData.transaction}/>)}
+        ) :  */}
+        {filterData.length === 0
+                  ?
+                  trigger
+                    ?
+                    defaultData?.data?.map((data) => {
+                      return (
+                        <></>
+                      )
+                    })
+                    :
+                    <td colSpan={6}>Data tidak ditemukan</td>
+                  :
+                  filterData.map((data) => {
+                    return (
+                      <></>
+                    )
+                  })}
         </div>
       </>
   );

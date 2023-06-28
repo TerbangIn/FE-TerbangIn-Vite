@@ -28,9 +28,15 @@ function Navbar() {
     const buttonItem = 
                 <div className="card justify-end me-24">
                     <span className="p-input-icon-right">
-                        <Button icon="pi pi-list" rounded text severity="secondary" aria-label="User" />
-                        <Button icon="pi pi-bell" rounded text severity="secondary" aria-label="User" />
-                        <Button icon="pi pi-user" rounded text severity="secondary" aria-label="User" />
+                        <Link to={'/riwayat'}>
+                            <Button icon="pi pi-list" rounded text severity="secondary" aria-label="User" />
+                        </Link>
+                        <Link to={'/notifikasi'}>
+                            <Button icon="pi pi-bell" rounded text severity="secondary" aria-label="User" />
+                        </Link>
+                        <Link to={'/akun'}>
+                            <Button icon="pi pi-user" rounded text severity="secondary" aria-label="User" />
+                        </Link>
                     </span>
 
                 </div>
