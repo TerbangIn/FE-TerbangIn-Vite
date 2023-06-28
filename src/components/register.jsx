@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { signupFields } from "../constants/formFields"
 import FormAction from "./formAction";
 import axios from "axios"
@@ -43,7 +43,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await axios.post(
+      await axios.post(
         "https://be-tiketku-production.up.railway.app/api/v1/user/register",
         {
           first_name: username,
