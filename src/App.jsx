@@ -33,7 +33,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path ="/" element={<Beranda />}/> */}
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Authmiddleware><Register /></Authmiddleware>} />
           <Route path="/" element={<Login />} />
           <Route path="/otp-register" element={<OTPRegister />} />
           <Route path="/otp-reset-password" element={<OTPResetPassword />} />
@@ -41,7 +41,7 @@ function App() {
           <Route path="/reset-password-baru" element={<ResetPassword />} />
           <Route path="/beranda" element={<Beranda />} />
           <Route path="/BerandaLoading" element={<BerandaLoading />} />
-          <Route path="/TiketHabis" element={Authmiddleware(TiketHabis)} />
+          <Route path="/TiketHabis" element={<TiketHabis/>} />
           <Route path="/PencarianEmpty" element={<PencarianEmpty />} />
           <Route path="/HasilPencarian" element={<HasilPencarian />} />
           <Route path="/riwayat" element={<Riwayat />} />

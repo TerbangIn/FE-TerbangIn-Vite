@@ -1,4 +1,5 @@
 import  { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { loginFields } from "../constants/formFields";
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -12,20 +13,17 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 const Login = () => {
+    let nav = useNavigate()
     const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginState, setLoginState] = useState(fieldsState);
-
     const handleChange = (e) => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value })
         if (e.target.name === "email") {
             setUsername(e.target.value);
-            // username = e.target.value;
         } else if (e.target.name === "password") {
             setPassword(e.target.value);
-            // password = e.target.value;
         }
-        // console.log(typeof e.target.name);
     }
 
     //Handle Login API Integration here
@@ -39,13 +37,13 @@ const Login = () => {
                     password: password
                 }
             ).then(
-                function (res) {
+                async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
                     cookies.set("token", token, { path: "/" })
                     console.log(token);
                     // toast.success(`${res.data.message}, redirect in 3s...`, {
-                    toast.success('Login Success, redirect in 3s...', {
+                    await toast.success('Login Success, redirect in 3s...', {
                         position: "bottom-center",
                         autoClose: 2000,
                         hideProgressBar: true,
@@ -53,12 +51,16 @@ const Login = () => {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: "colored",
                     })
+
+                    setTimeout(() => {
+                        nav('/beranda')
+                    },1000);
+                    
                 }
             ).catch(
                 function (err) {
-                    toast.error(`${err.response.data.message}`, {
+                    toast.error(`${err}`, {
                         position: "bottom-center",
                         autoClose: 2000,
                         hideProgressBar: true,

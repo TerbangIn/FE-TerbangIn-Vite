@@ -9,6 +9,7 @@ import button_amerika from "../../assets/images/button_amerika.svg"
 import button_australia from "../../assets/images/button_australia.svg"
 import button_eropa from "../../assets/images/button_eropa.svg"
 import button_afrika from "../../assets/images/button_afrika.svg"
+import { Card } from "primereact/card";
 
 
 function Destinasi() {
@@ -56,25 +57,26 @@ function Destinasi() {
 
                 </div>
                 <div className="w-4/5 xl:py-4 lg:py-4 md:py-8 sm:py-4 py-4">
-                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {flightData.map((flight) => (
-                            <div className="flex flex-col border-2 rounded-md w-52 h-56 cursor-pointer px-2 lg:mt-3">
+                            // eslint-disable-next-line react/jsx-key
+                            <Card onClick={() => {console.log("aaaa")}} className="  button cursor-pointer" >
                                 <div>
                                     <Image src={flight.image} alt="img"/>
                                 </div>
                                 <div>
-                                    {/* <p className="font-bold">{flight.source.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight.destination.country}</p> */}
+                                    <p className="font-bold my-2">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
                                 </div>
                                 <div>
-                                    <p className="text-button1">{flight.airline}</p>
+                                    <p className="text-button1 text-sm mt-2 text-purple-600">{flight.airline}</p>
                                 </div>
                                 <div>
                                     <p>{date(flight.departure_date)}</p>
                                 </div>
                                 <div>
-                                    <p>Mulai dari <span className="text-primary5">IDR {flight.economy_class_price}</span></p>
+                                    <p className=" font-bold ">Mulai dari <span className="text-primary5">IDR {flight.economy_class_price ? flight.economy_class_price : flight.first_class_price}</span></p>
                                 </div>
-                            </div>
+                            </Card>
                         ))}
                     </div>
                 </div>

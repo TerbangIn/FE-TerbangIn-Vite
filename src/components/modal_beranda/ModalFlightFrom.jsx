@@ -16,7 +16,7 @@ function ModalFlightFrom({ value, onSelect }) {
     const options = flightData.map((data) => ` (${data.source})`);
 
     console.log(options)
-    console.log(flightData[0].source.city)
+    // console.log(flightData[0].source.city)
    
     const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();

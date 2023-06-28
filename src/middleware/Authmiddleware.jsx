@@ -1,20 +1,16 @@
-/* eslint-disable react/prop-types */
-import { useEffect } from 'react';
+import { Navigate } from 'react-router';
 import Cookies from 'universal-cookie';
-const Authmiddleware = ({component}) => {
-  const Component = component
+// eslint-disable-next-line react/prop-types
+const Authmiddleware = ({ children }) => { 
   const cookies = new Cookies()
 
   const token = cookies.get('token')
-  // const navigate = useNavigate()
 
-  useEffect(() => {
-    if(!(token)) {
-      console.log("NO TOKEN")
-    }
-  }, [token])
+  if(!(token)) {
+    return <Navigate to="/login"/>
+  }
 
-  return Component
+  return children
     
 }
 
