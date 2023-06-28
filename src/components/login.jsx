@@ -15,7 +15,6 @@ const Login = () => {
     const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginState, setLoginState] = useState(fieldsState);
-
     const handleChange = (e) => {
         setLoginState({ ...loginState, [e.target.id]: e.target.value })
         if (e.target.name === "email") {
@@ -45,16 +44,16 @@ const Login = () => {
                     cookies.set("token", token, { path: "/" })
                     console.log(token);
                     // toast.success(`${res.data.message}, redirect in 3s...`, {
-                    toast.success('Login Success, redirect in 3s...', {
-                        position: "bottom-center",
-                        autoClose: 2000,
-                        hideProgressBar: true,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    })
+                    // toast.success('Login Success, redirect in 3s...', {
+                    //     position: "bottom-center",
+                    //     autoClose: 2000,
+                    //     hideProgressBar: true,
+                    //     closeOnClick: true,
+                    //     pauseOnHover: true,
+                    //     draggable: true,
+                    //     progress: undefined,
+                    // })
+                    
                 }
             ).catch(
                 function (err) {
@@ -96,7 +95,7 @@ const Login = () => {
                         />
                     )
                 }
-                <ToastContainer
+                {/* <ToastContainer
                     position="bottom-center"
                     autoClose={2000}
                     hideProgressBar
@@ -107,7 +106,7 @@ const Login = () => {
                     draggable
                     pauseOnHover
                     theme="light"
-                />
+                /> */}
             </div>
             <FormAction onSubmit={handleSubmit} text="Masuk" />
         </form>
