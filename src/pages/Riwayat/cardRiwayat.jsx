@@ -188,7 +188,6 @@ const cardRiwayat = (props) => {
                 ) : (
                     <RiwayatKosong/>
                 )}
-                    
                 </div>
                 <div>
 
