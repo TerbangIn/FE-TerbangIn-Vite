@@ -41,9 +41,9 @@ function App() {
           <Route path="/reset-password-baru" element={<ResetPassword />} />
           <Route path="/beranda" element={<Beranda />} />
           <Route path="/BerandaLoading" element={<BerandaLoading />} />
-          <Route path="/TiketHabis" element={<TiketHabis/>} />
+          <Route path="/TiketHabis" element={<TiketHabis />} />
           <Route path="/PencarianEmpty" element={<PencarianEmpty />} />
-          <Route path="/HasilPencarian" element={<HasilPencarian />} />
+          <Route path="/hasil-pencarian" element={<HasilPencarian />} />
           <Route path="/riwayat" element={<Riwayat />} />
           <Route path="/akun" element={<Akun />} />
           <Route path="/notifikasi" element={<Notifikasi />} />
