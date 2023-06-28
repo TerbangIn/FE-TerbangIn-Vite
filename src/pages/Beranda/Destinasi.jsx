@@ -10,6 +10,7 @@ import button_australia from "../../assets/images/button_australia.svg"
 import button_eropa from "../../assets/images/button_eropa.svg"
 import button_afrika from "../../assets/images/button_afrika.svg"
 import { Card } from "primereact/card";
+import rupiah from "../../formatter/rupiah";
 
 
 function Destinasi() {
@@ -60,21 +61,21 @@ function Destinasi() {
                     <div className="grid gap-4 sm:gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {flightData.map((flight) => (
                             // eslint-disable-next-line react/jsx-key
-                            <Card onClick={() => {console.log("aaaa")}} className="  button cursor-pointer" >
+                            <Card onClick={() => {console.log("aaaa")}} className="p button cursor-pointer" >
                                 <div>
                                     <Image src={flight.image} alt="img"/>
                                 </div>
                                 <div>
-                                    <p className="font-bold my-2">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
+                                    <p className="mt-2 font-semibold">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
                                 </div>
                                 <div>
-                                    <p className="text-button1 text-sm mt-2 text-purple-600">{flight.airline}</p>
+                                    <p className="text-button1 font-bold text-sm  text-purple-600">{flight.airline}</p>
                                 </div>
                                 <div>
                                     <p>{date(flight.departure_date)}</p>
                                 </div>
                                 <div>
-                                    <p className=" font-bold ">Mulai dari <span className="text-primary5">IDR {flight.economy_class_price ? flight.economy_class_price : flight.first_class_price}</span></p>
+                                    <p className="text-lg"><span className="font-bold text-primary5">{rupiah(flight.economy_class_price ? flight.economy_class_price : flight.first_class_price)} </span></p>
                                 </div>
                             </Card>
                         ))}
