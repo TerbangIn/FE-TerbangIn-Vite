@@ -67,9 +67,12 @@ function Signup() {
             progress: undefined,
             theme: "colored",
           })
-          navigate("/otp-register", {
-            state: email
-          })
+
+          setTimeout(() => {
+            navigate("/otp-register", {
+              state: email
+            })
+        },1000);
         }
       ).catch(
         function (error) {

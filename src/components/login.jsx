@@ -50,8 +50,13 @@ const Login = () => {
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true,
+                        progress: undefined,
                     })
-                    nav('/a')
+
+                    setTimeout(() => {
+                        nav('/beranda')
+                    },1000);
+                    
                 }
             ).catch(
                 function (err) {
