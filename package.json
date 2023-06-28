@@ -13,6 +13,8 @@
     "@heroicons/react": "^2.0.18",
     "@material-tailwind/react": "^2.0.4",
     "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "jwt-decode": "^3.1.2",
     "primeicons": "^6.0.1",
     "primereact": "^9.6.0",
     "react": "^18.2.0",
