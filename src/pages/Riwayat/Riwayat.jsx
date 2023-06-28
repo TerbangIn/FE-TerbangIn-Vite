@@ -51,6 +51,7 @@ function Riwayat() {
     const handleSearch = () => {
         console.log(`Mencari: ${searchText}`);
         setidPemesanan(searchText)
+        setSearch(true)
     };
     const showFilter = () => {
         setVisibleFilter(true);
@@ -87,7 +88,6 @@ function Riwayat() {
         const hasilPencarian = userData?.transaction?.map(pemesanan => {
           if (pemesanan.kode_booking === kode) {
             Hasil.push(pemesanan);
-            setSearch('true');
             return pemesanan
           }
         });
@@ -103,8 +103,6 @@ function Riwayat() {
       } else {
         console.log('Data tidak ditemukan');
       }
-
-      console.log(userData);
     return (
         <>
         <Navbar></Navbar>
@@ -147,19 +145,7 @@ function Riwayat() {
                 </div>
             </div>
         </Card>
-        {/* <CardRiwayat data={userData.transaction} /> */}
-        {/* {if(hasilPencarian !== undefined || hasilPencarian !== null){
-          return 
-        }} */}
-        {/* {search} */}
-        
-        {/* {userData.length == 0 ? (<RiwayatKosong/>)  :  */}
-        (<CardRiwayat data={userData.transaction}/>)
-         {/* } */}
-        {/* : hasilPencarian !== undefined || hasilPencarian !== null ? <CardRiwayat data={Hasil}/> */}
-        {/* hasilPencarian !== undefined || hasilPencarian !== null ? (
-          <CardRiwayat data={Hasil} />
-        ) :  */}
+        {search == true ? (<CardRiwayat data={Hasil}/>) : (<CardRiwayat data={userData.transaction}/>)}
         </div>
       </>
   );

@@ -38,6 +38,35 @@ const detailRiwayat = (props) => {
         }
     };
 
+    
+    function getClassPrice(flight){
+        const premium = (flight.premium_price)
+        const first = (flight.first_class_price)
+        const bussines = (flight.business_class_price)
+        const economy = (flight.economy_class_price)
+        if(economy != null)  {
+            return economy
+        }else if(bussines != null)  {
+            return bussines
+        }else if(first != null)  {
+            return first
+        }else if(premium != null)  {
+            return premium
+        }
+      }
+
+    function getHarga(tiket){
+        let total = 0;
+        for(let i = 0; i < tiket.length;i++){
+            const priceClass = getClassPrice(tiket[i].flight)
+            if(tiket[i].type_of_passenger == "Adult"){
+                let price = ((priceClass) * (tiket[i].flight.adult_price_percentage)/100)
+                total += price;
+            }
+        }
+        return total
+      }
+
     // console.log(props.data.map(e => e.id));
 
     // console.log(props.data.map(e => e.status));
@@ -129,7 +158,7 @@ const detailRiwayat = (props) => {
                     <Divider className="m-2"/>
                     <div className="text-base font-normal flex justify-between text-900 pb-4">
                         <div className="text-md font-bold text-900">Total</div>
-                        <div className="text-md font-bold justify-items-end text-binar-purple">{props.data.map(e => e.total_price)}</div>
+                        <div className="text-md font-bold justify-items-end text-binar-purple">{getHarga(props.data.map(e => e.tiket))}</div>
                     </div>
                     <Button label="Lanjut Bayar" severity="danger" raised className="w-full"/>
                     {getButtonCheckOut(props.data.map(e => e.status))}
