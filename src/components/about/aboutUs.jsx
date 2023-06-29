@@ -31,11 +31,9 @@ function AboutUs() {
                 <Panel className="pb-2 rounded-lg" header="C7 BINAR ACADEMY BATCH 4">
                     <div className="text-2xl font-bold text-900">TEAM LINEUP</div>
                     <div class="grid grid-cols-4 gap-4">
-                    <Card className="">
-                            <div className="text-center">
-
+                    <Card className="hover:scale-105">
+                            <div className="text-center ">
                                 <img alt="logo" src={kenny} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Kenny Linardi Lim</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Budi Luhur</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -44,11 +42,9 @@ function AboutUs() {
                                 <a href="https://www.linkedin.com/in/kenny-linardi-lim-b9a3b8219"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={miftakhul} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Miftakhul Ulum Khasanah</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Negeri Surabaya</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -58,11 +54,9 @@ function AboutUs() {
                             </div>
                         </Card>
 
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Oryza Amaliatuz Zahra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Bina Sarana Informatika</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -71,11 +65,9 @@ function AboutUs() {
                                 <a href="https://www.linkedin.com/in/oryza-amaliatuz-zahra-89a934265/"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={rafli} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Rafli Mardhian</div>
                                 <div className="text-sm text-binar-purple mb-3">Universitas Gunadarma</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -84,11 +76,9 @@ function AboutUs() {
                                 <a href="https://www.linkedin.com/in/rafli-mardhian-01459a236/"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={shifly} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Shifly Inner Beauty</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Negeri Surabaya</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -97,11 +87,9 @@ function AboutUs() {
                                 <a href="https://www.linkedin.com/in/shifly-inner-beauty-764920260/"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={brahmasta} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Brahmasta Bagus Aryandra</div>
                                 <div className="text-sm text-binar-purple mb-2">Institut Teknologi Telkom Purwokerto</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Backend Developer</div>
@@ -111,11 +99,9 @@ function AboutUs() {
 
                             </div>
                         </Card>
-                        <Card className="">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
-
                                 <img alt="logo" src={fadhlan} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Muhammad Fadhlan Aqila</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Gunadarma</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Backend Developer</div>
@@ -124,29 +110,23 @@ function AboutUs() {
                                 <a href="https://www.linkedin.com/in/fadhlanaqilaa"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
-                        <Card className="text-center">
-                            <div >
-
+                        <Card className="hover:scale-105">
+                            <div className="text-center ">
                                 <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
                                 <div className="text-base font-bold text-amber-500">JOB ROLE</div>
                             </div>
                         </Card>
-                        <Card className="text-center">
-                            <div >
-
+                        <Card className="text-center hover:scale-105">
+                            <div className="text-center ">
                                 <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
                                 <div className="text-base font-bold text-amber-500">JOB ROLE</div>
                             </div>
                         </Card>
-                        <Card className="">
-                            <div className="text-center">
-
+                        <Card className="hover:scale-105">
+                            <div className="text-center ">
                                 <img alt="logo" src={rio} className="flex w-fit mx-auto mb-2" />
-
                                 <div className="text-base font-bold text-binar-purple mb-3">Rio Griya Putra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas YARSI</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Android Developer</div>
