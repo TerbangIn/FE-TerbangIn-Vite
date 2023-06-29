@@ -34,7 +34,7 @@ function AboutUs() {
                     <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={kenny} className="flex w-fit mx-auto " />
+                                <img alt="logo" src={kenny} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Kenny Linardi Lim</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Budi Luhur</div>
@@ -47,7 +47,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={miftakhul} className="flex w-40 mx-auto " />
+                                <img alt="logo" src={miftakhul} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Miftakhul Ulum Khasanah</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Negeri Surabaya</div>
@@ -61,7 +61,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={person1} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Oryza Amaliatuz Zahra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Bina Sarana Informatika</div>
@@ -74,7 +74,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={rafli} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={rafli} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Rafli Mardhian</div>
                                 <div className="text-sm text-binar-purple mb-3">Universitas Gunadarma</div>
@@ -87,7 +87,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={shifly} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={shifly} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Shifly Inner Beauty</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Negeri Surabaya</div>
@@ -100,7 +100,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={brahmasta} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={brahmasta} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Brahmasta Bagus Aryandra</div>
                                 <div className="text-sm text-binar-purple mb-2">Institut Teknologi Telkom Purwokerto</div>
@@ -114,7 +114,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={fadhlan} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={fadhlan} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Muhammad Fadhlan Aqila</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Gunadarma</div>
@@ -127,7 +127,7 @@ function AboutUs() {
                         <Card className="text-center">
                             <div >
 
-                                <img alt="logo" src={person1} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
                                 <div className="text-base font-bold text-amber-500">JOB ROLE</div>
@@ -136,7 +136,7 @@ function AboutUs() {
                         <Card className="text-center">
                             <div >
 
-                                <img alt="logo" src={person1} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
                                 <div className="text-base font-bold text-amber-500">JOB ROLE</div>
@@ -145,7 +145,7 @@ function AboutUs() {
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={rio} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={rio} className="flex w-fit mx-auto mb-2" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Rio Griya Putra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas YARSI</div>
