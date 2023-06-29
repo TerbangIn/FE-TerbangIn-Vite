@@ -34,7 +34,7 @@ function AboutUs() {
                     <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={kenny} className="flex w-40 mx-auto " />
+                                <img alt="logo" src={kenny} className="flex w-fit mx-auto " />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Kenny Linardi Lim</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Budi Luhur</div>
