@@ -17,6 +17,7 @@ import brahmasta from '../../assets/member/Brahmasta.png'
 import fadhlan from '../../assets/member/Fadhlan.png'
 import kenny from '../../assets/member/Kenny.png'
 import miftakhul from '../../assets/member/Miftakhul.png'
+import rafli from '../../assets/member/Rafli.png'
 import shifly from '../../assets/member/Shifly.png'
 import rio from '../../assets/member/Rio.png'
 
@@ -65,21 +66,22 @@ function AboutUs() {
                                 <div className="text-base font-bold text-binar-purple mb-3">Oryza Amaliatuz Zahra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Bina Sarana Informatika</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
-                                <a href="https://www.instagram.com/kennylinrdy/"><i className="pi pi-instagram mr-2"></i></a>
-                                <a href="https://github.com/kennylinardy"><i className="pi pi-github mr-2"></i></a>
-                                <a href="https://www.linkedin.com/in/kenny-linardi-lim-b9a3b8219"><i className="pi pi-linkedin mr-2"></i></a>
+                                <a href="https://www.instagram.com/ory.az/"><i className="pi pi-instagram mr-2"></i></a>
+                                <a href="https://github.com/OryzaAmaliatuzZahra"><i className="pi pi-github mr-2"></i></a>
+                                <a href="https://www.linkedin.com/in/oryza-amaliatuz-zahra-89a934265/"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
                         <Card className="">
                             <div className="text-center">
 
-                                <img alt="logo" src={person1} className="flex w-40 mx-auto" />
+                                <img alt="logo" src={rafli} className="flex w-40 mx-auto" />
 
                                 <div className="text-base font-bold text-binar-purple mb-3">Rafli Mardhian</div>
+                                <div className="text-sm text-binar-purple mb-3">Universitas Gunadarma</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
-                                <a href="https://www.instagram.com/kennylinrdy/"><i className="pi pi-instagram mr-2"></i></a>
-                                <a href="https://github.com/kennylinardy"><i className="pi pi-github mr-2"></i></a>
-                                <a href="https://www.linkedin.com/in/kenny-linardi-lim-b9a3b8219"><i className="pi pi-linkedin mr-2"></i></a>
+                                <a href="https://instagram.com/rafli_mardhian?igshid=MzRlODBiNWFlZA=="><i className="pi pi-instagram mr-2"></i></a>
+                                <a href="https://github.com/raflimardhian"><i className="pi pi-github mr-2"></i></a>
+                                <a href="https://www.linkedin.com/in/rafli-mardhian-01459a236/"><i className="pi pi-linkedin mr-2"></i></a>
                             </div>
                         </Card>
                         <Card className="">
