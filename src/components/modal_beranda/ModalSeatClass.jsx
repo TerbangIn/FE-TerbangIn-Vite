@@ -25,7 +25,7 @@ function ModalSeatClass({onChange}) {
 
     return (
         <>
-            <div className="text-xs md:text-base font-bold mx-12" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
+            <div className="text-xs md:text-base font-bold mx-12 xl:ml-8" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
                 {savedSeatClass || selectedSeatClass}
             </div>
 

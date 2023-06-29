@@ -40,7 +40,7 @@ function ModalFlightTo({ value, onSelect }) {
 
     return (
         <>
-            <div className="cursor-pointer font-bold text-xs md:text-base sm:ml-2 lg:ml-7" onClick={() => setVisible(true)}>
+            <div className="cursor-pointer font-bold text-xs md:text-base sm:ml-2 lg:ml-4 xl:ml-3" onClick={() => setVisible(true)}>
                 {value}
             </div>
 
