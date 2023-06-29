@@ -87,8 +87,8 @@ function AboutUs() {
 
                                 <img alt="logo" src={shifly} className="flex w-40 mx-auto" />
 
-                                <div className="text-base font-bold text-binar-purple mb-9">Shifly Inner Beauty</div>
-                                <div className="text-sm text-binar-purple mb-2">Universitas Negeri Surabaya</div>
+                                <div className="text-base font-bold text-binar-purple mb-3">Shifly Inner Beauty</div>
+                                <div className="text-sm text-binar-purple mb-7">Universitas Negeri Surabaya</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
                                 <a href="https://instagram.com/inr.beauty_"><i className="pi pi-instagram mr-2"></i></a>
                                 <a href="https://github.com/shifly063"><i className="pi pi-github mr-2"></i></a>
@@ -145,8 +145,8 @@ function AboutUs() {
 
                                 <img alt="logo" src={rio} className="flex w-40 mx-auto" />
 
-                                <div className="text-base font-bold text-binar-purple mb-5">Rio Griya Putra</div>
-                                <div className="text-sm text-binar-purple mb-10">Universitas YARSI</div>
+                                <div className="text-base font-bold text-binar-purple mb-3">Rio Griya Putra</div>
+                                <div className="text-sm text-binar-purple mb-2">Universitas YARSI</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Android Developer</div>
                                 <a href="https://instagram.com/riop4u"><i className="pi pi-instagram mr-2"></i></a>
                                 <a href="https://github.com/Pucukio"><i className="pi pi-github mr-2"></i></a>
