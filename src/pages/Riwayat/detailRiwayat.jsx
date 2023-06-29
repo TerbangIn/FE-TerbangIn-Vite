@@ -58,10 +58,18 @@ const detailRiwayat = (props) => {
     function getHarga(tiket){
         let total = 0;
         for(let i = 0; i < tiket.length;i++){
-            const priceClass = getClassPrice(tiket[i].flight)
-            if(tiket[i].type_of_passenger == "Adult"){
-                let price = ((priceClass) * (tiket[i].flight.adult_price_percentage)/100)
-                total += price;
+            for(let j = 0; j < tiket[i].length ;j++){
+                const priceClass = getClassPrice(tiket[i][j].flight)
+                if(tiket[i][j].type_of_passenger == "Adult"){
+                    let price = ((priceClass) * (tiket[i][j].flight.adult_price_percentage)/100)
+                    total += price;
+                }else if(tiket[i][j].type_of_passenger == "Child"){
+                    let price = ((priceClass) * (tiket[i][j].flight.child_price_percentage)/100)
+                    total += price;
+                }else if(tiket[i][j].type_of_passenger == "Baby"){
+                    let price = ((priceClass) * (tiket[i][j].flight.baby_price_percentage)/100)
+                    total += price;
+                }
             }
         }
         return total
@@ -105,7 +113,10 @@ const detailRiwayat = (props) => {
                         {getStatus(props.data.map(e => e.status))}
                     </div>
                     <div>
-                        <div className="text-lg font-light text-900">Booking Code : {props.data.map(e => e.kode_booking)}</div>
+                        <div className="flex justify-start">
+                            <div className="text-lg font-light text-900">Booking Code : </div>
+                            <div className="text-lg font-bold text-binar-purple">{props.data.map(e => e.kode_booking)}</div>
+                        </div>
                         <div className="text-base font-bold flex justify-between text-900">
                             {getTimes(props.data.map(e => e.tiket[0].flight.departure_date))}
                             <div className="text-sm font-semibold justify-items-end text-binar-purple">Keberangkatan</div>
@@ -125,7 +136,7 @@ const detailRiwayat = (props) => {
                             {props.data.map(e => e.tiket.map(a=> (
                                 <>
                                     <h1 className="text-sm font-semibold  text-binar-purple">Penumpang {a.passenger.id} : {a.passenger.first_name}</h1>
-                                    <div className="text-sm font-semibold text-900">ID {a.passenger.identity_number}</div>
+                                    <div className="text-sm font-medium text-700">ID : {a.passenger.identity_number}</div>
                                 </>
                             )))}
                             <div className="text-base font-semibold text-900 pt-4">Fasilitas</div>
