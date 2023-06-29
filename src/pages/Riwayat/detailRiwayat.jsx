@@ -58,10 +58,18 @@ const detailRiwayat = (props) => {
     function getHarga(tiket){
         let total = 0;
         for(let i = 0; i < tiket.length;i++){
-            const priceClass = getClassPrice(tiket[i].flight)
-            if(tiket[i].type_of_passenger == "Adult"){
-                let price = ((priceClass) * (tiket[i].flight.adult_price_percentage)/100)
-                total += price;
+            for(let j = 0; j < tiket[i].length ;j++){
+                const priceClass = getClassPrice(tiket[i][j].flight)
+                if(tiket[i][j].type_of_passenger == "Adult"){
+                    let price = ((priceClass) * (tiket[i][j].flight.adult_price_percentage)/100)
+                    total += price;
+                }else if(tiket[i][j].type_of_passenger == "Child"){
+                    let price = ((priceClass) * (tiket[i][j].flight.child_price_percentage)/100)
+                    total += price;
+                }else if(tiket[i][j].type_of_passenger == "Baby"){
+                    let price = ((priceClass) * (tiket[i][j].flight.baby_price_percentage)/100)
+                    total += price;
+                }
             }
         }
         return total

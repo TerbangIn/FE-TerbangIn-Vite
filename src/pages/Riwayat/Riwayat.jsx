@@ -49,7 +49,7 @@ function Riwayat() {
     };
 
     const handleSearch = () => {
-        console.log(`Mencari: ${searchText}`);
+        setSearch(false)
         setidPemesanan(searchText)
         setSearch(true)
     };
@@ -62,10 +62,7 @@ function Riwayat() {
         setSearchText('');
     };
 
-    const handleFilter = () => {
-        console.log(`Mencari: ${searchText}`);
-    };
-
+    console.log(new Date(dates));
     useEffect(() => {
       const fetchUserData = async () => {
         try {
@@ -93,16 +90,9 @@ function Riwayat() {
         });
         return hasilPencarian
       }
-      
-      console.log(Hasil);
-      const hasilPencarian = cariDataPemesanan(idPemesanan);
 
-      if (hasilPencarian) {
-        console.log(hasilPencarian);
-        console.log(hasilPencarian[0]);
-      } else {
-        console.log('Data tidak ditemukan');
-      }
+      cariDataPemesanan(idPemesanan);
+
     return (
         <>
         <Navbar></Navbar>
@@ -131,8 +121,8 @@ function Riwayat() {
                         <Button onClick={showDialog} className="button-search h-8" rounded text >
                             <i className="pi pi-search" style={{ fontSize: '1.5rem' }}></i>
                         </Button>
-                        <Dialog visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button type="submit" label="Simpan" />}>
-                                <Calendar className="w-full" value={dates} onChange={(e) => setDates(e.value)} selectionMode="range" inline showWeek />
+                        <Dialog className="w-1/3" visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button type="submit" label="Simpan" />}>
+                            <Calendar value={dates} onChange={(e) => setDates(e.value)} selectionMode="range" inline showWeek className="w-full"/>
                         </Dialog>
                         <Dialog visible={visible} onHide={hideDialog} header="Cari Riwayat Pesananmu" footer={<button onClick={handleSearch}>Cari</button>}>
                             <InputText

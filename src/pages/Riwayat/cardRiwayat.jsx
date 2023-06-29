@@ -127,6 +127,12 @@ const cardRiwayat = (props) => {
             if(tiket[i].type_of_passenger == "Adult"){
                 let price = ((priceClass) * (tiket[i].flight.adult_price_percentage)/100)
                 total += price;
+            }else if(tiket[i].type_of_passenger == "Child"){
+                let price = ((priceClass) * (tiket[i].flight.child_price_percentage)/100)
+                total += price;
+            }else if(tiket[i].type_of_passenger == "Baby"){
+                let price = ((priceClass) * (tiket[i].flight.baby_price_percentage)/100)
+                total += price;
             }
         }
         return total
@@ -136,11 +142,11 @@ const cardRiwayat = (props) => {
         <>
         <div>
             {/* Tampilkan informasi riwayat pemesanan lainnya */}
+                {props?.data?.length > 0 ? (
             <div className="text-left mt-6 grid grid-cols-2 mx-auto max-w-4xl">
                 <div>
-                {props?.data?.length > 0 ? (
-                    props?.data?.map(riwayat => (
-                        <div className="col-12 pb-4">
+                    {props?.data?.map(riwayat => (
+                        <div key={riwayat.id} className="col-12 pb-4">
                             <div className="text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
                             <Card className="p-0 button justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                                 <div className="mx-4 mb-4">
@@ -184,16 +190,16 @@ const cardRiwayat = (props) => {
                                 </div>
                             </Card>
                         </div>
-                    ))
-                ) : (
-                    <RiwayatKosong/>
-                )}
+                    ))}
                 </div>
                 <div>
 
                 {visible && <DetailRiwayat data={filter}/>}
                 </div>
             </div>
+                ) : (
+                    <RiwayatKosong/>
+                )}
         </div>
         </>
     )
