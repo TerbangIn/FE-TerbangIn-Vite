@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 function Detail(){
-    const url = `https://be-tiketku-production.up.railway.app/api/v1/flight`;
+    const url = `https://be-tiketku-production.up.railway.app/api/v1/flight/`;
     const [data, setData] = useState([]);
 
     useEffect(() => {

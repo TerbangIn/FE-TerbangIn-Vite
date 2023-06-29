@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import SeatCustomer from "./seat";
 import image from './images/Image.svg';
@@ -8,26 +8,55 @@ import Submit from "./submit-success";
 import Timer from "./timer";
 import Axios from "axios";
 import Detail from "./detail";
+import jwtDecode from "jwt-decode";
+import { useParams } from "react-router";
 
 
 function Checkout() {
     const url = "https://be-tiketku-production.up.railway.app/api/v1/passenger/"
+    const url1 = "https://be-tiketku-production.up.railway.app/api/v1/seat/"
+    const urlTransaction = `https://be-tiketku-production.up.railway.app/api/v1/transaksi`;
+    const [selectedSeat, setSelectedSeats] = useState([]);
+    const [transaction_id, setTransaction_id] = useState("")
     const [data, setData] = useState([
-        {title: "",
-        first_name: "",
-        last_name: "",
-        date_of_birth: "",
-        country: "",
-        identity_number: "",
-        identity_number_of_country: "",
-        expired_date: ""},
+        {
+            title: "",
+            first_name: "",
+            last_name: "",
+            date_of_birth: "",
+            country: "",
+            identity_number: "",
+            identity_number_of_country: "",
+            expired_date: ""
+        },
     ])
 
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MDQ3NjYzfQ.LqsUCEhRRqBlFZq8aD47E4AHqbfDSc24Us9S2G26mj4";
+    const decode = jwtDecode(token)
+    const getTransaction = async () => {
+        return await Axios.post(urlTransaction, {
+            user_id: decode.id,
+            total_price: 20000
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }).then(res => {
+            console.log(res.data);
+            setTransaction_id(res?.data?.data?.id)
+        })
+    }
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NTI2MTk4fQ.iRVs6h7tqkC29USwhNUe2sB_B-w0KZ7rCFx_VfSDvrQ";
+    useEffect(() => {
+        getTransaction()
+    }, [])
+
     function submit(e) {
         e.preventDefault();
-        data.map(data=>{
+        selectedSeat.map(data => {
+
+        })
+        data.map(data => {
             Axios.post(url, {
                 title: data.title,
                 first_name: data.first_name,
@@ -42,18 +71,57 @@ function Checkout() {
                     Authorization: `Bearer ${token}`,
                 },
             })
-                .then(res => {
-                    Axios.post("https://be-tiketku-production.up.railway.app/api/v1/tiket/",{
-                        "passenger_id":res.data.id
+                .then(resPassenger => {
+                    selectedSeat.map(data => {
+                        Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${data}`, {
+                            status: "Unavailable"
+                        }, {
+                            headers: {
+                                Authorization: `Bearer ${token}`,
+                            },
+                        })
+                            .then(resSeat => {
+                                Axios.post("https://be-tiketku-production.up.railway.app/api/v1/tiket/", {
+                                    transaction_id: transaction_id,
+                                    type_of_class: "Economy Class",
+                                    type_of_passenger: "Adult",
+                                    price: 5000,
+                                    seat_id: data,
+                                    passenger_id: resPassenger?.data?.data?.id,
+                                    flight_id: 1
+                                }, {
+                                    headers: {
+                                        Authorization: `Bearer ${token}`,
+                                    },
+                                })
+                                    .then(resTiket => {
+                                        console.log(resTiket.data)
+                                    })
+                                    .catch(error => {
+                                        console.log(error.message);
+                                        console.log(resSeat?.data?.data?.id, resPassenger?.data?.data?.id);
+                                    })
+
+                            })
+                            .catch((error) => {
+                                console.error(error);
+                            })
                     })
-                    console.log(res.data)
+
                 })
                 .catch((error) => {
                     console.error(error);
                 })
+
         })
+
     }
 
+
+    const handleSeat = (data) => {
+        setSelectedSeats(data)
+    }
+    console.log(selectedSeat)
     // function handle(e){
     //     const newData = {...data}
     //     newData[e.target.id] = e.target.value
@@ -81,7 +149,7 @@ function Checkout() {
         }
         setData([...data, object])
     }
-
+    const {id} =useParams
 
     return (
         <div>
@@ -96,7 +164,7 @@ function Checkout() {
                 </div>
                 {/* <Modal/> */}
                 {/* <Submit/> */}
-                <Timer seconds={900} />
+                <Timer seconds={5} />
 
             </header>
             <button onClick={addFields}>add form</button>
@@ -144,7 +212,7 @@ function Checkout() {
                         </div> */}
                         {data.map((data, index) => {
                             return (
-                                <div key={index} className="data w-[518px] border-2 border-[#8a8a8a] rounded">
+                                <div key={index} className="data w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
                                     <h1 className="text-xl1 font-bold mb-4 mx-4 mt-4">Isi Data Penumpang</h1>
                                     <h1 className="w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - Adult</h1>
                                     <div className="font-semibold align-middle ml-8">
@@ -217,13 +285,13 @@ function Checkout() {
                             )
                         })}
                         <div>
-                            <SeatCustomer />
+                            <SeatCustomer handleSeat={handleSeat} />
                         </div>
                     </div>
 
                     <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                 </form>
-                <Detail/>
+                <Detail />
             </div>
         </div>
     )

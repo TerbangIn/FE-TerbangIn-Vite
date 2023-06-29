@@ -33,7 +33,7 @@ function Payment() {
                     </div>
                 </div>
             </header>
-            <div className="flex flex-row mt-3">s
+            <div className="flex flex-row mt-3">
                 <div>
                     <h1 className="text-1xl ml-[308px] font-bold mb-4">Isi Data Pembayaran</h1>
                     <Accordion />

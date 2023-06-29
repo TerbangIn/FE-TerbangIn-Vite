@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const SeatCustomer = () => {
+const SeatCustomer = (props) => {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [seat, setSeat] = useState([{
         id:"",
@@ -11,43 +11,49 @@ const SeatCustomer = () => {
     const handleSeatSelect = (seat) => {
         if (selectedSeats.includes(seat)) {
         setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+        props.handleSeat(selectedSeats.filter((s) => s !== seat));
         } else {
         setSelectedSeats([...selectedSeats, seat]);
+        props.handleSeat([...selectedSeats, seat]);
+        // props.handleSeat(selectedSeats)
         }
+        
     };
-    console.log(selectedSeats)
+    // console.log(selectedSeats)
 
     
     const url = `https://be-tiketku-production.up.railway.app/api/v1/flight/1`;
+    
     const getSeat = async()=>{
         await axios.get(url).then(res=>{
             setSeat(res?.data?.data?.seat)
             console.log(res?.data?.data?.seat)
         })
     }
+    
     useEffect(()=>{
         getSeat()
     },[])
 
-    // const postSeat = async()=>{
-    //     await selectedSeats.map(data=>{
-    //         Axios.put("https://be-tiketku-production.up.railway.app/api/v1/seat/", {
-    //             seat: selectedSeats.seat_number
-    //         },)
-    //             .then(res => {
-    //                 // Axios.put("https://be-tiketku-production.up.railway.app/api/v1/seat/",{
-    //                 //     "passenger_id":res.data.id
-    //                 // })
-    //                 console.log(res.selectedSeats)
-    //             })
-    //             .catch((error) => {
-    //                 console.error(error);
-    //             })
-    //     })
-    // }
-    // useEffect(() => {
+    const postSeat = async()=>{
+        await selectedSeats.map(data=>{
+            Axios.put("https://be-tiketku-production.up.railway.app/api/v1/seat/", {
+                seat: selectedSeats.seat_number
+            },)
+                .then(res => {
+                    // Axios.put("https://be-tiketku-production.up.railway.app/api/v1/seat/",{
+                    //     "passenger_id":res.data.id
+                    // })
+                    console.log(res.selectedSeats)
+                })
+                .catch((error) => {
+                    console.error(error);
+                })
+        })
+    }
+    useEffect(() => {
         
-    // }, []);
+    }, []);
 
   const style = `
   .seat-picker {
@@ -105,7 +111,7 @@ const SeatCustomer = () => {
                             {seat?.map(data=>{
                                 return( 
                                     <label className={`text-[#F2F2F2] seats ${data.status === "Available" ? "" :"selected"}`} style={{ cursor: "not-allowed" }}>
-                                        <input type="checkbox" value={data.id} checked={selectedSeats.includes(data.id)} onChange={() => handleSeatSelect(data.id)} disabled={selectedSeats.length > 4 &&  selectedSeats.includes(data.id) ? true:false}/>
+                                        <input type="checkbox" value={data.id} checked={selectedSeats.includes(data.id)} onChange={() => handleSeatSelect(data.id)} disabled={data.status === "Available" ? false:true}/>
                                     </label>
                                 )
                             })}
