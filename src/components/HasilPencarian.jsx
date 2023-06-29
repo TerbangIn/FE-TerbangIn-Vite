@@ -4,15 +4,17 @@ import 'primereact/resources/primereact.min.css';
 import { RiLoginBoxLine } from "react-icons/ri";
 import logo from '../assets/logo.png';
 import { Button } from 'primereact/button';
+// import Link from "react"
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaArrowLeft } from 'react-icons/fa';
 import yellowlogo from '../assets/yellowlogo.png'
 import chevron from '../assets/chevron.png'
 import arrow from '../assets/arrow.png'
 import koper from '../assets/koper.png'
-import panahtermurah from '../assets/panahtermurah.png'
+import panahtermurah from '../assets/panahtermurah.svg'
 import { DataView } from 'primereact/dataview';
 import Modal from "../components/Modal";
+import Navbar from "./Navbar/Navbar";
 // import { Card } from 'primereact/card';
 import './Index.css';
 import {
@@ -157,11 +159,12 @@ const HasilPencarian = () => {
   return (
     <div>
       <div>
-        <nav className="py-3 navbar-container">
+        <Navbar/>
+        {/* <nav className="py-3 navbar-container">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-10">
-                {/* Logo and Search Bar */}
+                Logo and Search Bar
                 <img src={logo} alt="Logo" className="h-14" />
                 <div className="relative">
                   <input
@@ -174,9 +177,9 @@ const HasilPencarian = () => {
                   </span>
                 </div>
               </div>
-              {/* End of Logo and Search Bar */}
+              End of Logo and Search Bar
 
-              {/* Button */}
+              Button
               <div className="flex flex-col md:flex-row md:items-center">
                 <Button
                   type="button"
@@ -188,27 +191,27 @@ const HasilPencarian = () => {
                   </div>
                 </Button>
               </div>
-              {/* End of Button */}
+              End of Button
             </div>
           </div>
-        </nav>
+        </nav> */}
 
-        <hr />
+        {/* <hr /> */}
 
-        <div className="flex justify-center">
+        <div className="flex justify-center md:mt-14 mt-8">
           <div className="w-full flex flex-col justify-center items-center">
             {/* Pilih Penerbangan */}
-            <div className="w-[1000px]">
-              <h1 className="text-2xl font-bold my-4">Pilih Penerbangan</h1>
+            <div className="md:w-[1000px] w-11/12">
+              <h1 className="text-2xl font-bold md:mb-8 mb-5">Pilih Penerbangan</h1>
               {/* Tag Pencarian */}
-              <div className="flex gap-2 my-4">
-                <p className="tag bg-[#A06ECE] text-white rounded-lg px-4 py-2 flex items-center flex-1">
-                  <FaArrowLeft className="w-4 h-4 mr-2" />
-                  JKT &gt; MLB - 2 Penumpang - Economy
-                </p>
-                <p className="tag text-center bg-custom-color-green text-white rounded-lg px-4 py-2">
+              <div className="flex md:flex-row flex-col gap-2 my-4 mx-2">
+                <a href="/beranda" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
+                  <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
+                  <p className="md:pr-96 md:text-base text-[15px]"> JKT &gt; MLB - 2 Penumpang - Economy </p>
+                </a>
+                <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
                   Ubah Pencarian
-                </p>
+                </a>
               </div>
               {/* End of Tag Pencarian */}
 
@@ -265,8 +268,8 @@ const HasilPencarian = () => {
               </div>
 
               {/* Start of filter box */}
-              <div className="flex w-full">
-                <div className="w-[35%] flex">
+              <div className="flex flex-col md:flex-row w-full">
+                <div className="md:w-[35%] w-full flex md:mb-0 mb-9">
                   <Card className="h-fit sticky top-40 w-[90%] p-4 shadow-xl shadow-gray-900/2 border-gray-950">
                     {/* Filter title */}
                     <div className="mb-2 flex ms-2">
@@ -312,22 +315,26 @@ const HasilPencarian = () => {
                 <div className="flex flex-col w-full">
                   {datas?.map(data => {
                     return (
-                      <Accordion className="mb-2" multiple activeIndex={0}>
+                      <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0}>
                         <AccordionTab className="w-full" header={
-                          <div className="flex flex-col flex-1 shrink-0">
+                          <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
                             <div className="flex items-center gap-2">
                               <img src={yellowlogo} alt="" className="w-6 h-6" />
                               <div>{data?.airline}</div>
                             </div>
                             <div className="flex justify-between w-full">
-                              <div className="flex items-center gap-3 w-1/2">
+                              <div className="flex items-center md:gap-3 gap-1 w-1/2">
                                 <div className="flex flex-col gap-2">
                                   <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
                                   <div>{data?.destination?.code}</div>
                                 </div>
                                 <div className="flex flex-col items-center mx-4">
                                   <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
-                                  <img src={arrow} alt="arrow" className="w-full" />
+                                  <div className="flex items-center ">
+                                    <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
+                                    <div className="pi pi-angle-right -mx-2.5"></div>
+                                  </div>
+                                  {/* <img src={arrow} alt="arrow" className="w-full" /> */}
                                   <div className="text-xs text-neutral-500">Direct</div>
                                 </div>
                                 <div className="flex flex-col gap-2">
@@ -335,10 +342,10 @@ const HasilPencarian = () => {
                                   <div>{data?.source?.code}</div>
                                 </div>
                                 {/* <div className="flex items-center"> */}
-                                <img src={koper} alt="" className="w-6 h-6 ms-3" />
+                                <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
                                 {/* </div> */}
                               </div>
-                              <div className="flex p-3">
+                              <div className="flex md:ml-11 ml-8 p-3">
                                 <div className="flex flex-col font-bold gap-2">
                                   <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
                                   <Button label="Pilih" severity="help" rounded></Button>
@@ -347,7 +354,7 @@ const HasilPencarian = () => {
                             </div>
                           </div>
                         }>
-                          <div className="flex flex-col items-start">
+                          <div className="flex flex-col items-start md:text-base text-xs ">
                             <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
                             <div className="flex justify-between w-full">
                               <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>

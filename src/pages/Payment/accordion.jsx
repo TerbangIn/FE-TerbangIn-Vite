@@ -148,20 +148,20 @@ function Accordion(){
                         </div>
                         <div className="ml-[111px] mt-6">
                             <h1 className="text-sm ">Card number</h1>
-                            <input className="border-b-2 w-[296px] border-light-gray  focus:outline-none" placeholder="4480 0000 0000 0000" />
+                            <input className="border-b-2 w-[296px] border-[#8a8a8a]  focus:outline-none" placeholder="4480 0000 0000 0000" />
                         </div>
                         <div className="ml-[111px] mt-6">
                             <h1 className="text-sm ">Card holder name</h1>
-                            <input className="border-b-2 w-[296px] border-light-gray  focus:outline-none" placeholder="John Doe" />
+                            <input className="border-b-2 w-[296px] border-[#8a8a8a]  focus:outline-none" placeholder="John Doe" />
                         </div>
                         <div className="flex flex-row">
                             <div className="ml-[111px] mt-6">
                                 <h1 className="text-sm ">CVV</h1>
-                                <input className="border-b-2 w-[132px] border-light-gray  focus:outline-none" placeholder="000" />
+                                <input className="border-b-2 w-[132px] border-[#8a8a8a]  focus:outline-none" placeholder="000" />
                             </div>
                             <div className="ml-8 mt-6">
                                 <h1 className="text-sm ">Expiry Date</h1>
-                                <input className="border-b-2 w-[132px] border-light-gray  focus:outline-none" placeholder="07/24" />
+                                <input className="border-b-2 w-[132px] border-[#8a8a8a]  focus:outline-none" placeholder="07/24" />
                             </div>
                         </div>
                         <button className="w-[500px] h-[62px] rounded-lg text-white mt-14 bg-purple-700">Bayar</button>

@@ -49,26 +49,26 @@ function Payment() {
                                 <h2 className="font-bold text-base '">07:00</h2>
                                 <p className="text-sm -mt-2">3 Maret 2023</p>
                             </div>
-                            <div className="ml-38">
-                                <h1 className="text-purple1 text-xs">Keberangkatan</h1>
+                            <div className="ml-[158px]">
+                                <h1 className="text-[#4b1979] text-xs">Keberangkatan</h1>
                             </div>
                         </div>
                         <h1 className="text-sm -mt-3">Soekarno Hatta - Terminal 1A Domestik</h1>
-                        <div className="border-b bg-light-gray border w-82"></div>
+                        <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
                     </div>
                     <div className="ml-7">
                         <div className="flex flex-row">
                             <img src={image} alt="" />
                             <div className="ml-2">
                                 <h1 className="text-sm font-bold">Jet Air - Economy</h1>
-                                <h1 className="text-1sm font-bold -mt-2">JT - 203</h1>
-                                <p className="font-bold text-1sm">Informasi:</p>
-                                <p className="-mt-4 text-1sm">Baggage 20 kg</p>
-                                <p className="text-1sm -mt-4">Cabin baggage 7 kg</p>
-                                <p className="text-1sm -mt-4">In Flight Entertainment</p>
+                                <h1 className="text-[14px] font-bold -mt-2">JT - 203</h1>
+                                <p className="font-bold text-[14px]">Informasi:</p>
+                                <p className="-mt-4 text-[14px]">Baggage 20 kg</p>
+                                <p className="text-[14px] -mt-4">Cabin baggage 7 kg</p>
+                                <p className="text-[14px] -mt-4">In Flight Entertainment</p>
                             </div>
                         </div>
-                        <div className="border-b bg-light-gray border w-82"></div>
+                        <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
                     </div>
                     <div >
                         <div className="mt-3 ml-7">
@@ -77,12 +77,12 @@ function Payment() {
                                     <h2 className="font-bold text-base '">11:00</h2>
                                     <p className="text-sm -mt-2">3 Maret 2023</p>
                                 </div>
-                                <div className="ml-38">
-                                    <h1 className="text-purple1 text-xs">Kedatangan</h1>
+                                <div className="ml-[158px]">
+                                    <h1 className="text-[#4b1979] text-xs">Kedatangan</h1>
                                 </div>
                             </div>
                             <h1 className="text-sm -mt-3">Melbourne International Airportk</h1>
-                            <div className="border-b bg-light-gray border w-82"></div>
+                            <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
                         </div>
                     </div>
                     <div className="ml-7">
@@ -93,7 +93,7 @@ function Payment() {
                                 <h1 className="text-sm ml-2">IDR 9.550.000</h1>
                             </div>
                             <div className="flex flex-row">
-                                <h1 className="text-sm w-70">1 Baby</h1>
+                                <h1 className="text-sm w-[285px]">1 Baby</h1>
                                 <h1 className="text-sm">IDR 0</h1>
                             </div>
                             <div className="flex flex-row">
@@ -101,7 +101,7 @@ function Payment() {
                                 <h1 className="text-sm ml-1">IDR 300.000</h1>
                             </div>
                         </div>
-                        <div className="border-b bg-light-gray border w-82"></div>
+                        <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
                     </div>
                     <div className="ml-7 flex flex-row">
                         <h1 className="font-bold text-base w-48">Total</h1>
