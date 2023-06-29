@@ -33,6 +33,7 @@ function Riwayat() {
     const [userData, setUserData] = useState([]);
     const [searching, setSearching] = useState([]);
     const [search, setSearch] = useState(false);
+    const [simpan, setSimpan] = useState(false);
     const [visible, setVisible] = useState(false);
     const [visibleFilter, setVisibleFilter] = useState(false);
     const [searchText, setSearchText] = useState('');
@@ -51,6 +52,7 @@ function Riwayat() {
     const handleSearch = () => {
         setSearch(false)
         setidPemesanan(searchText)
+        setSimpan(true)
         setSearch(true)
     };
     const showFilter = () => {
@@ -61,8 +63,6 @@ function Riwayat() {
         setVisibleFilter(false);
         setSearchText('');
     };
-
-    console.log(new Date(dates));
     useEffect(() => {
       const fetchUserData = async () => {
         try {
@@ -93,6 +93,59 @@ function Riwayat() {
 
       cariDataPemesanan(idPemesanan);
 
+  const [dateRange, setDateRange] = useState(null);
+  const [range, setRange] = useState([]);
+
+  const handleDateRangeChange = (e) => {
+    setDateRange(e.value);
+  };
+
+  const getDatesInRange = () => {
+    if (dateRange) {
+      const startDate = dateRange[0];
+      const endDate = dateRange[1];
+
+      const dates = [];
+      const currentDate = new Date(startDate);
+
+      while (currentDate <= endDate) {
+        dates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      return dates;
+    }
+
+    return [];
+  };
+
+  const formatDate = (date) => {
+    if (date) {
+      return date.toISOString().slice(0, 10);
+    }
+    return '';
+  };
+  function rangeDate() {
+    const datetimeString = "2023-06-27T14:43:20.708Z";
+    const dateString = datetimeString.slice(0, 10);
+    console.log(dateString); 
+    getDatesInRange().map((date) => 
+    {
+      const hasilPencarian = userData?.transaction?.map(pemesanan => {
+        const datetimeString = pemesanan.createdAt;
+        const dateString = datetimeString.slice(0, 10);
+        if (dateString == formatDate(date)) {
+          if(simpan == true){
+            Hasil.push(pemesanan);
+          }
+          return pemesanan
+        }
+      })
+        
+        return hasilPencarian
+    })
+  }
+  console.log(Hasil);
     return (
         <>
         <Navbar></Navbar>
@@ -110,19 +163,11 @@ function Riwayat() {
                             </Link>
                         </button>
                         <Button className="h-8 button-search" type="button" label="Filter" icon="pi pi-filter" outlined rounded onClick={showFilter} />
-                        {/* <OverlayPanel ref={op}>
-                            <div>
-                                <Calendar value={dates} onChange={(e) => setDates(e.value)} selectionMode="range" inline showWeek />
-                            </div>
-                            <div className="text-end lg:py-4">
-                                <Button type="submit" label="Simpan" />
-                            </div>
-                        </OverlayPanel> */}
                         <Button onClick={showDialog} className="button-search h-8" rounded text >
                             <i className="pi pi-search" style={{ fontSize: '1.5rem' }}></i>
                         </Button>
-                        <Dialog className="w-1/3" visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button type="submit" label="Simpan" />}>
-                            <Calendar value={dates} onChange={(e) => setDates(e.value)} selectionMode="range" inline showWeek className="w-full"/>
+                        <Dialog className="w-1/3" visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button onClick={handleSearch} label="Simpan" />}>
+                            <Calendar selectionMode="range" value={dateRange} onChange={handleDateRangeChange} inline showWeek className="w-full"/>
                         </Dialog>
                         <Dialog visible={visible} onHide={hideDialog} header="Cari Riwayat Pesananmu" footer={<button onClick={handleSearch}>Cari</button>}>
                             <InputText
@@ -135,7 +180,10 @@ function Riwayat() {
                 </div>
             </div>
         </Card>
-        {search == true ? (<CardRiwayat data={Hasil}/>) : (<CardRiwayat data={userData.transaction}/>)}
+        <div>
+        {rangeDate()}
+      </div>
+        {search == true ? (<>aaa<CardRiwayat data={Hasil}/></>) : (<CardRiwayat data={userData.transaction}/>)}
         </div>
       </>
   );
