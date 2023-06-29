@@ -26,15 +26,21 @@ const JadwalPenerbangan = (onFilterData) => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
+    const [seatClass, setSeatClass] = useState("");
     const [checked, setChecked] = useState(false);
-    const [from, setFrom] = useState("Duesseldorf");
-    const [to, setTo] = useState("Brazil");
+    const [from, setFrom] = useState("Banten");
+    const [to, setTo] = useState("Surabaya");
     const [matchingFlights, setMatchingFlights] = useState([]);
 
+    const dateString = selectedDate1;
+    const dateObj = new Date(dateString);
+    const year = dateObj.getFullYear();
+    const month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
+    const day = ("0" + dateObj.getDate()).slice(-2);
+    const convertedDate = `${year}-${month}-${day}`;
 
-    const handleDateClick = () => {
-        setShowCalendar(!showCalendar); // Mengubah state showCalendar saat elemen diklik
-    };
+    console.log(convertedDate); // Output: 2023-06-06
+    
     const handleFromSelect = (value) => {
         setFrom(value);
     };
@@ -60,30 +66,13 @@ const JadwalPenerbangan = (onFilterData) => {
             setSelectedDate2(e.value);
         }
     }
-    const dateOptions = {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
+
+    const handleSeatClassChange = (value) => {
+        const lowercaseSeatClass = value.toLowerCase();
+        setSeatClass(lowercaseSeatClass);
     };
 
-    const buttonHandler = () => {
-        const filteredFlights = flightData.filter((flight) => {
-            // Ubah kondisi sesuai dengan kriteria pencarian pengguna
-            const isFromMatch = flight.source.city.toLowerCase() === from.toLowerCase();
-            const isToMatch = flight.destination.country.toLowerCase() === to.toLowerCase();
-
-            return isFromMatch && isToMatch;
-        });
-
-        setMatchingFlights(filteredFlights);
-
-        if (filteredFlights.length > 0) {
-            alert("Ada data penerbangan yang sesuai!");
-        } else {
-            alert("Tidak ada data penerbangan yang sesuai!");
-        }
-
-    }
+    console.log(seatClass)
 
     const handleFromChange = (value) => {
         setFrom(value);
@@ -108,85 +97,105 @@ const JadwalPenerbangan = (onFilterData) => {
         setFrom("");
     };
 
+    const buttonHandler = () => {
+        const filteredFlights = flightData.filter((flight) => {
+            const flightFromMatch = flight?.source?.city.toLowerCase() === from.toLowerCase();
+            const flightToMatch = flight?.destination?.city.toLowerCase() === to.toLowerCase();
+
+            return flightFromMatch && flightToMatch;
+        });
+
+        setMatchingFlights(filteredFlights);
+
+        if (filteredFlights.length > 0) {
+            alert("Ada data penerbangan yang sesuai!");
+        } else {
+            alert("Tidak ada data penerbangan yang sesuai!");
+        }
+
+
+    }
+
+
     return (
         <>
             <div className="relative lg:max-w-screen-md rounded-lg shadow-lg mx-auto bg-white -mt-12">
-            <div className="py-4 px-5">
-                <p className="text-lg">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
-                <div className="grid grid-cols-3 mt-3">
-                    <div>
-                        <div className="flex items-center">
-                            <Image src={icon_pesawat} alt="icon_pesawat" className="w-4" />
-                            <p className="text-primary1 text-xs md:text-base ml-2 mr-2 ">From</p>
-                            <div >
-                                <ModalFlightFrom
-                                    value={from}
-                                    onChange={handleFromChange}
-                                    onSelect={handleFromSelect}
-                                    onBlur={handleFromBlur}
-                                />
+                <div className="py-4 px-5">
+                    <p className="text-lg">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
+                    <div className="grid grid-cols-3 mt-3">
+                        <div>
+                            <div className="flex items-center">
+                                <Image src={icon_pesawat} alt="icon_pesawat" className="w-4" />
+                                <p className="text-primary1 text-xs md:text-base ml-2 mr-2 ">From</p>
+                                <div >
+                                    <ModalFlightFrom
+                                        value={from}
+                                        onChange={handleFromChange}
+                                        onSelect={handleFromSelect}
+                                        onBlur={handleFromBlur}
+                                    />
+                                </div>
+                            </div>
+                            <hr className="flex border-1 mx-[85px] w-60" />
+                            <div className="">
+                                <div className="flex items-center mx-10 mt-7">
+                                    <div className="text-base text-primary1 mx-10">Departure</div>
+                                    <div className="text-base text-primary1 mx-6">Return</div>
+                                    <div><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
+                                </div>
+                                <div className="flex items-center lg:mt-2 -mr-28">
+                                    <Image src={icon_date} alt="icon_date" className="w-4 md:w-6" />
+                                    <div className="text-base text-primary1 px-2">Date</div>
+                                    <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="w-56 h-7 px-3 " />
+                                    <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="w-48 h-7 px-2 pr-2 mr-3" />
+                                </div>
+                                <div className="pt-1">
+                                    <hr className="flex border-1 mx-20 w-32" />
+                                    <hr className="border-1 mx-56 w-32" />
+                                </div>
                             </div>
                         </div>
-                        <hr className="flex border-1 mx-[85px] w-60" />
-                        <div className="">
-                            <div className="flex items-center mx-10 mt-7">
-                                <div className="text-base text-primary1 mx-10">Departure</div>
-                                <div className="text-base text-primary1 mx-6">Return</div>
-                                <div><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
+                        <div className="mx-auto"><Image src={return1} alt="return1" onClick={return1Handler} className="cursor-pointer w-4" /></div>
+                        <div className="-ml-24 -mr-4">
+                            <div className="flex items-center">
+                                <Image src={icon_pesawat} alt="icon_pesawat" className="w-6 mr-2 ml-1 sm:w-4 lg:ml-4" />
+                                <p className="text-primary1 text-xs md:text-base mr-2">To</p>
+                                <div>
+                                    <ModalFlightTo
+                                        value={to}
+                                        onChange={handleToChange}
+                                        onSelect={handleToSelect}
+                                        onBlur={handleToBlur}
+                                        onFocus={handleToFocus}
+                                    />
+                                </div>
                             </div>
-                            <div className="flex items-center lg:mt-2 -mr-28">
-                                <Image src={icon_date} alt="icon_date" className="w-4 md:w-6" />
-                                <div className="text-base text-primary1 px-2">Date</div>
-                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="w-56 h-7 px-3 " />
-                                <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="w-48 h-7 px-2 pr-2 mr-3" />
+                            <hr className="flex border-1 mx-[93px] w-60" />
+                            <div className="mx-4 -mr-10">
+                                <div className="flex mx-6 mt-8">
+                                    <div className="text-base text-primary1 mx-10">Passengers</div>
+                                    <div className="text-base text-primary1 mx-5">Seat Class</div>
+                                </div>
+                                <div className="flex items-center mt-4">
+                                    <Image src={airline_seat} alt="airline_seat" className="w-4 sm:w-5 md:w-6" />
+                                    <div className="text-base text-primary1">To</div>
+                                    <ModalPassengers />
+                                    <ModalSeatClass value={seatClass} onChange={handleSeatClassChange}/>
+                                </div>
+                                <hr className="flex border-1 mx-16 w-28" />
+                                <hr className="border-1 mx-[216px] w-[96px]" />
                             </div>
-                            <div className="pt-1">
-                                <hr className="flex border-1 mx-20 w-32" />
-                                <hr className="border-1 mx-56 w-32" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mx-auto"><Image src={return1} alt="return1" onClick={return1Handler} className="cursor-pointer w-4" /></div>
-                    <div className="-ml-24 -mr-4">
-                        <div className="flex items-center">
-                            <Image src={icon_pesawat} alt="icon_pesawat" className="w-6 mr-2 ml-1 sm:w-4 lg:ml-4" />
-                            <p className="text-primary1 text-xs md:text-base mr-2">To</p>
-                            <div>
-                                <ModalFlightTo
-                                    value={to}
-                                    onChange={handleToChange}
-                                    onSelect={handleToSelect}
-                                    onBlur={handleToBlur}
-                                    onFocus={handleToFocus}
-                                />
-                            </div>
-                        </div>
-                        <hr className="flex border-1 mx-[93px] w-60" />
-                        <div className="mx-4 -mr-10">
-                            <div className="flex mx-6 mt-8">
-                                <div className="text-base text-primary1 mx-10">Passengers</div>
-                                <div className="text-base text-primary1 mx-5">Seat Class</div>
-                            </div>
-                            <div className="flex items-center mt-4">
-                                <Image src={airline_seat} alt="airline_seat" className="w-4 sm:w-5 md:w-6" />
-                                <div className="text-base text-primary1">To</div>
-                                <ModalPassengers />
-                                <ModalSeatClass />
-                            </div>
-                            <hr className="flex border-1 mx-16 w-28" />
-                            <hr className="border-1 mx-[216px] w-[96px]" />
-                        </div>
 
+                        </div>
                     </div>
+
                 </div>
-
-            </div>
-            <div className="bg-primary2 rounded-b-xl">
-                <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4" onClick={buttonHandler}>Cari Penerbangan</p>
-            </div>
+                <div className="bg-primary2 rounded-b-xl">
+                    <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4" onClick={buttonHandler}>Cari Penerbangan</p>
+                </div>
             </div>
         </>
-       
+
     )
 }
 

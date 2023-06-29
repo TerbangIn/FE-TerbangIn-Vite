@@ -7,13 +7,14 @@ import Line from "../../assets/images/line_thin.svg"
 import checklist from "../../assets/images/checklist.svg"
 import save from "../../assets/images/Brand_button.svg"
 
-function ModalSeatClass() {
+function ModalSeatClass({onChange}) {
     const [visible, setVisible] = useState(false);
     const [selectedSeatClass, setSelectedSeatClass] = useState("Bussiness");
     const [savedSeatClass, setSavedSeatClass] = useState(null);
 
     const handleSeatClassClick = (seatClass) => {
         setSelectedSeatClass(seatClass);
+        onChange(seatClass);
     };
 
     const handleSaveClick = () => {
@@ -24,7 +25,7 @@ function ModalSeatClass() {
 
     return (
         <>
-            <div className="text-xs md:text-base font-bold mx-10" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
+            <div className="text-xs md:text-base font-bold mx-12" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
                 {savedSeatClass || selectedSeatClass}
             </div>
 
