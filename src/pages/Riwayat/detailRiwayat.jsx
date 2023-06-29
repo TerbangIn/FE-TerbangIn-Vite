@@ -136,7 +136,7 @@ const detailRiwayat = (props) => {
                             {props.data.map(e => e.tiket.map(a=> (
                                 <>
                                     <h1 className="text-sm font-semibold  text-binar-purple">Penumpang {a.passenger.id} : {a.passenger.first_name}</h1>
-                                    <div className="text-sm font-semibold text-900">ID {a.passenger.identity_number}</div>
+                                    <div className="text-sm font-medium text-700">ID : {a.passenger.identity_number}</div>
                                 </>
                             )))}
                             <div className="text-base font-semibold text-900 pt-4">Fasilitas</div>
