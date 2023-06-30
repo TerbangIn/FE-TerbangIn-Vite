@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import SeatCustomer from "./seat";
 import image from './images/Image.svg';
-import Navbar from "./navbar";
+// import Navbar from "./navbar";
+import Navbar from "../../components/Navbar";
 import Modal from './modal';
 import Submit from "./submit-success";
 import Timer from "./timer";
@@ -10,6 +11,10 @@ import Axios from "axios";
 import Detail from "./detail";
 import jwtDecode from "jwt-decode";
 import { useParams, Link } from "react-router-dom";
+import jwt_decode from 'jwt-decode';
+import Cookies from 'universal-cookie';
+
+
 
 
 function Checkout() {
@@ -35,7 +40,9 @@ function Checkout() {
     ])
 
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJyYWZsaW1hcmRoaWFuMTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODgwOTI1MjF9.0Wgt5aAtN1t3eQ_ElFfj849TX1384zVFVbgnr-grYX4";
+    // cookies.get('token')
     const decode = jwtDecode(token)
+    const cookies = new Cookies();
     const getTransaction = async () => {
         return await Axios.post(urlTransaction, {
             user_id: decode.id,
@@ -155,18 +162,24 @@ function Checkout() {
     }
     const {id} =useParams
 
+    if (!token) {
+        return <Modal />;
+    }
+
     return (
         <div>
+ 
             <header className="border-none shadow-md ">
                 <Navbar />
-                <div className="flex flex-row space-x-2 ml-[260px] mt-[47px]">
+                <div className="flex flex-row space-x-2 md:ml-[260px] mt-[47px]">
                     <p className="text-xl font-bold">Isi Data Diri</p>
                     <p className="text-xl">&gt;</p>
                     <p className="text-xl" >Bayar</p>
                     <p className="text-xl">&gt;</p>
                     <p className="text-xl">Selesai</p>
                 </div>
-                {/* <Modal/> */}
+
+                {!token && <Modal/>}
                 {timer ? (
                 <Timer seconds={900}/>
                 ): (
@@ -175,9 +188,9 @@ function Checkout() {
 
             </header>
             <button onClick={addFields}>add form</button>
-            <div className="flex flex-row ml-[292px] mt-4">
+            <div className="flex flex-row justify-center mt-4">
                 <form onSubmit={(e) => submit(e)}>
-                    <div className="">
+                    <div className="items-center">
                         {/* <div className="data w-[518px] h-[498px] border-2 border-[#8a8a8a] rounded mb-[34px]">
                             <h1 className="text-[20px] font-bold mt-[26px] mb-4 mx-4 ">Isi Data Pemesan</h1>
                             <h1 className="w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Pemesan</h1>
@@ -301,10 +314,12 @@ function Checkout() {
                     <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                 </form>
                 <div>
-                    <Detail />
-                    <Link to="/payment" >
-                        <button className="bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
-                    </Link>
+                    <Detail className=" md:display:none" />
+                    {(
+                        <Link to="/payment" >
+                            <button className="bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>
