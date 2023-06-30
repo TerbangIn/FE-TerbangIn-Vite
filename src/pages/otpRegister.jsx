@@ -73,7 +73,7 @@ export default function OTPRegister() {
         progress: undefined,
         theme: "colored",
       })
-      navigate("/")
+      navigate("/login")
     }).catch(error => {
       toast.error(`${error.response.data.message}`, {
         position: "bottom-center",

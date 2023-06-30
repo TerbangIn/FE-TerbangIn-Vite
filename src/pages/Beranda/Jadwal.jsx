@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { Image } from "primereact/image";
 import { Calendar } from 'primereact/calendar';
 import { InputSwitch } from "primereact/inputswitch";
@@ -8,14 +9,11 @@ import ModalPassengers from "../../components/modal_beranda/ModalPassengers";
 import ModalSeatClass from "../../components/modal_beranda/ModalSeatClass";
 import ModalFlightFrom from "../../components/modal_beranda/ModalFlightFrom";
 import ModalFlightTo from "../../components/modal_beranda/ModalFlightTo";
-import { addLocale } from 'primereact/api';
+
 
 
 import icon_pesawat from "../../assets/images/icon_pesawat.svg"
 import icon_date from "../../assets/images/icon_date.svg"
-import garis1 from "../../assets/images/garis.svg"
-import garis_pendek1 from "../../assets/images/garis_pendek.svg"
-import garis_pendek2 from "../../assets/images/garis_pendek2.svg"
 import return1 from "../../assets/images/return.svg"
 import airline_seat from "../../assets/images/airline-seat.svg"
 import { Card } from "primereact/card";
@@ -28,10 +26,13 @@ const JadwalPenerbangan = (onFilterData) => {
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
     const [seatClass, setSeatClass] = useState("");
+    const [passenger, setPassenger] = useState("")
     const [checked, setChecked] = useState(false);
-    const [from, setFrom] = useState("Banten");
-    const [to, setTo] = useState("Surabaya");
+    const [from, setFrom] = useState("Indonesia (CGK)");
+    const [to, setTo] = useState("Indonesia (SUB)");
     const [matchingFlights, setMatchingFlights] = useState([]);
+    const navigate = useNavigate()
+
 
     const dateString = selectedDate1;
     const dateObj = new Date(dateString);
@@ -40,7 +41,8 @@ const JadwalPenerbangan = (onFilterData) => {
     const day = ("0" + dateObj.getDate()).slice(-2);
     const convertedDate = `${year}-${month}-${day}`;
 
-    console.log(convertedDate); // Output: 2023-06-06
+    console.log(convertedDate);
+
 
     const handleFromSelect = (value) => {
         setFrom(value);
@@ -73,6 +75,8 @@ const JadwalPenerbangan = (onFilterData) => {
         setSeatClass(lowercaseSeatClass);
     };
 
+
+
     console.log(seatClass)
 
     const handleFromChange = (value) => {
@@ -98,25 +102,31 @@ const JadwalPenerbangan = (onFilterData) => {
         setFrom("");
     };
 
+    // const buttonHandler = () => {
+    //     const filteredFlights = flightData.filter((flight) => {
+    //         const flightFromMatch = flight?.source?.city.toLowerCase() === from.toLowerCase();
+    //         const flightToMatch = flight?.destination?.city.toLowerCase() === to.toLowerCase();
+    //         const flightDateMatch = flight?.date === convertedDate;
+    //         //   const flightPassengerMatch = flight?.passenger === passenger;
+    //         const flightSeatClassMatch = flight?.seatClass === seatClass;
+    //         return flightFromMatch && flightToMatch && flightDateMatch && flightSeatClassMatch
+    //         //   return flightFromMatch && flightToMatch && flightDateMatch && flightPassengerMatch && flightSeatClassMatch;
+    //     });
+
+    //     setMatchingFlights(filteredFlights);
+
+    //     if (filteredFlights.length > 0) {
+    //         navigate('/hasil-pencarian');
+    //     } else {
+    //         alert("Tidak ada data penerbangan yang sesuai!");
+    //     }
+    // };
+    // console.log('------')
+    // console.log(passenger)
+
     const buttonHandler = () => {
-        const filteredFlights = flightData.filter((flight) => {
-            const flightFromMatch = flight?.source?.city.toLowerCase() === from.toLowerCase();
-            const flightToMatch = flight?.destination?.city.toLowerCase() === to.toLowerCase();
-
-            return flightFromMatch && flightToMatch;
-        });
-
-        setMatchingFlights(filteredFlights);
-
-        if (filteredFlights.length > 0) {
-            alert("Ada data penerbangan yang sesuai!");
-        } else {
-            alert("Tidak ada data penerbangan yang sesuai!");
-        }
-
-
+        navigate('/hasil-pencarian');
     }
-
 
     return (
         <>
@@ -140,52 +150,53 @@ const JadwalPenerbangan = (onFilterData) => {
                         <div className="">
                             <div className="flex items-center mx-10 mt-7">
                                 <div className="text-base text-primary1 mx-10 lg:ml-16 xl:ml-14">Departure</div>
-                                <div className="text-base text-primary1 lg:ml-6 lg:mr-12 xl:ml-12 xl:mr-16">Return</div>
+                                <div className="text-base text-primary1 lg:ml-6 lg:mr-12 xl:ml-20 xl:mr-16">Return</div>
                                 <div><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
                             </div>
-                            <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4">
+                            <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 max-[1058px]:bg-sky-300">
                                 <Image src={icon_date} alt="icon_date" className="w-4 md:w-6 xl:ml-1" />
                                 <div className="text-base text-primary1 lg:ml-2 xl:px-1">Date</div>
-                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="w-56 h-7 lg:mx-8 xl:ml-3 " />
-                                <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="xl:w-60 h-7 xl:ml-3 xl:mr-3" />
+                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="min-[1024px]:w-70 max-[1058px]: min-[1154px]:w-60 max-[1279px]:w-60 w-56 h-7 lg:mx-8 xl:ml-3 " />
+                                <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="min-[1024px]: max-[1058px]:-ml min-[1154px]:w-60 min-[1154px]:-ml-5 max-[1279px]:-ml-5 xl:w-60 h-7 xl:ml-3 xl:mr-3" />
                             </div>
                             <div className="pt-1">
-                                <hr className="flex border-1 lg:ml-[103px] lg:w-28 xl:ml-24 xl:w-32" />
-                                <hr className="border-1 lg:ml-60 lg:w-[110px] xl:ml-64 xl:w-32" />
+                                <hr className="flex border-1 min-[1024px]:ml-[103px] max-[1058px]:ml-[103px] min-[1154px]:w-32 max-[1279px]:w-32 lg:w-28 xl:ml-24 xl:w-[153px]" />
+                                <hr className="border-1 min-[1024px]:ml-60 min-[1154px]:w-32 max-[1279px]:w-32 max-[1058px]:ml-60 lg:w-[110px] xl:ml-72 xl:w-[153px]" />
                             </div>
+
                         </div>
                     </div>
                     <div className="mx-auto"><Image src={return1} alt="return1" onClick={return1Handler} className="cursor-pointer xl:w-4" /></div>
                     <div className="-ml-24 -mr-4">
-                            <div className="flex items-center">
-                                <Image src={icon_pesawat} alt="icon_pesawat" className="w-6 mr-2 ml-1 sm:w-4 lg:w-4 lg:mr-3 lg:ml-4 xl:mr-3" />
-                                <p className="text-primary1 text-xs md:text-base mr-2">To</p>
-                                <div>
-                                    <ModalFlightTo
-                                        value={to}
-                                        onChange={handleToChange}
-                                        onSelect={handleToSelect}
-                                        onBlur={handleToBlur}
-                                        onFocus={handleToFocus}
-                                    />
-                                </div>
-                            </div>
-                            <hr className="flex border-1 lg:w-60 lg:ml-20" />
-                            <div className="mx-4 -mr-10">
-                                <div className="flex mx-6 mt-8">
-                                    <div className="text-base text-primary1 xl:ml-11">Passengers</div>
-                                    <div className="text-base text-primary1 xl:ml-14">Seat Class</div>
-                                </div>
-                                <div className="flex items-center mt-4">
-                                    <Image src={airline_seat} alt="airline_seat" className="w-4 sm:w-5 md:w-6 xl:mr-2" />
-                                    <div className="text-base text-primary1">To</div>
-                                    <ModalPassengers />
-                                    <ModalSeatClass value={seatClass} onChange={handleSeatClassChange}/>
-                                </div>
-                                <hr className="flex border-1 xl:ml-[67px] xl:w-28" />
-                                <hr className="border-1 xl:ml-[205px] xl:w-[96px] mb-5" />
+                        <div className="flex items-center">
+                            <Image src={icon_pesawat} alt="icon_pesawat" className="w-6 mr-2 ml-1 sm:w-4 min-[1154px]:ml-2 max-[1279px]:2 lg:w-4 lg:mr-3 lg:ml-4 xl:mr-3" />
+                            <p className="text-primary1 text-xs md:text-base mr-2">To</p>
+                            <div>
+                                <ModalFlightTo
+                                    value={to}
+                                    onChange={handleToChange}
+                                    onSelect={handleToSelect}
+                                    onBlur={handleToBlur}
+                                    onFocus={handleToFocus}
+                                />
                             </div>
                         </div>
+                        <hr className="flex border-1 lg:w-60 lg:ml-20" />
+                        <div className="mx-4 -mr-10">
+                            <div className="flex mx-6 mt-8">
+                                <div className="text-base text-primary1 min-[1154px]:ml-7 max-[1279px]:ml-7 xl:ml-11">Passengers</div>
+                                <div className="text-base text-primary1 min-[1154px]:ml-16 max-[1279px]:ml-16 xl:ml-14">Seat Class</div>
+                            </div>
+                            <div className="flex items-center mt-4">
+                                <Image src={airline_seat} alt="airline_seat" className="w-4 sm:w-5 md:w-6 min-[1154px]:-ml-2 max-[1279px]:-ml-2 xl:mr-2" />
+                                <div className="text-base text-primary1">To</div>
+                                <ModalPassengers value={passenger} />
+                                <ModalSeatClass value={seatClass} onChange={handleSeatClassChange} />
+                            </div>
+                            <hr className="flex border-1 min-[1154px]:w-28 max-[1279px]:w-28 min-[1154px]:ml-[54px] max-[1279px]:ml-[54px] xl:ml-[67px] xl:w-28" />
+                            <hr className="border-1 min-[1154px]:w-36 max-[1279px]:w-36 min-[1154px]:ml-[190px] max-[1279px]:ml-[190px] xl:ml-[205px] xl:w-34 mb-5" />
+                        </div>
+                    </div>
                 </div>
             </Card>
             <div className="relative bg-primary2 rounded-b-xl mx-auto lg:w-4/6 lg:-mt-4 xl:w-4/6 xl:-mt-4">

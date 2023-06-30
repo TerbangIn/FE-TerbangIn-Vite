@@ -13,7 +13,7 @@ function ModalFlightFrom({ value, onSelect }) {
     const [searchValue, setSearchValue] = useState("");
     const [searchData, setSearchData] = useState([]);
     const { flightData } = useSelector((state) => state.FlightDestinationReducer)
-    const options = flightData.map((data) => `${data?.source?.city} (${data?.source?.code})`);
+    const options = flightData.map((data) => `${data?.source?.country} (${data?.source?.code})`);
 
    
     const handleSearch = (e) => {

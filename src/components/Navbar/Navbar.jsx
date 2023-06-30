@@ -3,7 +3,7 @@ import { RiLoginBoxLine } from "react-icons/ri";
 import { Button } from 'primereact/button';
 import { AiOutlineSearch } from 'react-icons/ai';
 import './Navbar.css';
-import { Image } from "primereact/image";
+// import { Image } from "primereact/image";
 
 import Logo from "../../assets/logo (1).png"
 import { Link } from "react-router-dom";

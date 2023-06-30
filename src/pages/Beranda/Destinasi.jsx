@@ -92,7 +92,7 @@ function Destinasi() {
                                         <Image src={flight.image} alt="img"/>
                                     </div>
                                     <div>
-                                        <p className="mt-2 font-semibold">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
+                                        <p className="mt-2 font-semibold">{flight?.source?.country} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.country}</p>
                                     </div>
                                     <div>
                                         <p className="text-button1 font-bold text-sm  text-purple-600">{flight.airline}</p>
