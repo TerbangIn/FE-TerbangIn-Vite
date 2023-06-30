@@ -20,18 +20,21 @@ import miftakhul from '../../assets/member/Miftakhul.png'
 import rafli from '../../assets/member/Rafli.png'
 import shifly from '../../assets/member/Shifly.png'
 import rio from '../../assets/member/Rio.png'
+import sekar from '../../assets/member/sekar.png'
+import dheva from '../../assets/member/dheva.png'
+import oryza from '../../assets/member/oryza.png'
+
 
 
 function AboutUs() {
 
     return (
         <div>
-
             <Card className="w-4/5 mx-auto my-auto">
                 <Panel className="pb-2 rounded-lg" header="C7 BINAR ACADEMY BATCH 4">
                     <div className="text-2xl font-bold text-900">TEAM LINEUP</div>
                     <div class="grid grid-cols-4 gap-4">
-                    <Card className="hover:scale-105">
+                        <Card className="hover:scale-105">
                             <div className="text-center">
                                 <img alt="logo" src={kenny} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Kenny Linardi Lim</div>
@@ -56,7 +59,7 @@ function AboutUs() {
 
                         <Card className="hover:scale-105">
                             <div className="text-center">
-                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
+                                <img alt="logo" src={oryza} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Oryza Amaliatuz Zahra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas Bina Sarana Informatika</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
@@ -111,17 +114,25 @@ function AboutUs() {
                             </div>
                         </Card>
                         <Card className="hover:scale-105">
-                            <div className="text-center ">
-                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
-                                <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
-                                <div className="text-base font-bold text-amber-500">JOB ROLE</div>
+                            <div className="text-center">
+                                <img alt="logo" src={sekar} className="flex w-fit mx-auto mb-2" />
+                                <div className="text-base font-bold text-binar-purple mb-3">Sekar Risma Aisyah</div>
+                                <div className="text-sm text-binar-purple mb-7">Institut Pertanian Bogor</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
+                                <a href="https://instagram.com/sekaar._?igshid=OGQ5ZDc2ODk2ZA=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
+                                <a href="http://github.com/SekarAisyah"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
+                                <a href="https://www.linkedin.com/in/sekar-risma-aisyah-311a74218"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
                             </div>
                         </Card>
                         <Card className="text-center hover:scale-105">
-                            <div className="text-center ">
-                                <img alt="logo" src={person1} className="flex w-fit mx-auto mb-2" />
-                                <div className="text-base font-bold text-binar-purple ">NAMA 1</div>
-                                <div className="text-base font-bold text-amber-500">JOB ROLE</div>
+                            <div className="text-center">
+                                <img alt="logo" src={dheva} className="flex w-fit mx-auto mb-2" />
+                                <div className="text-base font-bold text-binar-purple mb-3">Sekar Risma Aisyah</div>
+                                <div className="text-sm text-binar-purple mb-7">Institut Pertanian Bogor</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
+                                <a href="https://instagram.com/sekaar._?igshid=OGQ5ZDc2ODk2ZA=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
+                                <a href="http://github.com/SekarAisyah"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
+                                <a href="https://www.linkedin.com/in/sekar-risma-aisyah-311a74218"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
                             </div>
                         </Card>
                         <Card className="hover:scale-105">
