@@ -98,8 +98,8 @@ function Notifikasi() {
             ) : (
             <div className="w-full h-80 py-24">
                 <img src={Empty} alt="Empty" className="mx-auto w-52 pb-6"/>
-                <div className="text-md ps-4 justify-end font-bold text-binar-purple">Notifikasi Kosong</div>
-                <div className="text-md ps-4 justify-end font-base">Kamu belum mendapatkan pemberitahuan apapun</div>
+                <div className="text-md ps-4 text-center justify-end font-bold text-binar-purple">Notifikasi Kosong</div>
+                <div className="text-md ps-4 text-center justify-end font-base">Kamu belum mendapatkan pemberitahuan apapun</div>
             </div>
         )}
         </div>

@@ -33,13 +33,13 @@ function Detail(){
                     <div className="flex flex-row">
                         <div>
                             <h2 className="font-bold text-base '">07:00</h2>
-                            <p className="text-sm -mt-2">3 Maret 2023</p>
+                            <p className="text-sm mt-1">3 Maret 2023</p>
                         </div>
                         <div className="ml-[158px]">
-                            <h1 className="text-[#4b1979] text-xs">Keberangkatan</h1>
+                            <h1 className="text-[#a06ece] text-xs font-bold">Keberangkatan</h1>
                         </div>
                     </div>
-                    <h1 className="text-sm -mt-3">{data?.data?.[0].source?.name}</h1>
+                    <h1 className="text-sm mt-1 font-semibold">{data?.data?.[0].source?.name}</h1>
                     <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
                 </div>
                 <div className="ml-7">
@@ -47,11 +47,11 @@ function Detail(){
                         <img src={image} alt="" />
                         <div className="ml-2">
                             <h1 className="text-sm font-bold">{data?.data?.[0].airline}</h1>
-                            <h1 className="text-[14px] font-bold -mt-2">JT - 203</h1>
+                            <h1 className="text-[14px] font-bold mb-4">JT - 203</h1>
                             <p className="font-bold text-[14px]">Informasi:</p>
-                            <p  className="-mt-4 text-[14px]">{data?.data?.[0].information?.[0].name}</p>
-                            <p className="text-[14px] -mt-4">{data?.data?.[0].information?.[1].name}</p>
-                            <p className="text-[14px] -mt-4">{data?.data?.[0].information?.[2].name}</p>
+                            <p  className=" text-[14px]">{data?.data?.[0].information?.[0].name}</p>
+                            <p className="text-[14px] ">{data?.data?.[0].information?.[1].name}</p>
+                            <p className="text-[14px] ">{data?.data?.[0].information?.[2].name}</p>
                         </div>
                     </div>
                     <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
@@ -61,25 +61,25 @@ function Detail(){
                         <div className="flex flex-row">
                             <div>
                                 <h2 className="font-bold text-base '">11:00</h2>
-                                <p className="text-sm -mt-2">3 Maret 2023</p>
+                                <p className="text-sm ">3 Maret 2023</p>
                             </div>
-                            <div className="ml-[158px]">
-                                <h1 className="text-[#4b1979] text-xs">Kedatangan</h1>
+                            <div className="ml-[175px]">
+                                <h1 className="text-[#a06ece] text-xs font-bold">Kedatangan</h1>
                             </div>
                         </div>
-                        <h1 className="text-sm -mt-3">{data?.data?.[0].destination?.name}</h1>
-                        <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
+                        <h1 className="text-sm font-semibold">{data?.data?.[0].destination?.name}</h1>
+                        <hr className="bg-[#8a8a8a] " />
                     </div>
                 </div>
                 <div className="ml-7">
-                    <h1 className="text-sm font-bold">Rincian Harga</h1>
+                    <h1 className="text-sm font-bold mt-3">Rincian Harga</h1>
                     <div>
                         <div className="flex flex-row">
                             <h1 className="text-sm w-56">2 Adults</h1>
                             <h1 className="text-sm ml-2">IDR 9.550.000</h1>
                         </div>
                         <div className="flex flex-row">
-                            <h1 className="text-sm w-[]">1 Baby</h1>
+                            <h1 className="text-sm w-[287px]">1 Baby</h1>
                             <h1 className="text-sm">IDR 0</h1>
                         </div>
                         <div className="flex flex-row">
@@ -87,10 +87,10 @@ function Detail(){
                             <h1 className="text-sm ml-1">IDR 300.000</h1>
                         </div>
                     </div>
-                    <div className="border-b bg-[#8a8a8a] border w-[328px]"></div>
+                    <div className=" border-[#8a8a8a] border-b-0 w-[328px]"></div>
                 </div>
-                <div className="ml-7 flex flex-row">
-                    <h1 className="font-bold text-base w-48">Total</h1>
+                <div className="ml-7 mt-2 flex flex-row">
+                    <h1 className="font-bold text-base w-[200px]">Total</h1>
                     <h1 className="text-purple-900 font-bold  ml-[10px] text-lg">IDR 9.850.000</h1>
                 </div>
             </div>

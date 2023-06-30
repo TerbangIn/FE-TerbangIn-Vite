@@ -74,10 +74,36 @@ const detailRiwayat = (props) => {
         }
         return total
       }
+    function getHargaDetail(tiket){
+        let totalAdult = 0;
+        let totalChild = 0;
+        let totalBaby = 0;
+        let sumAdult = 0;
+        let sumChild = 0;
+        let sumBaby = 0;
 
-    // console.log(props.data.map(e => e.id));
-
-    // console.log(props.data.map(e => e.status));
+        for(let i = 0; i < tiket.length;i++){
+            for(let j = 0; j < tiket[i].length ;j++){
+                const priceClass = getClassPrice(tiket[i][j].flight)
+                if(tiket[i][j].type_of_passenger == "Adult"){
+                    let price = ((priceClass) * (tiket[i][j].flight.adult_price_percentage)/100)
+                    totalAdult += price;
+                    sumAdult +=1
+                }else if(tiket[i][j].type_of_passenger == "Child"){
+                    let price = ((priceClass) * (tiket[i][j].flight.child_price_percentage)/100)
+                    totalChild += price;
+                    sumChild +=1
+                }else if(tiket[i][j].type_of_passenger == "Baby"){
+                    let price = ((priceClass) * (tiket[i][j].flight.baby_price_percentage)/100)
+                    totalBaby += price;
+                    sumBaby +=1
+                }
+            }
+        }
+        // return total
+        console.log(totalAdult);
+        console.log(sumAdult);
+      }
 
     function getTimes(date){
         const jam = new Date(date).getHours()
@@ -105,9 +131,70 @@ const detailRiwayat = (props) => {
         }
     }
     
+    function getPassenger(tiket){
+        const harga = 0
+        const adult = 0
+        const Child = 0
+        const baby = 0
+        const jumlahPenumpang = {};
+        console.log(tiket.map(e=>e.map(p=> {
+            console.log(p);
+            const typeOfPassenger = p.type_of_passenger;
+            if (jumlahPenumpang[typeOfPassenger]) {
+                jumlahPenumpang[typeOfPassenger]++;
+            } else {
+                jumlahPenumpang[typeOfPassenger] = 1;
+            }
+        })));
+        
+        for (const [typeOfPassenger, count] of Object.entries(jumlahPenumpang)) {
+            console.log(`${count} ${typeOfPassenger}`);
+            return <div>{count} {typeOfPassenger}</div>
+        }
+        
+        
+        
+    }
+
+    function getPricePass(tiket){
+        const hargaPenumpang = {}
+        console.log(tiket.map(e=>e.map(p=> {
+            const typeOfPassenger = p.type_of_passenger;
+            const flight = p.flight;
+            let price = 0;
+
+            if (typeOfPassenger === "Adult") {
+                const adultPricePercentage = flight.adult_price_percentage;
+                const adultPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
+                price = adultPrice * adultPricePercentage / 100;
+            } else if (typeOfPassenger === "Child") {
+                const childPricePercentage = flight.child_price_percentage;
+                const childPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
+                price = childPrice * childPricePercentage / 100;
+            } else if (typeOfPassenger === "Baby") {
+                const babyPricePercentage = flight.baby_price_percentage;
+                const babyPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
+                price = babyPrice * babyPricePercentage / 100;
+            }
+
+            if (hargaPenumpang[typeOfPassenger]) {
+                hargaPenumpang[typeOfPassenger] += price;
+            } else {
+                hargaPenumpang[typeOfPassenger] = price;
+            }
+        })));
+
+        for (const [typeOfPassenger, price] of Object.entries(hargaPenumpang)) {
+            console.log(`Harga untuk kelompok penumpang ${typeOfPassenger}: ${price}`);
+            return <div className="text-md font-normal justify-items-end">{price}</div>
+        }
+        
+    }
+
+    let i = 1
     return (
-            <div className="col-12">
-                <div className="ps-8 mb-12">
+            <div className="sm:mx-6 md:mx-4 lg:mx-auto">
+                <div className="lg:ps-8 mb-12">
                     <div className="text-base font-normal flex justify-between text-900">
                         <div className="text-md font-bold text-900">Detail Pesanan</div>
                         {getStatus(props.data.map(e => e.status))}
@@ -135,7 +222,7 @@ const detailRiwayat = (props) => {
                             <div className="text-base font-bold text-900 pt-4">Informasi</div>
                             {props.data.map(e => e.tiket.map(a=> (
                                 <>
-                                    <h1 className="text-sm font-semibold  text-binar-purple">Penumpang {a.passenger.id} : {a.passenger.first_name}</h1>
+                                    <h1 className="text-sm font-semibold  text-binar-purple">Penumpang {i++} : {a.passenger.first_name}</h1>
                                     <div className="text-sm font-medium text-700">ID : {a.passenger.identity_number}</div>
                                 </>
                             )))}
@@ -161,8 +248,18 @@ const detailRiwayat = (props) => {
                     <div>
                         <div className="text-base font-bold text-900">Rincian Harga</div>
                         <div className="text-base font-normal flex justify-between text-900">
-                            1 Adult
-                            {/* <div className="text-sm font-normal justify-items-end">{(data?.map(trans => trans.total_price))}</div> */}
+                            <div className="grid-cols-1">
+                            {getPassenger(props.data.map(e => e.tiket))}
+
+                            </div>
+                            <div className="grid-cols-1">
+                            {getPricePass(props.data.map(e => e.tiket))}
+
+                            </div>
+                            {/* {getHargaDetail(props.data.map(e => e.tiket))} */}
+                            
+                            {/* {getpricePassenger(props.data.map(e => e.tiket))} */}
+                            {/* <div className="text-sm font-normal justify-items-end">{getpricePassenger(props.data.map(e => e.tiket))}</div> */}
                         </div>
                     </div>
                     {/* <div>{listAmountBaby(filter.orders)}</div> */}
