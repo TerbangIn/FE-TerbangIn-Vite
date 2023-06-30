@@ -56,7 +56,7 @@ function Signup() {
           console.log(res);
           const cookies = new Cookies()
           const token = res.data.data.token
-          cookies.set("token", token, { path: "/" })
+          cookies.set("token", token, { path: "/login" })
           toast.success(`${res.data.message}, redirect in 3s...`, {
             position: "bottom-center",
             autoClose: 2000,

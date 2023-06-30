@@ -111,7 +111,7 @@ function Akun() {
 
   const handleLogout = () => {
     cookies.remove('token');
-    navigate("/")
+    navigate("/login")
   };
 
   return (

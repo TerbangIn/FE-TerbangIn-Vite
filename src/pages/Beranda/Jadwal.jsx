@@ -150,7 +150,7 @@ const JadwalPenerbangan = (onFilterData) => {
                         <div className="">
                             <div className="flex items-center mx-10 mt-7">
                                 <div className="text-base text-primary1 mx-10 lg:ml-16 xl:ml-14">Departure</div>
-                                <div className="text-base text-primary1 lg:ml-6 lg:mr-12 xl:ml-12 xl:mr-16">Return</div>
+                                <div className="text-base text-primary1 lg:ml-6 lg:mr-12 xl:ml-20 xl:mr-16">Return</div>
                                 <div><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
                             </div>
                             <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 max-[1058px]:bg-sky-300">
@@ -160,8 +160,8 @@ const JadwalPenerbangan = (onFilterData) => {
                                 <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="min-[1024px]: max-[1058px]:-ml min-[1154px]:w-60 min-[1154px]:-ml-5 max-[1279px]:-ml-5 xl:w-60 h-7 xl:ml-3 xl:mr-3" />
                             </div>
                             <div className="pt-1">
-                                <hr className="flex border-1 min-[1024px]:ml-[103px] max-[1058px]:ml-[103px] min-[1154px]:w-32 max-[1279px]:w-32 lg:w-28 xl:ml-24 xl:w-32" />
-                                <hr className="border-1 min-[1024px]:ml-60 min-[1154px]:w-32 max-[1279px]:w-32 max-[1058px]:ml-60 lg:w-[110px] xl:ml-64 xl:w-32" />
+                                <hr className="flex border-1 min-[1024px]:ml-[103px] max-[1058px]:ml-[103px] min-[1154px]:w-32 max-[1279px]:w-32 lg:w-28 xl:ml-24 xl:w-[153px]" />
+                                <hr className="border-1 min-[1024px]:ml-60 min-[1154px]:w-32 max-[1279px]:w-32 max-[1058px]:ml-60 lg:w-[110px] xl:ml-72 xl:w-[153px]" />
                             </div>
 
                         </div>

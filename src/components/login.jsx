@@ -40,7 +40,7 @@ const Login = () => {
                 async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
-                    cookies.set("token", token, { path: "/" })
+                    cookies.set("token", token, { path: "/login" })
                     console.log(token);
                     // toast.success(`${res.data.message}, redirect in 3s...`, {
                     await toast.success('Login Success, redirect in 3s...', {
@@ -55,7 +55,7 @@ const Login = () => {
                     })
 
                     setTimeout(() => {
-                        nav('/beranda')
+                        nav('/')
                     },1000);
                     
                 }
