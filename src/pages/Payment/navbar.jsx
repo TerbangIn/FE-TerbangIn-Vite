@@ -4,6 +4,7 @@ import logo from "./images/logo.png";
 import notif from './images/notif.svg';
 import history from './images/list.svg';
 import akun from './images/user.svg';
+import { Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -22,7 +23,7 @@ const Navbar = () => {
           </div>
           <div className="flex flex-col md:flex-row md:items-center">              
             <div className="flex items-center mr-[136px ]">
-                <a href=""><img src={history} alt="" /></a>
+                <a href="/riwayat"><img src={history} alt="" /></a>
                 <a className="ml-[30px]" href=""><img src={notif} alt="" /></a>
                 <a className="ml-[30px]" href=""><img src={akun} alt="" /></a>
             </div>
