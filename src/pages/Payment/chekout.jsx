@@ -39,7 +39,7 @@ function Checkout() {
         },
     ])
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJyYWZsaW1hcmRoaWFuMTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODgwOTI1MjF9.0Wgt5aAtN1t3eQ_ElFfj849TX1384zVFVbgnr-grYX4";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     // cookies.get('token')
     const decode = jwtDecode(token)
     const cookies = new Cookies();
