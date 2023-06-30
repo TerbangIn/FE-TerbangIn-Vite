@@ -56,7 +56,7 @@ const ModalPassengers = (props) => {
 
     return (
         <>
-           <div className="font-bold text-xs md:text-base pl-2 md:pl-5" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
+           <div className="font-bold text-xs md:text-base pl-2 md:pl-5 xl:ml-2" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
             {counterAmount}
             </div>
             

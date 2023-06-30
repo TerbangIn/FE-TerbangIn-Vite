@@ -14,7 +14,7 @@ function ModalFlightTo({ value, onSelect }) {
     const [searchValue, setSearchValue] = useState("");
     const [searchData, setSearchData] = useState([])
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
-    const options = flightData.map((data) => `${data.destination.city} (${data.destination.code})`);
+    const options = flightData.map((data) => `${data.destination.country} (${data.destination.code})`);
 
     const handleHapus = () => {
         setSearchData([]);
@@ -40,7 +40,7 @@ function ModalFlightTo({ value, onSelect }) {
 
     return (
         <>
-            <div className="cursor-pointer font-bold text-xs md:text-base sm:ml-2 lg:ml-4 xl:ml-3" onClick={() => setVisible(true)}>
+            <div className="cursor-pointer font-bold text-xs md:text-base sm:ml-2 lg:ml-4 xl:ml-5" onClick={() => setVisible(true)}>
                 {value}
             </div>
 

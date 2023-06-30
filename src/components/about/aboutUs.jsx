@@ -38,7 +38,7 @@ function AboutUs() {
                             <div className="text-center">
                                 <img alt="logo" src={kenny} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Kenny Linardi Lim</div>
-                                <div className="text-sm text-binar-purple mb-2">Universitas Budi Luhur</div>
+                                <div className="text-sm text-binar-purple mb-6">Universitas Budi Luhur</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
                                 <a href="https://www.instagram.com/kennylinrdy/"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="https://github.com/kennylinardy"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
@@ -49,7 +49,7 @@ function AboutUs() {
                             <div className="text-center">
                                 <img alt="logo" src={miftakhul} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Miftakhul Ulum Khasanah</div>
-                                <div className="text-sm text-binar-purple mb-2">Universitas Negeri Surabaya</div>
+                                <div className="text-sm text-binar-purple mb-7">Universitas Negeri Surabaya</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
                                 <a href="https://www.instagram.com/__miifta/"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="http://github.com/miftaa9"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
@@ -72,7 +72,7 @@ function AboutUs() {
                             <div className="text-center">
                                 <img alt="logo" src={rafli} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Rafli Mardhian</div>
-                                <div className="text-sm text-binar-purple mb-3">Universitas Gunadarma</div>
+                                <div className="text-sm text-binar-purple mb-7">Universitas Gunadarma</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
                                 <a href="https://instagram.com/rafli_mardhian?igshid=MzRlODBiNWFlZA=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="https://github.com/raflimardhian"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
@@ -128,7 +128,7 @@ function AboutUs() {
                             <div className="text-center">
                                 <img alt="logo" src={dheva} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Dheva Dayat Vito Indrajaka</div>
-                                <div className="text-sm text-binar-purple mb-7">Universitas Gadjah Mada</div>
+                                <div className="text-sm text-binar-purple mb-3">Universitas Gadjah Mada</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
                                 <a href="https://instagram.com/dheevvvv"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="http://github.com/dheevvvv"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
@@ -140,7 +140,7 @@ function AboutUs() {
                                 <img alt="logo" src={rio} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Rio Griya Putra</div>
                                 <div className="text-sm text-binar-purple mb-2">Universitas YARSI</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Android Developer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
                                 <a href="https://instagram.com/riop4u"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="https://github.com/Pucukio"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://www.linkedin.com/in/rio-griya-putra/"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
