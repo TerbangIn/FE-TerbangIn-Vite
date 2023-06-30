@@ -55,7 +55,7 @@ const Login = () => {
                     })
 
                     setTimeout(() => {
-                        nav('/')
+                        nav('/beranda')
                     },1000);
                     
                 }

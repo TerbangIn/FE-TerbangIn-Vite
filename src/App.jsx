@@ -8,6 +8,7 @@ import OTPResetPassword from "./pages/otpResetPassword";
 import ResetPassword from "./pages/resetPassword";
 import Riwayat from "./pages/Riwayat/Riwayat";
 import Beranda from './pages/Beranda/Beranda';
+import BerandaLogin from './pages/Beranda/BerandaLogin';
 import Chekout from './pages/Payment/chekout';
 import Akun from './pages/Akun/Akun';
 import Notifikasi from './pages/Notifikasi/Notifikasi';
@@ -40,6 +41,7 @@ function App() {
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/reset-password-baru" element={<ResetPassword />} />
           <Route path="/" element={<Beranda />} />
+          <Route path="/beranda" element={<BerandaLogin />} />
           <Route path="/BerandaLoading" element={<BerandaLoading />} />
           <Route path="/TiketHabis" element={<TiketHabis />} />
           <Route path="/PencarianEmpty" element={<PencarianEmpty />} />
