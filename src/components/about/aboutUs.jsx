@@ -127,12 +127,12 @@ function AboutUs() {
                         <Card className="text-center hover:scale-105">
                             <div className="text-center">
                                 <img alt="logo" src={dheva} className="flex w-fit mx-auto mb-2" />
-                                <div className="text-base font-bold text-binar-purple mb-3">Sekar Risma Aisyah</div>
-                                <div className="text-sm text-binar-purple mb-7">Institut Pertanian Bogor</div>
+                                <div className="text-base font-bold text-binar-purple mb-3">Dheva Dayat Vito Indrajaka</div>
+                                <div className="text-sm text-binar-purple mb-7">Universitas Gadjah Mada</div>
                                 <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
-                                <a href="https://instagram.com/sekaar._?igshid=OGQ5ZDc2ODk2ZA=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
-                                <a href="http://github.com/SekarAisyah"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
-                                <a href="https://www.linkedin.com/in/sekar-risma-aisyah-311a74218"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
+                                <a href="https://instagram.com/dheevvvv"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
+                                <a href="http://github.com/dheevvvv"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
+                                <a href="https://www.linkedin.com/in/dheevvvv"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
                             </div>
                         </Card>
                         <Card className="hover:scale-105">
