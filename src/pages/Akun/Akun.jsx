@@ -118,7 +118,7 @@ function Akun() {
     <>
       <div>
         <Navbar></Navbar>
-        <div className="col-12 body">
+        <div className="">
           <Card>
             <div className="text-left mx-auto max-w-4xl">
               <div className="text-left mx-auto flex-auto">
@@ -136,9 +136,7 @@ function Akun() {
           </Card>
           <div className="body">
             <div className="text-left mt-6 flex gap-2 mx-auto max-w-4xl">
-
               <div class="flex-1 w-16">
-                <div className="col-4 p-0 align-end">
                   <Link to={'/akun'} className="flex items-center font-semibold gap-2 text-binar-purple" >
                     <div className="text-2xl text-binar-purple"><HiOutlinePencil /></div>
                     Ubah Profil
@@ -156,7 +154,6 @@ function Akun() {
                     Keluar
                   </div>
                   <Divider className="w-10" />
-                </div>
               </div>
               <div class="flex-auto flex my-auto gap-2">
                 <Card title="Ubah Data Profil" className="border shadow-none w-full">

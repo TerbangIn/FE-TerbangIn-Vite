@@ -144,11 +144,11 @@ const cardRiwayat = (props) => {
         <div>
             {/* Tampilkan informasi riwayat pemesanan lainnya */}
                 {props?.data?.length > 0 ? (
-            <div className="text-left mt-6 grid md:grid-cols-1 md:grid-cols-2 mx-auto max-w-4xl">
+            <div className="text-left mt-6 grid md:grid-cols-1 md:grid-cols-2 sm:mx-4 xs:mx-4 md:mx-auto max-w-4xl">
                 <div>
                     {props?.data?.map(riwayat => (
                         <div key={riwayat.id} className="pb-4">
-                            <div className="text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
+                            <div className="lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
                             <Card className="p-0 button sm:mx-6 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                                 <div className="mx-4 mb-4">
                                     {getStatus(riwayat.status)}

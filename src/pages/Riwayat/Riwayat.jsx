@@ -92,7 +92,7 @@ function Riwayat() {
       }
 
       cariDataPemesanan(idPemesanan);
-
+  
   const [dateRange, setDateRange] = useState(null);
   const [range, setRange] = useState([]);
 
@@ -128,7 +128,6 @@ function Riwayat() {
   function rangeDate() {
     const datetimeString = "2023-06-27T14:43:20.708Z";
     const dateString = datetimeString.slice(0, 10);
-    console.log(dateString); 
     getDatesInRange().map((date) => 
     {
       const hasilPencarian = userData?.transaction?.map(pemesanan => {
@@ -145,7 +144,7 @@ function Riwayat() {
         return hasilPencarian
     })
   }
-  console.log(Hasil);
+
     return (
         <>
         <Navbar></Navbar>
@@ -183,7 +182,7 @@ function Riwayat() {
         <div>
         {rangeDate()}
       </div>
-        {search == true ? (<>aaa<CardRiwayat data={Hasil}/></>) : (<CardRiwayat data={userData.transaction}/>)}
+        {search == true ? (<>aaa<CardRiwayat data={Hasil}/></>) : (<CardRiwayat data={userData.transaction}/>) }
         </div>
       </>
   );
