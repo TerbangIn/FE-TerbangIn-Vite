@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className="py-3 navbar-container shadow-md ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className=" navbar-container shadow-md ">
+      <div className="max-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-10">
             <img  src={logo} alt="Logo" className="h-[53px] w-[120px] " />
