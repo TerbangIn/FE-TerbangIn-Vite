@@ -1,6 +1,5 @@
 import React from "react";
 import { Image } from "primereact/image";
-
 import banner4 from "../../assets/images/img_banner.svg"
 
 function Banner() {
@@ -11,7 +10,6 @@ function Banner() {
                 <Image src={banner4} alt="img_banner" className=" pl-4 pr-4 sm:w-11/12 md:w-11/12 lg:w-10/12 xl:w-[1120px]" />
             </div>
         </>
-
     )
 }
 
