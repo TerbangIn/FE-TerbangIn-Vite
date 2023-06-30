@@ -182,7 +182,7 @@ function Riwayat() {
         <div>
         {rangeDate()}
       </div>
-        {search == true ? (<>aaa<CardRiwayat data={Hasil}/></>) : (<CardRiwayat data={userData.transaction}/>) }
+        {search == true ? (<CardRiwayat data={Hasil}/>) : (<CardRiwayat data={userData.transaction}/>) }
         </div>
       </>
   );
