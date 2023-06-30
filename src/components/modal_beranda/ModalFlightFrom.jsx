@@ -13,18 +13,14 @@ function ModalFlightFrom({ value, onSelect }) {
     const [searchValue, setSearchValue] = useState("");
     const [searchData, setSearchData] = useState([]);
     const { flightData } = useSelector((state) => state.FlightDestinationReducer)
-    const options = flightData.map((data) => ` (${data.source})`);
+    const options = flightData.map((data) => `${data?.source?.city} (${data?.source?.code})`);
 
-    console.log(options)
-    // console.log(flightData[0].source.city)
    
     const handleSearch = (e) => {
         const searchTerm = e.target.value.toLowerCase();
         setSearchValue(searchTerm);
-        console.log(searchTerm)
         const filtered = options.filter(option => {
             if (option.toLowerCase().includes(searchTerm.toLowerCase())) {
-                console.log(option)
                 return true
                 
             }
@@ -48,7 +44,6 @@ function ModalFlightFrom({ value, onSelect }) {
             <div className="font-bold text-xs md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={() => setVisible(true)}>
                 {value}
             </div>
-            {/* <hr className="border-1 mx-4 w-64"/> */}
 
             <div className="card flex justify-content-center">
                 <Dialog
