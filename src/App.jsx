@@ -13,6 +13,7 @@ import Chekout from './pages/Payment/chekout';
 import Akun from './pages/Akun/Akun';
 import Notifikasi from './pages/Notifikasi/Notifikasi';
 import About from "./components/about/aboutUs";
+import Waiting from "./components/waiting/waiting";
 import Payment from './pages/Payment/payment';
 import Success from './pages/Payment/payment-success';
 import TiketHabis from "./components/TiketHabis";
@@ -50,6 +51,7 @@ function App() {
           <Route path="/akun" element={<Akun />} />
           <Route path="/notifikasi" element={<Notifikasi />} />
           <Route path="/about" element={<About />} />
+          <Route path="/waiting" element={<Waiting />} />
           <Route path='/checkout' exact Component={Chekout} />
           <Route path='/payment' exact Component={Payment} />
           <Route path='/payment-success' exact Component={Success} />
