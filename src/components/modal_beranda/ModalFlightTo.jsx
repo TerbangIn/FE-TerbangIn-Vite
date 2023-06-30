@@ -22,7 +22,7 @@ const ModalFlightFrom = ({ value, onSelect }) => {
 
   return (
     <>
-      <div className="font-bold text-xs md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={showModal}>
+      <div className="font-bold text-base md:text-base cursor-pointer ml-3 md:ml-4" onClick={showModal}>
         {selectedOption ? selectedOption : value}
       </div>
       <Modal title="TerbangIn" visible={isModalOpen} footer={null}>
