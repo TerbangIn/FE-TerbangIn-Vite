@@ -20,30 +20,30 @@ function Navbar() {
         console.log("Melakukan pencarian:", value);
     };
 
-    const logoItem = 
-                <div to="/" className="ms-24">
-                    <Image src={Logo} alt="Logo" width="200"/>
-                </div>
+    const logoItem =
+        <div to="/" className="ms-24">
+            <Image src={Logo} alt="Logo" width="200" />
+        </div>
 
-    const buttonItem = 
-                <div className="card justify-end me-24">
-                    <span className="p-input-icon-right">
-                        <Link to={'/riwayat'}>
-                            <Button icon="pi pi-list" rounded text severity="secondary" aria-label="User" />
-                        </Link>
-                        <Link to={'/notifikasi'}>
-                            <Button icon="pi pi-bell" rounded text severity="secondary" aria-label="User" />
-                        </Link>
-                        <Link to={'/akun'}>
-                            <Button icon="pi pi-user" rounded text severity="secondary" aria-label="User" />
-                        </Link>
-                    </span>
+    const buttonItem =
+        <div className="card justify-end me-24">
+            <span className="p-input-icon-right">
+                <Link to={'/riwayat'}>
+                    <Button icon="pi pi-list" rounded text severity="secondary" aria-label="User" />
+                </Link>
+                <Link to={'/notifikasi'}>
+                    <Button icon="pi pi-bell" rounded text severity="secondary" aria-label="User" />
+                </Link>
+                <Link to={'/akun'}>
+                    <Button icon="pi pi-user" rounded text severity="secondary" aria-label="User" />
+                </Link>
+            </span>
 
-                </div>
+        </div>
 
     return (
         <div className="card col-12">
-            <Menubar className="" start={logoItem} end={buttonItem}/>
+            <Menubar className="" start={logoItem} end={buttonItem} />
         </div>
     )
 }

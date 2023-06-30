@@ -19,20 +19,18 @@ import airline_seat from "../../assets/images/airline-seat.svg"
 import { Card } from "primereact/card";
 
 
-const JadwalPenerbangan = (onFilterData) => {
+const JadwalPenerbangan = () => {
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
     console.log(flightData)
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
     const [seatClass, setSeatClass] = useState("");
-    const [passenger, setPassenger] = useState("")
+    const [passenger, setPassenger] = useState("");
     const [checked, setChecked] = useState(false);
     const [from, setFrom] = useState("Indonesia (CGK)");
     const [to, setTo] = useState("Indonesia (SUB)");
-    const [matchingFlights, setMatchingFlights] = useState([]);
     const navigate = useNavigate()
-
 
     const dateString = selectedDate1;
     const dateObj = new Date(dateString);
@@ -40,9 +38,6 @@ const JadwalPenerbangan = (onFilterData) => {
     const month = ("0" + (dateObj.getMonth() + 1)).slice(-2);
     const day = ("0" + dateObj.getDate()).slice(-2);
     const convertedDate = `${year}-${month}-${day}`;
-
-    console.log(convertedDate);
-
 
     const handleFromSelect = (value) => {
         setFrom(value);
@@ -75,12 +70,9 @@ const JadwalPenerbangan = (onFilterData) => {
         setSeatClass(lowercaseSeatClass);
     };
 
-
-
-    console.log(seatClass)
-
     const handleFromChange = (value) => {
-        setFrom(value);
+        const lowerFlightFrom = value.toLowerCase();
+        setFrom(lowerFlightFrom);
     };
 
     const handleToChange = (value) => {
@@ -127,6 +119,9 @@ const JadwalPenerbangan = (onFilterData) => {
     const buttonHandler = () => {
         navigate('/hasil-pencarian');
     }
+
+    console.log(convertedDate);
+    console.log(seatClass);
 
     return (
         <>

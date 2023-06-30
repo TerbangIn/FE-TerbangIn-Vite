@@ -1,105 +1,43 @@
-import React from "react";
-import { useState } from "react";
-import { Dialog } from 'primereact/dialog';
-import { Divider } from 'primereact/divider';
-import { InputText } from "primereact/inputtext";
-import { useSelector } from "react-redux";
+import React, { useState } from 'react';
+import { List, Button, Modal } from 'antd';
+import { useSelector } from 'react-redux';
 
-import { Image } from "primereact/image";
+const ModalFlightFrom = ({ value, onSelect }) => {
+  const [visible, setVisible] = useState(false);
+  const { flightData } = useSelector((state) => state.FlightDestinationReducer);
 
-import icon_x from "../../assets/images/icon_x.svg"
+  const options = flightData.map((data) => `${data.destination.country} (${data.destination.code})`);
 
-function ModalFlightTo({ value, onSelect }) {
-    const [visible, setVisible] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
-    const [searchData, setSearchData] = useState([])
-    const { flightData } = useSelector((state) => state.FlightDestinationReducer);
-    const options = flightData.map((data) => `${data.destination.country} (${data.destination.code})`);
+  const [selectedOption, setSelectedOption] = useState('');
 
-    const handleHapus = () => {
-        setSearchData([]);
-    }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
 
-    const handleSearch = (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        setSearchValue(searchTerm);
-        const filtered = options.filter(option => {
-            if (option.toLowerCase().includes(searchTerm.toLowerCase())) {
-                return true
-            }
-            return false
-        });
-        setSearchData(filtered)
-    };
+  const handleSelection = (selectedValue) => {
+    setIsModalOpen(false);
+    setSelectedOption(selectedValue);
+  };
 
-    const handleSelection = (selectedValue) => {
-        onSelect(selectedValue);
-        setSearchValue("");
-        setVisible(false);
-    };
+  return (
+    <>
+      <div className="font-bold text-xs md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={showModal}>
+        {selectedOption ? selectedOption : value}
+      </div>
+      <Modal title="TerbangIn" visible={isModalOpen} footer={null}>
+        <List
+          itemLayout="horizontal"
+          dataSource={options}
+          renderItem={(item, index) => (
+            <List.Item onClick={() => handleSelection(item)} className={selectedOption === item ? 'selected' : ''}>
+              <div className="text-md font-bold cursor-pointer">{item}</div>
+            </List.Item>
+          )}
+        />
+      </Modal>
+    </>
+  );
+};
 
-    return (
-        <>
-            <div className="cursor-pointer font-bold text-xs md:text-base sm:ml-2 lg:ml-4 xl:ml-5" onClick={() => setVisible(true)}>
-                {value}
-            </div>
-
-            <div className="card flex justify-content-center">
-                <Dialog
-                    header={
-                        <span className="p-input-icon-left">
-                            <i className="pi pi-search cursor-pointer" onClick={handleSearch} />
-                            <InputText
-                                placeholder="Search"
-                                value={searchValue}
-                                onChange={handleSearch}
-                                className="w-96"
-                            />
-                        </span>
-                    }
-                    visible={visible}
-                    modal={false}
-                    style={{ width: '50vw' }}
-                    onHide={() => setVisible(false)}
-                >
-                    <div className="flex flex-col">
-                        <div>
-                            <p className="pb-4 font-bold">
-                                Pencarian Terkini{" "}
-                                <span
-                                    className="text-red-600 pl-96 pb-4 cursor-pointer"
-                                    onClick={handleHapus}
-                                >
-                                    Hapus
-                                </span>
-                            </p>
-                        </div>
-                        {searchData.map((search, index) => (
-                            <React.Fragment key={index}>
-                                <div className="flex items-center">
-                                    <p
-                                        className="pl-2 cursor-pointer"
-                                        onClick={() => handleSelection(search)}
-                                    >
-                                        {search}
-                                    </p>
-                                    <div className="flex ml-auto mr-6">
-                                        <Image
-                                            src={icon_x}
-                                            alt="Remove"
-                                            onClick={handleHapus}
-                                            className="cursor-pointer"
-                                        />
-                                    </div>
-                                </div>
-                                <Divider style={{ margin: '8px 0' }} />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                </Dialog>
-            </div>
-        </>
-    );
-}
-
-export default ModalFlightTo;
+export default ModalFlightFrom;
