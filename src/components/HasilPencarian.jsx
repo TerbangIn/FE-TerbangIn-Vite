@@ -1,20 +1,14 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 import 'primereact/resources/primereact.min.css';
-import { RiLoginBoxLine } from "react-icons/ri";
-import logo from '../assets/logo.png';
 import { Button } from 'primereact/button';
 // import Link from "react"
-import { AiOutlineSearch } from 'react-icons/ai';
 import { FaArrowLeft } from 'react-icons/fa';
 import yellowlogo from '../assets/yellowlogo.png'
-import chevron from '../assets/chevron.png'
-import arrow from '../assets/arrow.png'
 import koper from '../assets/koper.png'
 import panahtermurah from '../assets/panahtermurah.svg'
-import { DataView } from 'primereact/dataview';
 import Modal from "../components/Modal";
-import Navbar from "./Navbar/Navbar";
+// import Navbar from "./Navbar/Navbar";
 // import { Card } from 'primereact/card';
 import './Index.css';
 import {
@@ -33,8 +27,81 @@ import {
 } from "@material-tailwind/react";
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Divider } from "primereact/divider";
+import { Dialog } from "primereact/dialog";
+import { Image } from "primereact/image";
+
+import Line from "../assets/images/line_thin.svg"
+import checklist from "../assets/images/checklist.svg"
+import save from "../assets/images/Brand_button.svg"
+import { useNavigate } from "react-router";
 
 const HasilPencarian = () => {
+  const dater = "2023/06/26"
+  const [filterDate, setFilterDate] = useState([
+    {
+      id: 1,
+      name: "SENIN",
+      date: "06/26/2023",
+      selected: new Date("06/26/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 2,
+      name: "SELASA",
+      date: "06/27/2023",
+      selected: new Date("06/27/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 3,
+      name: "RABU",
+      date: "06/28/2023",
+      selected: new Date("06/28/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 4,
+      name: "KAMIS",
+      date: "06/29/2023",
+      selected: new Date("06/29/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 5,
+      name: "JUMAT",
+      date: "06/30/2023",
+      selected: new Date("06/30/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 6,
+      name: "SABTU",
+      date: "07/01/2023",
+      selected: new Date("07/01/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 7,
+      name: "MINGGU",
+      date: "07/02/2023",
+      selected: new Date("07/02/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 8,
+      name: "SENIN",
+      date: "07/03/2023",
+      selected: new Date("07/03/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    },
+    {
+      id: 9,
+      name: "SELASA",
+      date: "07/04/2023",
+      selected: new Date("07/04/2023").toDateString() === new Date(dater).toDateString() ? true
+        : false
+    }
+  ])
 
   const [datas, setDatas] = useState([]);
   useEffect(() => {
@@ -48,74 +115,19 @@ const HasilPencarian = () => {
         setDatas(response?.data?.data);
       })
   }
-  const [showMyModal, setShowMyModal] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const [selected, setSelected] = useState(dater)
 
-  const [open, setOpen] = useState(0);
+  const [selectedSeatClass, setSelectedSeatClass] = useState("Harga-Termurah");
+  const [savedSeatClass, setSavedSeatClass] = useState(null);
 
-  const handleOpen = (value) => {
-    setOpen(open === value ? 0 : value);
+  const handleSeatClassClick = (seatClass) => {
+    setSelectedSeatClass(seatClass);
   };
 
-  const customAnimation = {
-    mount: { scale: 1 },
-    unmount: { scale: 0.9 },
-  };
-
-  // const CardFlight = (dataTemplate) => {
-  //   console.log(dataTemplate.id);
-  //   return (
-  //     <>
-  //       <Accordion open={open === dataTemplate?.id} animate={customAnimation}>
-  //         <AccordionHeader onClick={() => handleOpen(dataTemplate?.id)}>
-  //           {/* <div className="flex justify-between">
-  //             <div className="flex">
-  //               <img src={yellowlogo} alt="" className="w-6 h-6 mr-2" />
-  //               <div>{dataTemplate?.airline}</div>
-  //             </div>
-  //             <div>
-  //               <img src={chevron} alt="" className="w-4 h-4" />
-  //             </div>
-  //           </div>
-  //           <div className="flex justify-between">
-  //             <div className="flex p-3 w-1/2 justify-between">
-  //               <div className="flex flex-col justify-between">
-  //                 <div className="font-bold">{dataTemplate?.arrival_date?.slice(14, 19)}</div>
-  //                 <div>{dataTemplate?.destination?.code}</div>
-  //               </div>
-  //               <div className="flex flex-col justify-between items-center">
-  //                 <div className="">4h 0m</div>
-  //                 <img src={arrow} alt="" />
-  //                 <div>direct</div>
-  //               </div>
-  //               <div className="flex flex-col justify-between">
-  //                 <div className="font-bold">{dataTemplate?.departure_date?.slice(14, 19)}</div>
-  //                 <div>{dataTemplate?.source?.code}</div>
-  //               </div>
-  //             </div>
-  //             <div className="flex items-center">
-  //               <img src={koper} alt="" className="w-6 h-6" />
-  //             </div>
-  //             <div className="flex p-3">
-  //               <div className="flex flex-col justify-between font-bold">
-  //                 <div>IDR {dataTemplate?.economy_class_price}</div>
-  //                 <button className="border-solid border-2 rounded-lg">
-  //                   <div>Pilih</div>
-  //                 </button>
-  //               </div>
-  //             </div>
-  //           </div> */}
-  //           kkk
-  //         </AccordionHeader>
-  //         <AccordionBody>
-  //           Jello
-  //         </AccordionBody>
-  //       </Accordion>
-  //     </>
-  //   )
-  // }
-  const handleOnClose = () => setShowMyModal(false)
-
-  // console.log(datas);
+  const handleSaveClick = () => {
+    setSavedSeatClass(selectedSeatClass);
+  }
 
   const formatDate = (data, tipe) => {
     // console.log(new Date("2023-06-27T17:40:57.207Z").getUTCHours());
@@ -155,48 +167,30 @@ const HasilPencarian = () => {
     return `${Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}h ${Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))}m`
   }
 
+  const handleDate = (date, id) => {
+    setFilterDate(prevData => {
+      return prevData.map(option => {
+        if (option.id === id) {
+          return { ...option, selected: true }
+        }
+        return { ...option, selected: false }
+      });
+    })
+
+    setSelected(date)
+
+  }
+
+  const navigate = useNavigate()
+
+  const handlePilih = () => {
+    navigate("/checkout")
+  }
 
   return (
     <div>
       <div>
-        <Navbar/>
-        {/* <nav className="py-3 navbar-container">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center space-x-10">
-                Logo and Search Bar
-                <img src={logo} alt="Logo" className="h-14" />
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Cari di sini ..."
-                    className="px-4 py-2 md:mr-2 mb-2 md:mb-9 b19gray-200 text-white rounded-md focus:outline-none focus:bg-gray-700 search-bar"
-                  />
-                  <span className="absolute top-3 right-4 text-gray-500 cursor-pointer">
-                    <AiOutlineSearch />
-                  </span>
-                </div>
-              </div>
-              End of Logo and Search Bar
-
-              Button
-              <div className="flex flex-col md:flex-row md:items-center">
-                <Button
-                  type="button"
-                  className="bg-gray-800 hover:bg-gray-700 px-4 py-2 text-sm text-white rounded-md focus:outline-none button-custom"
-                >
-                  <div className="flex items-center">
-                    <RiLoginBoxLine className="mr-2" />
-                    <span>Masuk</span>
-                  </div>
-                </Button>
-              </div>
-              End of Button
-            </div>
-          </div>
-        </nav> */}
-
-        {/* <hr /> */}
+        {/* <Navbar/> */}
 
         <div className="flex justify-center md:mt-14 mt-8">
           <div className="w-full flex flex-col justify-center items-center">
@@ -217,54 +211,59 @@ const HasilPencarian = () => {
 
               {/* Tag Hari */}
               <div className="flex justify-center">
-                <ul className="flex w-full snap-x snap-mandatory overflow-auto mx-auto no-scrollbar overflow-y-visible gap-3">
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">SENIN</div>
-                    <div className="text-black group-hover:text-white">01/03/2023</div>
-                  </Card >
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">SELASA</div>
-                    <div className="text-black group-hover:text-white">02/03/2023</div>
-                  </Card >
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">RABU</div>
-                    <div className="text-black group-hover:text-white">03/03/2023</div>
-                  </Card >
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">KAMIS</div>
-                    <div className="text-black group-hover:text-white">04/03/2023</div>
-                  </Card >
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">JUMAT</div>
-                    <div className="text-black group-hover:text-white">05/03/2023</div>
-                  </Card >
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">SABTU</div>
-                    <div className="text-black group-hover:text-white">06/03/2023</div>
-                  </Card>
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">MINGGU</div>
-                    <div className="text-black group-hover:text-white">07/03/2023</div>
-                  </Card>
-                  <Card className="shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] cursor-pointer py-2 group">
-                    <div className="font-extrabold text-black group-hover:text-white">SENIN</div>
-                    <div className="text-black group-hover:text-white">07/03/2023</div>
-                  </Card>
-                </ul>
+                <div className="flex w-full snap-x snap-mandatory overflow-auto mx-auto no-scrollbar overflow-y-visible gap-3">
+                  {filterDate.map(data => {
+                    return (
+                      <div className={`shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] ${data.selected ? "bg-[#A06ECE]" : ""} cursor-pointer py-2 rounded-xl group`} onClick={() => handleDate(data.date, data.id)} key={data.id}>
+                        <div className={`font-extrabold text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.name}</div>
+                        <div className={`text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.date}</div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
               {/* End of Tag Hari */}
 
-              {/* <hr /> */}
-
               {/* Start of filter termurah */}
               <div className="flex justify-end py-4">
-                <button onClick={() => setShowMyModal(true)} className="flex border-solid border-2 space-x-4 rounded-full custom-border-termurah p-1 custom-text-termurah">
+                <button onClick={() => setVisible(true)} className="flex border-solid border-2 space-x-4 rounded-full custom-border-termurah p-1 custom-text-termurah">
                   <div className="flex">
                     <img src={panahtermurah} alt="" />
                     <div className="font-bold">Termurah</div>
                   </div>
                 </button>
-                <Modal onClose={handleOnClose} visible={showMyModal} />
+                <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
+                  <div className="flex flex-col">
+                    <div className={`flex flex-row ${selectedSeatClass === 'Harga-Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga-Termurah')} style={{ cursor: "pointer" }}>
+                      <div className="pr-3">
+                        <p className="font-bold pt-2 ml-4 py-3">Harga-Termurah</p>
+                      </div>
+                      {selectedSeatClass === 'Harga-Termurah' && (
+                        <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                      )}
+                    </div>
+                    <Image src={Line} alt="line" />
+                    <div className={`flex flex-row ${selectedSeatClass === 'Awal' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Awal')} style={{ cursor: "pointer" }}>
+                      <div>
+                        <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Awal</p>
+                      </div>
+                      {selectedSeatClass === 'Awal' && (
+                        <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                      )}
+                    </div>
+                    <Image src={Line} alt="line" />
+                    <div className={`flex flex-row ${selectedSeatClass === 'Akhir' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Akhir')} style={{ cursor: "pointer" }}>
+                      <div className="pr-1">
+                        <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Akhir</p>
+                      </div>
+                      {selectedSeatClass === 'Akhir' && (
+                        <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                      )}
+                    </div>
+                    <Image src={Line} alt="line" />
+                  </div>
+                  <Image src={save} alt="save" className="flex justify-end" style={{ cursor: "pointer" }} onClick={handleSaveClick} />
+                </Dialog>
               </div>
 
               {/* Start of filter box */}
@@ -313,86 +312,173 @@ const HasilPencarian = () => {
 
                 {/* Start of Cards */}
                 <div className="flex flex-col w-full">
-                  {datas?.map(data => {
-                    return (
-                      <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0}>
-                        <AccordionTab className="w-full" header={
-                          <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
-                            <div className="flex items-center gap-2">
-                              <img src={yellowlogo} alt="" className="w-6 h-6" />
-                              <div>{data?.airline}</div>
-                            </div>
-                            <div className="flex justify-between w-full">
-                              <div className="flex items-center md:gap-3 gap-1 w-1/2">
-                                <div className="flex flex-col gap-2">
-                                  <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
-                                  <div>{data?.destination?.code}</div>
+                  {
+                    selected == ""
+                      ?
+                      datas?.map(data => {
+                        return (
+                          <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
+                            <AccordionTab className="w-full" header={
+                              <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
+                                <div className="flex items-center gap-2">
+                                  <img src={yellowlogo} alt="" className="w-6 h-6" />
+                                  <div>{data?.airline}</div>
                                 </div>
-                                <div className="flex flex-col items-center mx-4">
-                                  <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
-                                  <div className="flex items-center ">
-                                    <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
-                                    <div className="pi pi-angle-right -mx-2.5"></div>
+                                <div className="flex justify-between w-full">
+                                  <div className="flex items-center md:gap-3 gap-1 w-1/2">
+                                    <div className="flex flex-col gap-2">
+                                      <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
+                                      <div>{data?.destination?.code}</div>
+                                    </div>
+                                    <div className="flex flex-col items-center mx-4">
+                                      <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
+                                      <div className="flex items-center ">
+                                        <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
+                                        <div className="pi pi-angle-right -mx-2.5"></div>
+                                      </div>
+                                      {/* <img src={arrow} alt="arrow" className="w-full" /> */}
+                                      <div className="text-xs text-neutral-500">Direct</div>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                      <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
+                                      <div>{data?.source?.code}</div>
+                                    </div>
+                                    {/* <div className="flex items-center"> */}
+                                    <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
+                                    {/* </div> */}
                                   </div>
-                                  {/* <img src={arrow} alt="arrow" className="w-full" /> */}
-                                  <div className="text-xs text-neutral-500">Direct</div>
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                  <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
-                                  <div>{data?.source?.code}</div>
-                                </div>
-                                {/* <div className="flex items-center"> */}
-                                <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
-                                {/* </div> */}
-                              </div>
-                              <div className="flex md:ml-11 ml-8 p-3">
-                                <div className="flex flex-col font-bold gap-2">
-                                  <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
-                                  <Button label="Pilih" severity="help" rounded></Button>
+                                  <div className="flex md:ml-11 ml-8 p-3">
+                                    <div className="flex flex-col font-bold gap-2">
+                                      <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                      <Button label="Pilih" severity="help" rounded></Button>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        }>
-                          <div className="flex flex-col items-start md:text-base text-xs ">
-                            <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
-                            <div className="flex justify-between w-full">
-                              <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
-                              <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
-                            </div>
-                            <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
-                            <p className="font-bold">{data?.source?.name}</p>
-                            <Divider />
-                            <div className="ms-8 text-left">
-                              <h5 className="font-bold">{data?.airline}</h5>
-                              <h5 className="font-bold">{data?.flight_number}</h5>
-                            </div>
-                            <div className="flex gap-2 justify-center">
-                              <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
-                              <div className="flex flex-col items-start">
+                            }>
+                              <div className="flex flex-col items-start md:text-base text-xs ">
+                                <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
+                                <div className="flex justify-between w-full">
+                                  <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
+                                  <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
+                                </div>
+                                <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
+                                <p className="font-bold">{data?.source?.name}</p>
+                                <Divider />
+                                <div className="ms-8 text-left">
+                                  <h5 className="font-bold">{data?.airline}</h5>
+                                  <h5 className="font-bold">{data?.flight_number}</h5>
+                                </div>
+                                <div className="flex gap-2 justify-center">
+                                  <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
+                                  <div className="flex flex-col items-start">
 
-                                <h5 className="font-bold mt-2">Informasi:</h5>
-                                {data?.information?.map(info => {
-                                  return (
-                                    <>
-                                      <p>{info?.name}</p>
-                                    </>
-                                  )
-                                })}
+                                    <h5 className="font-bold mt-2">Informasi:</h5>
+                                    {data?.information?.map(info => {
+                                      return (
+                                        <>
+                                          <p>{info?.name}</p>
+                                        </>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+                                <Divider />
+                                <div className="flex justify-between w-full">
+                                  <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
+                                  <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
+                                </div>
+                                <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
+                                <p className="font-bold">{data?.destination?.name}</p>
                               </div>
-                            </div>
-                            <Divider />
-                            <div className="flex justify-between w-full">
-                              <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
-                              <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
-                            </div>
-                            <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
-                            <p className="font-bold">{data?.destination?.name}</p>
-                          </div>
-                        </AccordionTab>
-                      </Accordion>
-                    )
-                  })}
+                            </AccordionTab>
+                          </Accordion>
+                        )
+                      })
+                      :
+                      datas?.filter(data => {
+                        return new Date(data?.departure_date).toDateString() === new Date(selected).toDateString()
+                      }).map(data => {
+                        return (
+                          <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
+                            <AccordionTab className="w-full" header={
+                              <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
+                                <div className="flex items-center gap-2">
+                                  <img src={yellowlogo} alt="" className="w-6 h-6" />
+                                  <div>{data?.airline}</div>
+                                </div>
+                                <div className="flex justify-between w-full">
+                                  <div className="flex items-center md:gap-3 gap-1 w-1/2">
+                                    <div className="flex flex-col gap-2">
+                                      <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
+                                      <div>{data?.destination?.code}</div>
+                                    </div>
+                                    <div className="flex flex-col items-center mx-4">
+                                      <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
+                                      <div className="flex items-center ">
+                                        <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
+                                        <div className="pi pi-angle-right -mx-2.5"></div>
+                                      </div>
+                                      {/* <img src={arrow} alt="arrow" className="w-full" /> */}
+                                      <div className="text-xs text-neutral-500">Direct</div>
+                                    </div>
+                                    <div className="flex flex-col gap-2">
+                                      <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
+                                      <div>{data?.source?.code}</div>
+                                    </div>
+                                    {/* <div className="flex items-center"> */}
+                                    <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
+                                    {/* </div> */}
+                                  </div>
+                                  <div className="flex md:ml-11 ml-8 p-3">
+                                    <div className="flex flex-col font-bold gap-2">
+                                      <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                      <Button label="Pilih" severity="help" rounded onClick={handlePilih}></Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }>
+                              <div className="flex flex-col items-start md:text-base text-xs ">
+                                <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
+                                <div className="flex justify-between w-full">
+                                  <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
+                                  <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
+                                </div>
+                                <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
+                                <p className="font-bold">{data?.source?.name}</p>
+                                <Divider />
+                                <div className="ms-8 text-left">
+                                  <h5 className="font-bold">{data?.airline}</h5>
+                                  <h5 className="font-bold">{data?.flight_number}</h5>
+                                </div>
+                                <div className="flex gap-2 justify-center">
+                                  <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
+                                  <div className="flex flex-col items-start">
+
+                                    <h5 className="font-bold mt-2">Informasi:</h5>
+                                    {data?.information?.map(info => {
+                                      return (
+                                        <>
+                                          <p>{info?.name}</p>
+                                        </>
+                                      )
+                                    })}
+                                  </div>
+                                </div>
+                                <Divider />
+                                <div className="flex justify-between w-full">
+                                  <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
+                                  <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
+                                </div>
+                                <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
+                                <p className="font-bold">{data?.destination?.name}</p>
+                              </div>
+                            </AccordionTab>
+                          </Accordion>
+                        )
+                      })
+                  }
 
                 </div>
               </div>
