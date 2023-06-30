@@ -62,9 +62,6 @@ export const theme = {
         },
         fontSize: {
             '1sm': ['14px', '18px'],
-            'xl1': ['20px', '30px'],
-            '1xl': ['20px', '30px'],
-            'base1': ['16px', '20px']
         },
         padding: {
             '2.1': '9px',

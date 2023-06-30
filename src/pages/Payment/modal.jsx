@@ -6,7 +6,7 @@ export default function Modal() {
     <>
         <>
           <div
-            className=" w-[936px] h-[50px] mx-auto "
+            className=" w-[936px] h-[60px] mx-auto "
           >
             <div className="relative mx-auto">
               {/*content*/}
