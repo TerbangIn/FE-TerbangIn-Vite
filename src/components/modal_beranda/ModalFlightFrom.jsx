@@ -6,7 +6,14 @@ const ModalFlightFrom = ({ value, onSelect }) => {
   const [visible, setVisible] = useState(false);
   const { flightData } = useSelector((state) => state.FlightDestinationReducer);
 
-  const options = flightData.map((data) => `${data?.source?.country} (${data?.source?.code})`);
+  let options = flightData.map((data) => `${data?.source?.country} (${data?.source?.code})`);
+
+  function removeDuplicates(arr) {
+    return arr.filter((item,
+      index) => arr.indexOf(item) === index);
+  }
+
+  options = removeDuplicates(options)
 
   const [selectedOption, setSelectedOption] = useState('');
 
@@ -25,7 +32,7 @@ const ModalFlightFrom = ({ value, onSelect }) => {
       <div className="font-bold md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={showModal}>
         {selectedOption ? selectedOption : value}
       </div>
-      <Modal title="TerbangIn" visible={isModalOpen} footer={null}>
+      <Modal title="TerbangIn" open={isModalOpen} onCancel={() => setIsModalOpen(false)} footer={null}>
         <List
           itemLayout="horizontal"
           dataSource={options}

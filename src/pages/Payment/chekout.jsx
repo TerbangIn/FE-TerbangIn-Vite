@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import SeatCustomer from "./seat";
-import image from './images/Image.svg';
 // import Navbar from "./navbar";
 import Navbar from "../../components/Navbar";
 import Modal from './modal';
@@ -258,8 +257,8 @@ function Checkout() {
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                             <div className="ml-[246px]">
                                                 <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check" />
-                                                    <div class="w-11 h-6 ring ring-purple-900 ring-offset-1 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
+                                                    <input onClick={()=> setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check"/>
+                                                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                                 </label>
                                             </div>
                                         </div>
