@@ -39,11 +39,7 @@ function Checkout() {
         },
     ])
 
-<<<<<<< HEAD
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiZW1haWwiOiJyYWZsaW1hcmRoaWFuMTNAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODgwOTI1MjF9.0Wgt5aAtN1t3eQ_ElFfj849TX1384zVFVbgnr-grYX4";
-=======
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
->>>>>>> e8c4cdb28262e38f024d09d2395c1547c87a769f
     // cookies.get('token')
     const decode = jwtDecode(token)
     const cookies = new Cookies();
@@ -164,7 +160,7 @@ function Checkout() {
         }
         setData([...data, object])
     }
-    const {id} =useParams
+    const { id } = useParams
 
     if (!token) {
         return <Modal />;
@@ -172,7 +168,7 @@ function Checkout() {
 
     return (
         <div>
- 
+
             <header className="border-none shadow-md ">
                 <Navbar />
                 <div className="flex flex-row space-x-2 md:ml-[260px] mt-[47px]">
@@ -183,12 +179,12 @@ function Checkout() {
                     <p className="text-xl">Selesai</p>
                 </div>
 
-                {!token && <Modal/>}
+                {!token && <Modal />}
                 {timer ? (
-                <Timer seconds={900}/>
-                ): (
-                <Submit/>
-                )}                
+                    <Timer seconds={900} />
+                ) : (
+                    <Submit />
+                )}
 
             </header>
             <button onClick={addFields}>add form</button>
@@ -260,7 +256,7 @@ function Checkout() {
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                             <div className="ml-[246px]">
                                                 <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input onClick={()=> setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check"/>
+                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check" />
                                                     <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                                 </label>
                                             </div>

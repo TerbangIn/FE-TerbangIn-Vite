@@ -117,11 +117,17 @@ const JadwalPenerbangan = () => {
     // console.log(passenger)
 
     const buttonHandler = () => {
-        navigate('/hasil-pencarian');
+        navigate('/hasil-pencarian', {
+            state: {
+                from,
+                to,
+                category: "07/01/2023",
+                date: selectedDate1
+            }
+        });
     }
 
-    console.log(convertedDate);
-    console.log(seatClass);
+    // console.log(from, to, seatClass, selectedDate1);
 
     return (
         <>
@@ -155,7 +161,7 @@ const JadwalPenerbangan = () => {
                                 <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="md:w-60 w-28 -ml-24 xl:w-60 h-7 xl:ml-3 xl:mr-3 border-b" />
                             </div>
                             {/* <div className="pt-1"> */}
-                                {/* <hr className="flex border-1 md:w-95 w-16 md:ml-100 ml-10" />
+                            {/* <hr className="flex border-1 md:w-95 w-16 md:ml-100 ml-10" />
                                 <hr className="border-1 min-[1024px]:ml-60 min-[1154px]:w-32 max-[1279px]:w-32 max-[1058px]:ml-60 lg:w-[110px] xl:ml-72 xl:w-[153px]" /> */}
                             {/* </div> */}
 
@@ -190,7 +196,7 @@ const JadwalPenerbangan = () => {
                                 <ModalSeatClass value={seatClass} onChange={handleSeatClassChange} />
                             </div>
                             <hr className="flex border-1 w-32 min-[1154px]:ml-[54px] max-[1279px]:ml-[54px] xl:ml-[67px] xl:w-28" />
-                            <hr className="border-1 md:ml-56 ml-52 md:w-40 w-24 mb-5" />
+                            <hr className="border-1 xl:ml-[14.3rem] lg: md:ml-56 ml-52 xl:w-20 lg:w-16 md:w-40 w-24 mb-5" />
                         </div>
                     </div>
                 </div>
