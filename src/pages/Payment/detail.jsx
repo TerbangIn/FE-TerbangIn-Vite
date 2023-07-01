@@ -27,7 +27,7 @@ function Detail(){
 
     return (
         <>  
-            <div>
+            <div className="hidden lg:block">
                 <div className="ml-7">
                     <h1 className="text-lg font-bold">Detail Penerbangan</h1>
                     <div className="flex flex-row">
