@@ -54,6 +54,7 @@ const ModalPassengers = (props) => {
         setVisible(false)
     };
 
+
     return (
         <>
            <div className="font-bold text-base md:ml-0 ml-3 md:text-base pl-2 md:pl-5 xl:ml-2" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>

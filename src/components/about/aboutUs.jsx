@@ -1,16 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import { Button } from "primereact/button";
-import 'primeicons/primeicons.css';
-import { Calendar } from 'primereact/calendar';
-import { OverlayPanel } from 'primereact/overlaypanel';
+import 'primeicons/primeicons.css'
 import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
-import "primereact/resources/primereact.min.css";
-import { Link } from "react-router-dom";
-import { Dialog } from 'primereact/dialog';
+import "primereact/resources/primereact.min.css"
 import { Panel } from "primereact/panel";
-import { InputText } from 'primereact/inputtext';
-import person1 from './person1.png'
 import './about.css'
 
 import brahmasta from '../../assets/member/Brahmasta.png'
@@ -33,7 +25,7 @@ function AboutUs() {
             <Card className="w-4/5 mx-auto my-auto">
                 <Panel className="pb-2 rounded-lg" header="C7 BINAR ACADEMY BATCH 4">
                     <div className="text-2xl font-bold text-900">TEAM LINEUP</div>
-                    <div class="grid grid-cols-4 gap-4">
+                    <div className="grid grid-cols-4 gap-4">
                         <Card className="hover:scale-105">
                             <div className="text-center">
                                 <img alt="logo" src={kenny} className="flex w-fit mx-auto mb-2" />
@@ -95,7 +87,7 @@ function AboutUs() {
                                 <img alt="logo" src={brahmasta} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Brahmasta Bagus Aryandra</div>
                                 <div className="text-sm text-binar-purple mb-7">Institut Teknologi Telkom Purwokerto</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Backend Developer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Fullstack Developer</div>
                                 <a href="https://instagram.com/brahmastabagus?igshid=MzNlNGNkZWQ4Mg=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="https://github.com/Brahmastabagus"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://id.linkedin.com/in/brahmasta-bagus"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
@@ -107,7 +99,7 @@ function AboutUs() {
                                 <img alt="logo" src={fadhlan} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Muhammad Fadhlan Aqila</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Gunadarma</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Backend Developer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Fullstack Developer</div>
                                 <a href="https://www.instagram.com/padhlanaqila/"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="http://github.com/zodplugin"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://www.linkedin.com/in/fadhlanaqilaa"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
@@ -118,7 +110,7 @@ function AboutUs() {
                                 <img alt="logo" src={sekar} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Sekar Risma Aisyah</div>
                                 <div className="text-sm text-binar-purple mb-7">Institut Pertanian Bogor</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Android Developer</div>
                                 <a href="https://instagram.com/sekaar._?igshid=OGQ5ZDc2ODk2ZA=="><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="http://github.com/SekarAisyah"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://www.linkedin.com/in/sekar-risma-aisyah-311a74218"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
@@ -129,7 +121,7 @@ function AboutUs() {
                                 <img alt="logo" src={dheva} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Dheva Dayat Vito Indrajaka</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Gadjah Mada</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Android Engineer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Android Developer</div>
                                 <a href="https://instagram.com/dheevvvv"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="http://github.com/dheevvvv"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://www.linkedin.com/in/dheevvvv"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>
