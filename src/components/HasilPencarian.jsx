@@ -264,7 +264,7 @@ const HasilPencarian = () => {
                       <div className="flex flex-col">
                         <div className={`flex flex-row ${selectedSeatClass === 'Harga-Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga-Termurah')} style={{ cursor: "pointer" }}>
                           <div className="pr-3">
-                            <p className="font-bold pt-2 ml-4 py-3">Harga-Termurah</p>
+                            <p className="font-bold pt-2 ml-4 py-3">Harga - Termurah</p>
                           </div>
                           {selectedSeatClass === 'Harga-Termurah' && (
                             <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
