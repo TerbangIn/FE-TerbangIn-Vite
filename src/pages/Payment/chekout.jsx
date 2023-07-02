@@ -118,25 +118,29 @@ function Checkout() {
         if(adult.length < passenger?.adult){
             loopAdult()
         }
-    },[])
+    },[adult])
     useEffect(() => {
         if(child.length < passenger?.child){
             loopChild()
         }
-    },[])
+    },[child])
     useEffect(() => {
         if(baby.length < passenger?.baby){
             loopBaby()
         }
-    },[])
+    },[baby])
 
 
     console.log(adult,child,baby)
     useEffect(() => {
-        if(data.length < passenger?.jumlah){
-            setData([...data,...adult,...child,...baby])
-        }
-    },[adult,child,baby])
+       
+        setTimeout(() => {
+            if(data.length < passenger?.jumlah){
+                setData([...data,...adult,...child,...baby])
+            }
+        },10)
+        
+    },[adult,child,baby,passenger])
     console.log(data)
     useEffect(() => {
         // getTransaction()
@@ -374,7 +378,7 @@ function Checkout() {
 
                         
                         <div>
-                            <SeatCustomer handleSeat={handleSeat} />
+                            <SeatCustomer handleSeat={handleSeat} passenger={location?.state?.passenger}/>
                         </div>
                     </div>
                     {button ? (

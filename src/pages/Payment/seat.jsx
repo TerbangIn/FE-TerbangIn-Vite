@@ -9,16 +9,25 @@ const SeatCustomer = (props) => {
     }]);
 
     const handleSeatSelect = (seat) => {
-        if (selectedSeats.includes(seat)) {
-        setSelectedSeats(selectedSeats.filter((s) => s !== seat));
-        props.handleSeat(selectedSeats.filter((s) => s !== seat));
-        } else {
-        setSelectedSeats([...selectedSeats, seat]);
-        props.handleSeat([...selectedSeats, seat]);
-        // props.handleSeat(selectedSeats)
-        }
+        if (selectedSeats.length < props.passenger.jumlah){
+            if (selectedSeats.includes(seat)) {
+                setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+                props.handleSeat(selectedSeats.filter((s) => s !== seat));
+                } else {
+                setSelectedSeats([...selectedSeats, seat]);
+                props.handleSeat([...selectedSeats, seat]);
+                // props.handleSeat(selectedSeats)
+            }
+        }else{
+            if (selectedSeats.includes(seat)) {
+                setSelectedSeats(selectedSeats.filter((s) => s !== seat));
+                props.handleSeat(selectedSeats.filter((s) => s !== seat));
+            }
+        } 
         
     };
+
+    console.log(props.passenger.jumlah)
     // console.log(selectedSeats)
 
     
