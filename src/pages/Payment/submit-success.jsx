@@ -5,7 +5,7 @@ function Submit(){
     return(
         <>
             <div
-                className=" w-[936px] h-[60px] mx-auto "
+                className="lg:w-[936px] xl:w-[936px] md:w-[600px] sm:w-[490px] h-[60px] mx-auto mt-5 "
             >
                 <div className="relative mx-auto">
                 {/*content*/}

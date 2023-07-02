@@ -1,13 +1,14 @@
 import React from "react";
 import success from './images/illustration _Cart shopping list_.svg';
 import Navbar from "./navbar";
+import { Link } from "react-router-dom";
 
 function Success(){
     return(
         <>
             <header className="border-none shadow-md ">
                 <Navbar />
-                <div className="flex flex-row space-x-2 ml-[260px] mt-[47px]">
+                <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
                     <p className="text-xl font-bold">Isi Data Diri</p>
                     <p className="text-xl">&gt;</p>
                     <p className="text-xl font-bold" >Bayar</p>
@@ -15,7 +16,7 @@ function Success(){
                     <p className="text-xl font-bold">Selesai</p>
                 </div>
                 <div
-                    className=" w-[936px] h-[60px] mx-auto "
+                    className="lg:w-[936px] xl:w-[936px] md:w-[600px] sm:w-[500px] h-[60px] mx-auto mt-5"
                 >
                     <div className="relative mx-auto">
                         {/*content*/}
@@ -38,7 +39,9 @@ function Success(){
                         <h1 className="text-sm flex justify-center ">Transaksi Pembayaran Tiket sukses!</h1>
                     </div>
                     <button className="w-[347px] h-12 text-white bg-purple-700 rounded-lg mt-[52px]">Terbitkan Tiket</button><br />
-                    <button className="w-[347px] h-12 text-white bg-[#D0B7E6] rounded-lg mt-3">Cari Penerbangan Lain</button>
+                    <Link to="/beranda" >
+                        <button className="w-[347px] h-12 text-white bg-[#D0B7E6] rounded-lg mt-3">Cari Penerbangan Lain</button>
+                    </Link>
                 </div>
             </div>
         </>

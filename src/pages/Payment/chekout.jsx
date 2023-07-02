@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import SeatCustomer from "./seat";
-import image from './images/Image.svg';
 // import Navbar from "./navbar";
 import Navbar from "../../components/Navbar";
 import Modal from './modal';
@@ -25,6 +24,7 @@ function Checkout() {
     const [totalHarga, setTotalHarga] = useState();
     const [flight, setFlight] = useState(); 
     const [isChecked, setIsChecked] = useState(false);
+    const [button, setButton] = useState(false);
     const [dataStatus, setDataStatus] = useState("pending");
     const [timer, setTimer] = useState(true)
     const [selectedSeat, setSelectedSeats] = useState([]);
@@ -206,6 +206,7 @@ function Checkout() {
                     console.error(error);
                 })
             setTimer(!timer)
+            setButton(!button)
         })
 
 
@@ -236,7 +237,7 @@ function Checkout() {
 
             <header className="border-none shadow-md ">
                 <Navbar />
-                <div className="flex flex-row space-x-2 md:ml-[260px] mt-[47px]">
+                <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
                     <p className="text-xl font-bold">Isi Data Diri</p>
                     <p className="text-xl">&gt;</p>
                     <p className="text-xl" >Bayar</p>
@@ -320,7 +321,7 @@ function Checkout() {
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                             <div className="ml-[246px]">
                                                 <label class="relative inline-flex items-center cursor-pointer">
-                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check" />
+                                                    <input onClick={()=> setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check"/>
                                                     <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                                 </label>
                                             </div>
@@ -376,15 +377,20 @@ function Checkout() {
                             <SeatCustomer handleSeat={handleSeat} />
                         </div>
                     </div>
-
+                    {button ? (
+                    <Link to="/payment" >
+                        <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]">Lanjut Bayar</button>
+                    </Link>
+                    ) : (
                     <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
+                    )}
                 </form>
                 <div>
                         
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
                     {(
                         <Link to="/payment" >
-                            <button className="bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
+                            <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
                         </Link>
                     )}
                 </div>

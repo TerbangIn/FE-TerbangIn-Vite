@@ -4,31 +4,10 @@ import axios from "axios";
 
 
 function Detail({flight,passenger}){
-    const url = `https://be-tiketku-production.up.railway.app/api/v1/flight/`;
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3ODI2MDIyfQ.CWCHyHUTxhnYRRcCTnth-0XhKTfWMe3wmGjGl4Vx54U";
-
-        axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-        })
-        .then((response) => {
-            setData(response.data);
-            // console.log(response.data)
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        
-    }, []);
-
 
     return (
         <>  
-            <div>
+            <div className="hidden lg:block">
                 <div className="ml-7">
                     <h1 className="text-lg font-bold">Detail Penerbangan</h1>
                     <div className="flex flex-row">

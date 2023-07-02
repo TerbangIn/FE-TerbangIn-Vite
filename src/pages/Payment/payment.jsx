@@ -10,7 +10,7 @@ function Payment() {
         <>
             <header className="border-none shadow-md ">
                 <Navbar />
-                <div className="flex flex-row space-x-2 ml-[260px] mt-[47px]">
+                <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
                     <p className="text-xl font-bold">Isi Data Diri</p>
                     <p className="text-xl">&gt;</p>
                     <p className="text-xl font-bold" >Bayar</p>
@@ -18,7 +18,7 @@ function Payment() {
                     <p className="text-xl">Selesai</p>
                 </div>
                 <div
-                    className=" w-[936px] h-[60px] mx-auto "
+                    className="lg:w-[936px] xl:w-[936px] md:w-[600px] sm:w-[500px] h-[60px] mx-auto mt-5 "
                 >
                     <div className="relative mx-auto">
                         {/*content*/}
@@ -33,9 +33,9 @@ function Payment() {
                     </div>
                 </div>
             </header>
-            <div className="flex flex-row mt-3">
+            <div className="flex flex-row justify-center mt-3 mb-10">
                 <div>
-                    <h1 className="text-[20px] ml-[308px] font-bold mb-4">Isi Data Pembayaran</h1>
+                    <h1 className="text-[20px] font-bold mb-4">Isi Data Pembayaran</h1>
                     <Accordion />
                 </div>
                 <Detail/>
