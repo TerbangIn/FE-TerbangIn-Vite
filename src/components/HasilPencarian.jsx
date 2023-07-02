@@ -34,6 +34,7 @@ import Line from "../assets/images/line_thin.svg"
 import checklist from "../assets/images/checklist.svg"
 import save from "../assets/images/Brand_button.svg"
 import { useLocation, useNavigate } from "react-router";
+import Navbar from "./Navbar";
 
 const HasilPencarian = () => {
   const location = useLocation()
@@ -217,6 +218,7 @@ const HasilPencarian = () => {
 
   return (
     <div>
+      <Navbar />
       {
         filters?.date !== undefined ?
           (

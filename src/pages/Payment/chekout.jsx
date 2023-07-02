@@ -9,15 +9,17 @@ import Timer from "./timer";
 import Axios from "axios";
 import Detail from "./detail";
 import jwtDecode from "jwt-decode";
-import { useParams, Link,useLocation } from "react-router-dom";
+import { useParams, Link,useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
-
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 
 
 function Checkout() {
     const location = useLocation()
+    const nav = useNavigate()
     const url = "https://be-tiketku-production.up.railway.app/api/v1/passenger"
     const url1 = "https://be-tiketku-production.up.railway.app/api/v1/seat/"
     const urlTransaction = `https://be-tiketku-production.up.railway.app/api/v1/transaksi`;
@@ -35,6 +37,7 @@ function Checkout() {
     const [child,setChild] = useState([])
     const [baby, setBaby] = useState([])
     const [adult, setAdult] = useState([])
+ 
 
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     // cookies.get('token')
@@ -167,8 +170,8 @@ function Checkout() {
                 },
             })
                 .then(resPassenger => {
-                    selectedSeat.map(data => {
-                        Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${data}`, {
+                    selectedSeat.map(seat => {
+                        Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${seat}`, {
                             status: "Unavailable"
                         }, {
                             headers: {
@@ -178,12 +181,12 @@ function Checkout() {
                             .then(resSeat => {
                                 Axios.post("https://be-tiketku-production.up.railway.app/api/v1/tiket/", {
                                     transaction_id: transaction_id,
-                                    type_of_class: "Economy Class",
-                                    type_of_passenger: "Adult",
-                                    price: 5000,
-                                    seat_id: data,
-                                    passenger_id: resPassenger?.data?.data?.id,
-                                    flight_id: 1
+                                    type_of_class: (flight?.economy_class_price ? "Economy Class" : flight?.business_class_price ? "Business Class" : flight?.first_class_price ? "First Class" : flight?.premium_price ? "Premium Class" : ""),
+                                    type_of_passenger: data?.category,
+                                    price: (data?.category === 'Adult' ? (flight?.economy_class_price ? flight?.economy_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.business_class_price ? flight?.business_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.first_class_price ? flight?.first_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.premium_price ? flight?.premium_price*(flight?.adult_price_percentage/100) : 0)*passenger?.adult))) : data?.category === 'Child' ?  (flight?.economy_class_price ? flight?.economy_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.business_class_price ? flight?.business_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.first_class_price ? flight?.first_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.premium_price ? flight?.premium_price*(flight?.child_price_percentage/100)*passenger?.child : 0)))) : data?.category === 'Baby' ? ((flight?.economy_class_price ? flight?.economy_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.business_class_price ? flight?.business_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.first_class_price ? flight?.first_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.premium_price ? flight?.premium_price*(flight?.baby_price_percentage/100)*passenger?.baby : 0))))): 0) ,
+                                    seat_id: seat,
+                                    passenger_id: resPassenger?.seat?.seat?.id,
+                                    flight_id: flight?.id
                                 }, {
                                     headers: {
                                         Authorization: `Bearer ${token}`,
@@ -227,16 +230,65 @@ function Checkout() {
         console.log(newData)
     }
 
+    const handlePayment = async () => {
 
-    const { id } = useParams
+        await Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/transaksi/${transaction_id}`, {
+            total_price: totalHarga
+        }, {
+            headers: {
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NTE3OTQyfQ.oj5euXRMipDo_ecOaxT0Xkl60IFwxRNbWWs7t0n4vQk`,
+            },
+        }).then(res => {
+            toast.success(`Transaksi Berhasil Silahkan Lanjut Pembayaran , redirect in 3s...`, {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              })
+              nav("/payment", {
+                state: {
+                  transaction_id: transaction_id,
+                  flight_id : flight
+                }
+              })
+          }).catch(error => {
+            toast.error(`${error.response.data.message}`, {
+              position: "bottom-center",
+              autoClose: 2000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            })
+          })
+    }
+
+
+
 
     if (!token) {
         return <Modal />;
     }
-    console.log(totalHarga)
     return (
         <div>
-
+             <ToastContainer
+                position="bottom-center"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                />
             <header className="border-none shadow-md ">
                 <Navbar />
                 <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
@@ -308,8 +360,9 @@ function Checkout() {
                                                 Title
                                             </label>
                                             <select onChange={event => handleFormChange(event, index)} id="title" value={data.title} placeholder="Select title" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
-                                                <option id="Tn." value="Tn.">Tn.</option>
-                                                <option id="Mr." value="Mr.">Mr.</option>
+                                                <option>Silahkan Dipilih Terlebih Dahulu</option>
+                                                <option id="Tn." value="Tn." >Tn.</option>
+                                                <option id="Mr." value="Mr." selected >Mr.</option>
                                                 <option id="Mrs." value="Mrs.">Mrs.</option>
                                             </select>
                                         </div>
@@ -380,9 +433,7 @@ function Checkout() {
                         </div>
                     </div>
                     {button ? (
-                    <Link to="/payment" >
-                        <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]">Lanjut Bayar</button>
-                    </Link>
+                        <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]" onClick={handlePayment}>Lanjut Bayar</button>
                     ) : (
                     <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                     )}
@@ -390,7 +441,7 @@ function Checkout() {
                 <div>
                         
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
-                    {(
+                    { button && (
                         <Link to="/payment" >
                             <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
                         </Link>
