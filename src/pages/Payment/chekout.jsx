@@ -208,6 +208,9 @@ function Checkout() {
                     console.error(error);
                 })
             setTimer(!timer)
+            if (!button){
+
+            }
             setButton(!button)
         })
 
@@ -308,8 +311,8 @@ function Checkout() {
                                                 Title
                                             </label>
                                             <select onChange={event => handleFormChange(event, index)} id="title" value={data.title} placeholder="Select title" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
-                                                <option id="Tn." value="Tn.">Tn.</option>
-                                                <option id="Mr." value="Mr.">Mr.</option>
+                                                <option id="Tn." value="Tn." >Tn.</option>
+                                                <option id="Mr." value="Mr." selected >Mr.</option>
                                                 <option id="Mrs." value="Mrs.">Mrs.</option>
                                             </select>
                                         </div>
@@ -390,7 +393,7 @@ function Checkout() {
                 <div>
                         
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
-                    {(
+                    { button && (
                         <Link to="/payment" >
                             <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
                         </Link>
