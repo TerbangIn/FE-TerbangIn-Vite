@@ -49,74 +49,75 @@ const HasilPencarian = () => {
     });
   }, [location])
 
+
   const boolSelected = (date) => {
     return new Date(date).toDateString() === new Date(filters?.date).toDateString()
   }
 
-  console.log(boolSelected("07/01/2023"), filters.date);
+  // console.log(boolSelected("07/01/2023"), filters.date);
 
   const [filterDate, setFilterDate] = useState([
     {
       id: 1,
       name: "SENIN",
       date: "06/26/2023",
-      selected: new Date("06/26/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("06/26/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 2,
       name: "SELASA",
       date: "06/27/2023",
-      selected: new Date("06/27/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("06/27/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 3,
       name: "RABU",
       date: "06/28/2023",
-      selected: new Date("06/28/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("06/28/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 4,
       name: "KAMIS",
       date: "06/29/2023",
-      selected: new Date("06/29/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("06/29/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 5,
       name: "JUMAT",
       date: "06/30/2023",
-      selected: new Date("06/30/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("06/30/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 6,
       name: "SABTU",
       date: "07/01/2023",
-      selected: new Date("07/01/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("07/01/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 7,
       name: "MINGGU",
       date: "07/02/2023",
-      selected: new Date("07/02/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("07/02/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 8,
       name: "SENIN",
       date: "07/03/2023",
-      selected: new Date("07/03/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("07/03/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
       id: 9,
       name: "SELASA",
       date: "07/04/2023",
-      selected: new Date("07/04/2023").toDateString() === new Date(filters?.date).toDateString() ? true
+      selected: new Date("07/04/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     }
   ])
@@ -205,8 +206,13 @@ const HasilPencarian = () => {
 
   const navigate = useNavigate()
 
-  const handlePilih = () => {
-    navigate("/checkout")
+  const handlePilih = (id) => {
+    navigate('/checkout', {
+      state: {
+          flight_id : id,
+          passenger  : location?.state?.passenger
+      }
+  });
   }
 
   return (
@@ -236,7 +242,7 @@ const HasilPencarian = () => {
                     <div className="flex w-full snap-x snap-mandatory overflow-auto mx-auto no-scrollbar overflow-y-visible gap-3">
                       {filterDate.map(data => {
                         return (
-                          <div className={`shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] ${data.selected ? "bg-[#A06ECE]" : ""} cursor-pointer py-2 rounded-xl group`} onClick={() => handleDate(data.date, data.id)} key={data.id}>
+                          <div className={`shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] ${data.selected ? "bg-[#A06ECE]" : ""}   cursor-pointer py-2 rounded-xl group`} onClick={() => handleDate(data.date, data.id)} key={data.id}>
                             <div className={`font-extrabold text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.name}</div>
                             <div className={`text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.date}</div>
                           </div>
@@ -372,7 +378,7 @@ const HasilPencarian = () => {
                                       <div className="flex md:ml-11 ml-8 p-3">
                                         <div className="flex flex-col font-bold gap-2">
                                           <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
-                                          <Button label="Pilih" severity="help" rounded></Button>
+                                          <Button label="Pilih" severity="help" rounded onClick={() => {handlePilih(data?.id)}}></Button>
                                         </div>
                                       </div>
                                     </div>

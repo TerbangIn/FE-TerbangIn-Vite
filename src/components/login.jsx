@@ -40,7 +40,7 @@ const Login = () => {
                 async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
-                    cookies.set("token", token, { path: "/login" })
+                    cookies.set("token", token, { path: "/" })
                     console.log(token);
                     // toast.success(`${res.data.message}, redirect in 3s...`, {
                     await toast.success('Login Success, redirect in 3s...', {

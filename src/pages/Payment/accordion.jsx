@@ -9,7 +9,7 @@ function Accordion(){
 
     return(
         <>
-            <div className="ml-[308px] space-y-4">
+            <div className=" space-y-4">
                 <div
                     class=" w-[486px] bg-black rounded-md">
                     <h2 class="mb-0" id="headingTwo">

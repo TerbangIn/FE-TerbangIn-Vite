@@ -25,7 +25,7 @@ const ModalPassengers = (props) => {
     const showCounterAdult = useSelector(state => state.ModalPassengerReducer.showCounterAdult);
     const showCounterBaby = useSelector(state => state.ModalPassengerReducer.counterBaby);
 
-
+    
     const dispatch = useDispatch();
 
     const plusAdultHandler = () => {

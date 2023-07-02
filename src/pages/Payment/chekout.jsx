@@ -10,7 +10,7 @@ import Timer from "./timer";
 import Axios from "axios";
 import Detail from "./detail";
 import jwtDecode from "jwt-decode";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link,useLocation } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
@@ -18,26 +18,23 @@ import Cookies from 'universal-cookie';
 
 
 function Checkout() {
-    const url = "https://be-tiketku-production.up.railway.app/api/v1/passenger/"
+    const location = useLocation()
+    const url = "https://be-tiketku-production.up.railway.app/api/v1/passenger"
     const url1 = "https://be-tiketku-production.up.railway.app/api/v1/seat/"
     const urlTransaction = `https://be-tiketku-production.up.railway.app/api/v1/transaksi`;
+    const [totalHarga, setTotalHarga] = useState();
+    const [flight, setFlight] = useState(); 
     const [isChecked, setIsChecked] = useState(false);
     const [dataStatus, setDataStatus] = useState("pending");
     const [timer, setTimer] = useState(true)
     const [selectedSeat, setSelectedSeats] = useState([]);
     const [transaction_id, setTransaction_id] = useState("")
-    const [data, setData] = useState([
-        {
-            title: "",
-            first_name: "",
-            last_name: "",
-            date_of_birth: "",
-            country: "",
-            identity_number: "",
-            identity_number_of_country: "",
-            expired_date: ""
-        },
-    ])
+    let passenger = location?.state?.passenger
+    console.log(location?.state?.flight_id,location?.state?.passenger,transaction_id)
+    const [data, setData] = useState([])
+    const [child,setChild] = useState([])
+    const [baby, setBaby] = useState([])
+    const [adult, setAdult] = useState([])
 
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     // cookies.get('token')
@@ -57,10 +54,96 @@ function Checkout() {
         })
     }
 
-    useEffect(() => {
-        getTransaction()
-    }, [])
+    const getFlightById = async () => {
+        await Axios.get(`https://be-tiketku-production.up.railway.app/api/v1/flight/${location?.state?.flight_id}`).then(res => {
+            setFlight(res?.data?.data)
+        })
+    }
 
+    const loopAdult = async () => {
+        for (let i = 1; i <= passenger?.adult; i++){
+            await setAdult([...adult,{
+                title: "",
+                first_name: "",
+                last_name: "",
+                date_of_birth: "",
+                country: "",
+                identity_number: "",
+                identity_number_of_country: "",
+                expired_date: "",
+                category : "Adult"
+            }])
+        }
+    }
+
+    const loopBaby = async () => {
+        for (let i = 1; i <= passenger?.baby; i++){
+            await setBaby([...baby,{
+                title: "",
+                first_name: "",
+                last_name: "",
+                date_of_birth: "",
+                country: "",
+                identity_number: "",
+                identity_number_of_country: "",
+                expired_date: "",
+                category: "Baby"
+            }])
+        }
+    }
+    
+    const loopChild = async () =>{
+        for (let i = 1; i <= passenger?.child; i++){
+            await setChild([...child,{
+                title: "",
+                first_name: "",
+                last_name: "",
+                date_of_birth: "",
+                country: "",
+                identity_number: "",
+                identity_number_of_country: "",
+                expired_date: "",
+                category : "Child"
+            }])
+        }
+    }
+
+
+    useEffect(() => {
+        console.log("Child : " + passenger?.child)
+        setTotalHarga((flight?.economy_class_price ? flight?.economy_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.business_class_price ? flight?.business_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.first_class_price ? flight?.first_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.premium_price ? flight?.premium_price*(flight?.adult_price_percentage/100) : 0)*passenger?.adult))) + ((flight?.economy_class_price ? flight?.economy_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.business_class_price ? flight?.business_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.first_class_price ? flight?.first_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.premium_price ? flight?.premium_price*(flight?.baby_price_percentage/100)*passenger?.baby : 0))))) + (flight?.economy_class_price ? flight?.economy_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.business_class_price ? flight?.business_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.first_class_price ? flight?.first_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.premium_price ? flight?.premium_price*(flight?.child_price_percentage/100)*passenger?.child : 0)))))
+    },[flight])
+
+    useEffect(() => {
+        if(adult.length < passenger?.adult){
+            loopAdult()
+        }
+    },[])
+    useEffect(() => {
+        if(child.length < passenger?.child){
+            loopChild()
+        }
+    },[])
+    useEffect(() => {
+        if(baby.length < passenger?.baby){
+            loopBaby()
+        }
+    },[])
+
+
+    console.log(adult,child,baby)
+    useEffect(() => {
+        if(data.length < passenger?.jumlah){
+            setData([...data,...adult,...child,...baby])
+        }
+    },[adult,child,baby])
+    console.log(data)
+    useEffect(() => {
+        // getTransaction()
+        getFlightById()
+    }, [])
+    
+    console.log(data)
     function submit(e) {
         e.preventDefault();
         selectedSeat.map(data => {
@@ -133,12 +216,6 @@ function Checkout() {
         setSelectedSeats(data)
     }
     console.log(selectedSeat)
-    // function handle(e){
-    //     const newData = {...data}
-    //     newData[e.target.id] = e.target.value
-    //     setData(newData)
-    //     console.log(newData)
-    // }
 
     const handleFormChange = (event, index) => {
         let newData = [...data];
@@ -147,25 +224,13 @@ function Checkout() {
         console.log(newData)
     }
 
-    const addFields = () => {
-        let object = {
-            title: "",
-            first_name: "",
-            last_name: "",
-            date_of_birth: "",
-            country: "",
-            identity_number: "",
-            identity_number_of_country: "",
-            expired_date: "",
-        }
-        setData([...data, object])
-    }
+
     const { id } = useParams
 
     if (!token) {
         return <Modal />;
     }
-
+    console.log(totalHarga)
     return (
         <div>
 
@@ -187,7 +252,6 @@ function Checkout() {
                 )}
 
             </header>
-            <button onClick={addFields}>add form</button>
             <div className="flex flex-row justify-center mt-4">
                 <form onSubmit={(e) => submit(e)}>
                     <div className="items-center">
@@ -234,7 +298,7 @@ function Checkout() {
                             return (
                                 <div key={index} className="data w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
                                     <h1 className="text-[20px] font-bold mb-4 mx-4 mt-4">Isi Data Penumpang</h1>
-                                    <h1 className="w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - Adult</h1>
+                                    <h1 className="w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - {data?.category}</h1>
                                     <div className="font-semibold align-middle ml-8">
                                         <div className="flex-auto mb-3">
                                             <label className="font-bold block mb-1 mt-2 text-[#4b1979] ">
@@ -306,6 +370,8 @@ function Checkout() {
                                 </div>
                             )
                         })}
+
+                        
                         <div>
                             <SeatCustomer handleSeat={handleSeat} />
                         </div>
@@ -314,7 +380,8 @@ function Checkout() {
                     <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                 </form>
                 <div>
-                    <Detail className=" md:display:none" />
+                        
+                    <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
                     {(
                         <Link to="/payment" >
                             <button className="bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>

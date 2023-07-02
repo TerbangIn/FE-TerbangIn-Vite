@@ -1,5 +1,5 @@
 
-const initialState = { counterAdult: 0, counterChild: 0, counterBaby: 0, counterAmount: 2 + ' Penumpang', showCounter: true, showCounterAdult: true, showCounterChild: true, showCounterBaby: true }
+const initialState = { counterAdult: 0, counterChild: 0, counterBaby: 0, counterAmount: 0 + ' Penumpang', showCounter: true, showCounterAdult: true, showCounterChild: true, showCounterBaby: true }
 
 const passengersReducer = (state = initialState, action) => {
     if (action.type === 'plusAdult') {
