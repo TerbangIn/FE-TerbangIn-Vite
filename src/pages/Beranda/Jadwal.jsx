@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Image } from "primereact/image";
@@ -26,7 +26,7 @@ const JadwalPenerbangan = () => {
     const counterChild = useSelector(state => state.ModalPassengerReducer.counterChild);
     const counterBaby = useSelector(state => state.ModalPassengerReducer.counterBaby);
 
-    
+
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
     console.log(flightData)
     const [showCalendar, setShowCalendar] = useState(false);
@@ -40,13 +40,19 @@ const JadwalPenerbangan = () => {
     const navigate = useNavigate()
     useEffect(() => {
         setPassenger({
-            "jumlah" : counterAdult + counterBaby + counterChild,
-            "adult" : counterAdult,
-            "baby" : counterBaby,
-            "child" : counterChild
+            "jumlah": counterAdult + counterBaby + counterChild,
+            "adult": counterAdult,
+            "baby": counterBaby,
+            "child": counterChild
         })
-    },[])
-    console.log(passenger)
+    }, [])
+    console.log({
+        from,
+        to,
+        category: seatClass,
+        date: selectedDate1,
+        passenger: passenger
+    })
 
     const dateString = selectedDate1;
     const dateObj = new Date(dateString);
@@ -111,7 +117,7 @@ const JadwalPenerbangan = () => {
     };
 
     const buttonHandler = async () => {
-        if(selectedDate1 == null && passenger.jumlah == 0){
+        if (selectedDate1 == null && passenger.jumlah == 0) {
             await toast.error('Silahkan pilih tanggal dan jumlah penumpang terlebih dahulu', {
                 position: "bottom-center",
                 autoClose: 2000,
@@ -125,36 +131,36 @@ const JadwalPenerbangan = () => {
 
             setTimeout(() => {
                 navigate('/')
-            },1000);
-        }else{
+            }, 1000);
+        } else {
             navigate('/hasil-pencarian', {
                 state: {
                     from,
                     to,
                     category: seatClass,
                     date: selectedDate1,
-                    passenger  : passenger
+                    passenger: passenger
                 }
             });
         }
-        
+
     }
 
 
     return (
         <>
             <ToastContainer
-                    position="bottom-center"
-                    autoClose={2000}
-                    hideProgressBar
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
+                position="bottom-center"
+                autoClose={2000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 md:w-1/2 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
                 <p className="text-lg font-bold lg:ml-4 xl:ml-4 md:-mt-0 -mt-3">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
                 <div className="grid md:grid-cols-3 grid-cols mt-5">
@@ -181,7 +187,7 @@ const JadwalPenerbangan = () => {
                             <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 md:pb-0 md:gap-0 gap-2 pb-11">
                                 <Image src={icon_date} alt="icon_date" className="w-4 md:w-6 xl:ml-1" />
                                 <div className="text-base text-primary1 lg:ml-2 xl:px-1">Date</div>
-                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="md:w-60 w-28  h-7 lg:mx-8 xl:ml-3 ml-0 mr-27 border-b outline-none" required/>
+                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="md:w-60 w-28  h-7 lg:mx-8 xl:ml-3 ml-0 mr-27 border-b outline-none" required />
                                 <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="md:w-60 w-28 -ml-24 xl:w-60 h-7 xl:ml-3 xl:mr-3 border-b" />
                             </div>
                             {/* <div className="pt-1"> */}
@@ -216,7 +222,7 @@ const JadwalPenerbangan = () => {
                             <div className="flex items-center md:mt-4 mt-1">
                                 <Image src={airline_seat} alt="airline_seat" className="w-7 md:w-6 min-[1154px]:-ml-2 max-[1279px]:-ml-2 xl:mr-2" />
                                 <div className="text-base text-primary1">To</div>
-                                <ModalPassengers className="border-b" value={passenger} setPassenger={setPassenger}/>
+                                <ModalPassengers className="border-b" value={passenger} setPassenger={setPassenger} />
                                 <ModalSeatClass value={seatClass} onChange={handleSeatClassChange} />
                             </div>
                             <hr className="flex border-1 w-32 min-[1154px]:ml-[54px] max-[1279px]:ml-[54px] xl:ml-[67px] xl:w-28" />

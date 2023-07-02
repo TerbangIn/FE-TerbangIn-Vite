@@ -9,7 +9,7 @@ import Timer from "./timer";
 import Axios from "axios";
 import Detail from "./detail";
 import jwtDecode from "jwt-decode";
-import { useParams, Link,useLocation, useNavigate } from "react-router-dom";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from "react-toastify"
@@ -24,7 +24,7 @@ function Checkout() {
     const url1 = "https://be-tiketku-production.up.railway.app/api/v1/seat/"
     const urlTransaction = `https://be-tiketku-production.up.railway.app/api/v1/transaksi`;
     const [totalHarga, setTotalHarga] = useState();
-    const [flight, setFlight] = useState(); 
+    const [flight, setFlight] = useState();
     const [isChecked, setIsChecked] = useState(false);
     const [button, setButton] = useState(false);
     const [dataStatus, setDataStatus] = useState("pending");
@@ -32,12 +32,13 @@ function Checkout() {
     const [selectedSeat, setSelectedSeats] = useState([]);
     const [transaction_id, setTransaction_id] = useState("")
     let passenger = location?.state?.passenger
-    console.log(location?.state?.flight_id,location?.state?.passenger,transaction_id)
+    console.log(location?.state?.flight_id, location?.state?.passenger, transaction_id)
     const [data, setData] = useState([])
-    const [child,setChild] = useState([])
+    const [child, setChild] = useState([])
     const [baby, setBaby] = useState([])
     const [adult, setAdult] = useState([])
- 
+    const [passengerID, setPassengerID] = useState([])
+
 
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     // cookies.get('token')
@@ -64,8 +65,8 @@ function Checkout() {
     }
 
     const loopAdult = async () => {
-        for (let i = 1; i <= passenger?.adult; i++){
-            await setAdult([...adult,{
+        for (let i = 1; i <= passenger?.adult; i++) {
+            await setAdult([...adult, {
                 title: "",
                 first_name: "",
                 last_name: "",
@@ -74,14 +75,14 @@ function Checkout() {
                 identity_number: "",
                 identity_number_of_country: "",
                 expired_date: "",
-                category : "Adult"
+                category: "Adult"
             }])
         }
     }
 
     const loopBaby = async () => {
-        for (let i = 1; i <= passenger?.baby; i++){
-            await setBaby([...baby,{
+        for (let i = 1; i <= passenger?.baby; i++) {
+            await setBaby([...baby, {
                 title: "",
                 first_name: "",
                 last_name: "",
@@ -94,10 +95,10 @@ function Checkout() {
             }])
         }
     }
-    
-    const loopChild = async () =>{
-        for (let i = 1; i <= passenger?.child; i++){
-            await setChild([...child,{
+
+    const loopChild = async () => {
+        for (let i = 1; i <= passenger?.child; i++) {
+            await setChild([...child, {
                 title: "",
                 first_name: "",
                 last_name: "",
@@ -106,7 +107,7 @@ function Checkout() {
                 identity_number: "",
                 identity_number_of_country: "",
                 expired_date: "",
-                category : "Child"
+                category: "Child"
             }])
         }
     }
@@ -114,47 +115,47 @@ function Checkout() {
 
     useEffect(() => {
         console.log("Child : " + passenger?.child)
-        setTotalHarga((flight?.economy_class_price ? flight?.economy_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.business_class_price ? flight?.business_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.first_class_price ? flight?.first_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.premium_price ? flight?.premium_price*(flight?.adult_price_percentage/100) : 0)*passenger?.adult))) + ((flight?.economy_class_price ? flight?.economy_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.business_class_price ? flight?.business_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.first_class_price ? flight?.first_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.premium_price ? flight?.premium_price*(flight?.baby_price_percentage/100)*passenger?.baby : 0))))) + (flight?.economy_class_price ? flight?.economy_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.business_class_price ? flight?.business_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.first_class_price ? flight?.first_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.premium_price ? flight?.premium_price*(flight?.child_price_percentage/100)*passenger?.child : 0)))))
-    },[flight])
+        setTotalHarga((flight?.economy_class_price ? flight?.economy_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.business_class_price ? flight?.business_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.first_class_price ? flight?.first_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.premium_price ? flight?.premium_price * (flight?.adult_price_percentage / 100) : 0) * passenger?.adult))) + ((flight?.economy_class_price ? flight?.economy_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.business_class_price ? flight?.business_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.first_class_price ? flight?.first_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.premium_price ? flight?.premium_price * (flight?.baby_price_percentage / 100) * passenger?.baby : 0))))) + (flight?.economy_class_price ? flight?.economy_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.business_class_price ? flight?.business_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.first_class_price ? flight?.first_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.premium_price ? flight?.premium_price * (flight?.child_price_percentage / 100) * passenger?.child : 0)))))
+    }, [flight])
 
     useEffect(() => {
-        if(adult.length < passenger?.adult){
+        if (adult.length < passenger?.adult) {
             loopAdult()
         }
-    },[adult])
+    }, [adult])
     useEffect(() => {
-        if(child.length < passenger?.child){
+        if (child.length < passenger?.child) {
             loopChild()
         }
-    },[child])
+    }, [child])
     useEffect(() => {
-        if(baby.length < passenger?.baby){
+        if (baby.length < passenger?.baby) {
             loopBaby()
         }
-    },[baby])
+    }, [baby])
 
 
-    console.log(adult,child,baby)
+    console.log(adult, child, baby)
     useEffect(() => {
-       
+
         setTimeout(() => {
-            if(data.length < passenger?.jumlah){
-                setData([...data,...adult,...child,...baby])
+            if (data.length < passenger?.jumlah) {
+                setData([...data, ...adult, ...child, ...baby])
             }
-        },10)
-        
-    },[adult,child,baby,passenger])
+        }, 10)
+
+    }, [adult, child, baby, passenger])
     console.log(data)
     useEffect(() => {
         getTransaction()
         getFlightById()
     }, [])
-    
+
     console.log(data)
     function submit(e) {
         e.preventDefault();
 
-        data.map(data => {
+        data.map((data, index) => {
             Axios.post(url, {
                 title: data.title,
                 first_name: data.first_name,
@@ -170,58 +171,60 @@ function Checkout() {
                 },
             })
                 .then(resPassenger => {
-                    selectedSeat.map(seat => {
-                        Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${seat}`, {
-                            status: "Unavailable"
-                        }, {
-                            headers: {
-                                Authorization: `Bearer ${token}`,
-                            },
-                        })
-                            .then(resSeat => {
-                                Axios.post("https://be-tiketku-production.up.railway.app/api/v1/tiket/", {
-                                    transaction_id: transaction_id,
-                                    type_of_class: (flight?.economy_class_price ? "Economy Class" : flight?.business_class_price ? "Business Class" : flight?.first_class_price ? "First Class" : flight?.premium_price ? "Premium Class" : ""),
-                                    type_of_passenger: data?.category,
-                                    price: (data?.category === 'Adult' ? (flight?.economy_class_price ? flight?.economy_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.business_class_price ? flight?.business_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.first_class_price ? flight?.first_class_price*(flight?.adult_price_percentage/100)*passenger?.adult : (flight?.premium_price ? flight?.premium_price*(flight?.adult_price_percentage/100) : 0)*passenger?.adult))) : data?.category === 'Child' ?  (flight?.economy_class_price ? flight?.economy_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.business_class_price ? flight?.business_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.first_class_price ? flight?.first_class_price*(flight?.child_price_percentage/100)*passenger?.child : (flight?.premium_price ? flight?.premium_price*(flight?.child_price_percentage/100)*passenger?.child : 0)))) : data?.category === 'Baby' ? ((flight?.economy_class_price ? flight?.economy_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.business_class_price ? flight?.business_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.first_class_price ? flight?.first_class_price*(flight?.baby_price_percentage/100)*passenger?.baby : (flight?.premium_price ? flight?.premium_price*(flight?.baby_price_percentage/100)*passenger?.baby : 0))))): 0) ,
-                                    seat_id: seat,
-                                    passenger_id: resPassenger?.seat?.seat?.id,
-                                    flight_id: flight?.id
-                                }, {
-                                    headers: {
-                                        Authorization: `Bearer ${token}`,
-                                    },
-                                })
-                                    .then(resTiket => {
-                                        console.log(resTiket.data)
-                                    })
-                                    .catch(error => {
-                                        console.log(error.message);
-                                        console.log(resSeat?.data?.data?.id, resPassenger?.data?.data?.id);
-                                    })
-
-                            })
-                            .catch((error) => {
-                                console.error(error);
-                            })
+                    // console.log(resPassenger);
+                    // setPassengerID([...passengerID, resPassenger?.data?.data?.id])
+                    // console.log(passengerID, resPassenger);
+                    // selectedSeat.map((seat, index) => {
+                    Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${selectedSeat[index]}`, {
+                        status: "Unavailable"
+                    }, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
                     })
+                        .then(resSeat => {
+                            Axios.post("https://be-tiketku-production.up.railway.app/api/v1/tiket/", {
+                                transaction_id: transaction_id,
+                                type_of_class: (flight?.economy_class_price ? "Economy Class" : flight?.business_class_price ? "Business Class" : flight?.first_class_price ? "First Class" : flight?.premium_price ? "Premium Class" : ""),
+                                type_of_passenger: data?.category,
+                                price: (data?.category === 'Adult' ? (flight?.economy_class_price ? flight?.economy_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.business_class_price ? flight?.business_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.first_class_price ? flight?.first_class_price * (flight?.adult_price_percentage / 100) * passenger?.adult : (flight?.premium_price ? flight?.premium_price * (flight?.adult_price_percentage / 100) : 0) * passenger?.adult))) : data?.category === 'Child' ? (flight?.economy_class_price ? flight?.economy_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.business_class_price ? flight?.business_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.first_class_price ? flight?.first_class_price * (flight?.child_price_percentage / 100) * passenger?.child : (flight?.premium_price ? flight?.premium_price * (flight?.child_price_percentage / 100) * passenger?.child : 0)))) : data?.category === 'Baby' ? ((flight?.economy_class_price ? flight?.economy_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.business_class_price ? flight?.business_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.first_class_price ? flight?.first_class_price * (flight?.baby_price_percentage / 100) * passenger?.baby : (flight?.premium_price ? flight?.premium_price * (flight?.baby_price_percentage / 100) * passenger?.baby : 0))))) : 0),
+                                seat_id: selectedSeat[index],
+                                passenger_id: resPassenger?.data?.data?.id,
+                                flight_id: flight?.id
+                            }, {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            })
+                                .then(resTiket => {
+                                    console.log(resTiket.data)
+                                })
+                                .catch(error => {
+                                    console.log(error.message);
+                                })
 
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        })
+                    // })
                 })
                 .catch((error) => {
                     console.error(error);
                 })
-            setTimer(!timer)
-            setButton(!button)
         })
+        setTimer(!timer)
+        setButton(!button)
 
 
     }
 
+    console.log(passengerID);
 
     const handleSeat = (data) => {
         setSelectedSeats(data)
     }
-    console.log(selectedSeat)
+    console.log(data)
 
     const handleFormChange = (event, index) => {
         let newData = [...data];
@@ -248,25 +251,25 @@ function Checkout() {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-              })
-              nav("/payment", {
-                state: {
-                  transaction_id: transaction_id,
-                  flight_id : flight
-                }
-              })
-          }).catch(error => {
-            toast.error(`${error.response.data.message}`, {
-              position: "bottom-center",
-              autoClose: 2000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
             })
-          })
+            nav("/payment", {
+                state: {
+                    transaction_id: transaction_id,
+                    flight_id: flight
+                }
+            })
+        }).catch(error => {
+            toast.error(`${error.response.data.message}`, {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            })
+        })
     }
 
 
@@ -277,7 +280,7 @@ function Checkout() {
     }
     return (
         <div>
-             <ToastContainer
+            <ToastContainer
                 position="bottom-center"
                 autoClose={2000}
                 hideProgressBar
@@ -288,7 +291,7 @@ function Checkout() {
                 draggable
                 pauseOnHover
                 theme="light"
-                />
+            />
             <header className="border-none shadow-md ">
                 <Navbar />
                 <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
@@ -376,7 +379,7 @@ function Checkout() {
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                             <div className="ml-[246px]">
                                                 <label className="relative inline-flex items-center cursor-pointer">
-                                                    <input onClick={()=> setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check"/>
+                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check" />
                                                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                                 </label>
                                             </div>
@@ -427,21 +430,21 @@ function Checkout() {
                             )
                         })}
 
-                        
+
                         <div>
-                            <SeatCustomer handleSeat={handleSeat} passenger={location?.state?.passenger}/>
+                            <SeatCustomer handleSeat={handleSeat} passenger={location?.state?.passenger} />
                         </div>
                     </div>
                     {button ? (
                         <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]" onClick={handlePayment}>Lanjut Bayar</button>
                     ) : (
-                    <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
+                        <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                     )}
                 </form>
                 <div>
-                        
+
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
-                    { button && (
+                    {button && (
                         <Link to="/payment" >
                             <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
                         </Link>
