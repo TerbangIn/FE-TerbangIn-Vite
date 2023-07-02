@@ -27,8 +27,7 @@ const SeatCustomer = (props) => {
         
     };
 
-    console.log(props.passenger.jumlah)
-    // console.log(selectedSeats)
+
 
     
     const url = `https://be-tiketku-production.up.railway.app/api/v1/flight/1`;

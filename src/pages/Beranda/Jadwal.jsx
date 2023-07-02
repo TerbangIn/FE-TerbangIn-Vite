@@ -46,6 +46,7 @@ const JadwalPenerbangan = () => {
             "child" : counterChild
         })
     },[])
+    console.log(passenger)
 
     const dateString = selectedDate1;
     const dateObj = new Date(dateString);
@@ -109,28 +110,6 @@ const JadwalPenerbangan = () => {
         setFrom("");
     };
 
-    // const buttonHandler = () => {
-    //     const filteredFlights = flightData.filter((flight) => {
-    //         const flightFromMatch = flight?.source?.city.toLowerCase() === from.toLowerCase();
-    //         const flightToMatch = flight?.destination?.city.toLowerCase() === to.toLowerCase();
-    //         const flightDateMatch = flight?.date === convertedDate;
-    //         //   const flightPassengerMatch = flight?.passenger === passenger;
-    //         const flightSeatClassMatch = flight?.seatClass === seatClass;
-    //         return flightFromMatch && flightToMatch && flightDateMatch && flightSeatClassMatch
-    //         //   return flightFromMatch && flightToMatch && flightDateMatch && flightPassengerMatch && flightSeatClassMatch;
-    //     });
-
-    //     setMatchingFlights(filteredFlights);
-
-    //     if (filteredFlights.length > 0) {
-    //         navigate('/hasil-pencarian');
-    //     } else {
-    //         alert("Tidak ada data penerbangan yang sesuai!");
-    //     }
-    // };
-    // console.log('------')
-    // console.log(passenger)
-
     const buttonHandler = async () => {
         if(selectedDate1 == null && passenger.jumlah == 0){
             await toast.error('Silahkan pilih tanggal dan jumlah penumpang terlebih dahulu', {
@@ -161,7 +140,6 @@ const JadwalPenerbangan = () => {
         
     }
 
-    console.log(from, to, seatClass, selectedDate1,passenger);
 
     return (
         <>
