@@ -49,7 +49,7 @@ const HasilPencarian = () => {
       date: location?.state?.date
     });
   }, [location])
-
+  console.log(filters, location?.state?.passenger);
 
   const boolSelected = (date) => {
     return new Date(date).toDateString() === new Date(filters?.date).toDateString()
@@ -210,10 +210,10 @@ const HasilPencarian = () => {
   const handlePilih = (id) => {
     navigate('/checkout', {
       state: {
-          flight_id : id,
-          passenger  : location?.state?.passenger
+        flight_id: id,
+        passenger: location?.state?.passenger
       }
-  });
+    });
   }
 
   return (
@@ -380,7 +380,7 @@ const HasilPencarian = () => {
                                       <div className="flex md:ml-11 ml-8 p-3">
                                         <div className="flex flex-col font-bold gap-2">
                                           <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
-                                          <Button label="Pilih" severity="help" rounded onClick={() => {handlePilih(data?.id)}}></Button>
+                                          <Button label="Pilih" severity="help" rounded onClick={() => { handlePilih(data?.id) }}></Button>
                                         </div>
                                       </div>
                                     </div>
