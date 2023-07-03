@@ -35,11 +35,11 @@ const JadwalPenerbangan = () => {
     const [seatClass, setSeatClass] = useState("");
     const [passenger, setPassenger] = useState("");
     const [checked, setChecked] = useState(false);
-    let optionsFrom = flightData.map((data) => `${data?.source?.country} (${data?.source?.code})`);
-    let optionsTo = flightData.map((data) => `${data.destination.country} (${data.destination.code})`);
+    let optionsFrom = flightData.map((data) => `${data?.source?.country}`);
+    let optionsTo = flightData.map((data) => `${data.destination.country}`);
 
-    const [selectedOptionFrom, setSelectedOptionFrom] = useState('Indonesia (CGK)');
-    const [selectedOptionTo, setSelectedOptionTo] = useState('Indonesia (SUB)');
+    const [selectedOptionFrom, setSelectedOptionFrom] = useState('Indonesia');
+    const [selectedOptionTo, setSelectedOptionTo] = useState('Indonesia');
 
     function removeDuplicates(arr) {
         return arr.filter((item,
@@ -181,8 +181,8 @@ const JadwalPenerbangan = () => {
         } else {
             navigate('/hasil-pencarian', {
                 state: {
-                    selectedOptionFrom,
-                    selectedOptionTo,
+                    from : selectedOptionFrom,
+                    to :selectedOptionTo,
                     category: seatClass,
                     date: selectedDate1,
                     passenger: passenger

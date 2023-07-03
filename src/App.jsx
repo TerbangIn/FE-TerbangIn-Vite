@@ -52,9 +52,9 @@ function App() {
           <Route path="/notifikasi" element={<Notifikasi />} />
           <Route path="/about" element={<About />} />
           <Route path="/waiting" element={<Waiting />} />
-          <Route path='/checkout' exact Component={Chekout} />
-          <Route path='/payment' exact Component={Payment} />
-          <Route path='/payment-success' exact Component={Success} />
+          <Route path='/checkout' element={<Chekout />} />
+          <Route path='/payment' element={<Payment />} />
+          <Route path='/payment-success' element={<Success />} />
         </Routes>
       </BrowserRouter>
     </>
