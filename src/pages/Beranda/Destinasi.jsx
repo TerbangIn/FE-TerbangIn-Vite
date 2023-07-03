@@ -67,7 +67,7 @@ function Destinasi() {
                     </div>
                 </div>
                 <div className="w-4/5 xl:py-4 lg:py-4 md:py-8 sm:py-4 py-4">
-                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+                    <div className="grid gap-5 sm:gap-5 md:gap-6 lg:gap-5 xl:gap-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {
                             filter == '' ?
 
@@ -96,7 +96,7 @@ function Destinasi() {
                                 : (
                                     flightData.filter((data) => data.destination.continent == filter).map((flight, i) => {
                                         return (
-                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer" >
+                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100" >
                                                 <div>
                                                     <Image src={flight.image} alt="img" />
                                                 </div>
