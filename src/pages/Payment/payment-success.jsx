@@ -3,8 +3,8 @@ import success from './images/illustration _Cart shopping list_.svg';
 import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 
-function Success(){
-    return(
+function Success() {
+    return (
         <>
             <header className="border-none shadow-md ">
                 <Navbar />
@@ -32,15 +32,17 @@ function Success(){
                 </div>
             </header>
             <div className="flex justify-center items-center">
-                <div className="mb-[200px]">
+                <div className="mb-[200px] flex flex-col items-center justify-center">
                     <img src={success} alt="" className="mt-[90px]" />
-                    <div className="">
-                        <h1 className="text-purple-600 text-sm mt-[18px] flex justify-center ">Selamat</h1>
-                        <h1 className="text-sm flex justify-center ">Transaksi Pembayaran Tiket sukses!</h1>
+                    <div className="text-center mt-5">
+                        <h1 className="text-purple-600 text-3xl mt-[18px]">Selamat</h1>
+                        <h1 className="text-xl">Transaksi Pembayaran Tiket sukses!</h1>
                     </div>
-                    <button className="w-[347px] h-12 text-white bg-purple-700 rounded-lg mt-[52px]">Terbitkan Tiket</button><br />
-                    <Link to="/beranda" >
-                        <button className="w-[347px] h-12 text-white bg-[#D0B7E6] rounded-lg mt-3">Cari Penerbangan Lain</button>
+                    <Link to={"/riwayat"}>
+                        <button className="w-[347px] h-12 text-white bg-purple-700 rounded-lg mt-[52px]">Liat Riwayat</button><br />
+                    </Link>
+                    <Link to="/" >
+                        <button className="w-[347px] h-12 text-white bg-[#beaacf] rounded-lg mt-3">Cari Penerbangan Lain</button>
                     </Link>
                 </div>
             </div>

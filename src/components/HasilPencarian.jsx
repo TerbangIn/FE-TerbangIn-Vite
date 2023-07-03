@@ -78,64 +78,64 @@ const HasilPencarian = () => {
     {
       id: 1,
       name: "SENIN",
-      date: "06/26/2023",
-      selected: new Date("06/26/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 2,
-      name: "SELASA",
-      date: "06/27/2023",
-      selected: new Date("06/27/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 3,
-      name: "RABU",
-      date: "06/28/2023",
-      selected: new Date("06/28/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 4,
-      name: "KAMIS",
-      date: "06/29/2023",
-      selected: new Date("06/29/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 5,
-      name: "JUMAT",
-      date: "06/30/2023",
-      selected: new Date("06/30/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 6,
-      name: "SABTU",
-      date: "07/01/2023",
-      selected: new Date("07/01/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 7,
-      name: "MINGGU",
-      date: "07/02/2023",
-      selected: new Date("07/02/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
-        : false
-    },
-    {
-      id: 8,
-      name: "SENIN",
       date: "07/03/2023",
       selected: new Date("07/03/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     },
     {
-      id: 9,
+      id: 2,
       name: "SELASA",
       date: "07/04/2023",
       selected: new Date("07/04/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 3,
+      name: "RABU",
+      date: "07/05/2023",
+      selected: new Date("07/05/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 4,
+      name: "KAMIS",
+      date: "07/06/2023",
+      selected: new Date("07/06/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 5,
+      name: "JUMAT",
+      date: "07/07/2023",
+      selected: new Date("07/07/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 6,
+      name: "SABTU",
+      date: "07/08/2023",
+      selected: new Date("07/08/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 7,
+      name: "MINGGU",
+      date: "07/09/2023",
+      selected: new Date("07/09/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 8,
+      name: "SENIN",
+      date: "07/10/2023",
+      selected: new Date("07/10/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
+        : false
+    },
+    {
+      id: 9,
+      name: "SELASA",
+      date: "07/11/2023",
+      selected: new Date("07/11/2023").toDateString() === new Date(location?.state?.date).toDateString() ? true
         : false
     }
   ])

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { InputText } from 'primereact/inputtext';
 import SeatCustomer from "./seat";
 // import Navbar from "./navbar";
@@ -14,8 +14,8 @@ import jwt_decode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
-
-
+import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
 
 function Checkout() {
     const location = useLocation()
@@ -27,7 +27,6 @@ function Checkout() {
     const [flight, setFlight] = useState();
     const [isChecked, setIsChecked] = useState(false);
     const [button, setButton] = useState(false);
-    const [dataStatus, setDataStatus] = useState("pending");
     const [timer, setTimer] = useState(true)
     const [selectedSeat, setSelectedSeats] = useState([]);
     const [transaction_id, setTransaction_id] = useState("")
@@ -150,6 +149,40 @@ function Checkout() {
     }, [])
 
     console.log(data)
+
+
+    const toast = useRef(null);
+    const toastBC = useRef(null);
+
+    const clear = (submit) => {
+        toastBC.current.clear();
+        submit && show();
+    };
+
+    const show = () => {
+        toast.current.show({ severity: 'success', summary: 'Submission Received', detail: 'Thank you, we have received your submission.' });
+    };
+
+    const confirm = () => {
+        toastBC.current.show({
+            severity: 'info',
+            sticky: true,
+            className: 'border-none',
+            content: (
+                <div className="flex flex-col justify-center items-center gap-2" style={{ flex: '1' }}>
+                    <div className="flex items-center gap-2">
+                        <i className="pi pi-exclamation-triangle" style={{ fontSize: '2rem' }}></i>
+                        <div className="font-bold text-xl my-3">Are you sure?</div>
+                    </div>
+                    <div className="flex gap-2">
+                        <Button onClick={(e) => submit(e)} type="submit" label="Confirm" className="p-button-success w-6rem" />
+                        <Button onClick={(e) => clear(false)} type="button" label="Cancel" className="p-button-warning w-6rem" />
+                    </div>
+                </div>
+            )
+        });
+    };
+
     function submit(e) {
         e.preventDefault();
 
@@ -207,10 +240,9 @@ function Checkout() {
                     console.error(error);
                 })
         })
+        clear(true)
         setTimer(!timer)
         setButton(!button)
-
-
     }
 
     const handleSeat = (data) => {
@@ -226,12 +258,11 @@ function Checkout() {
     }
 
     const handlePayment = async () => {
-
         await Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/transaksi/${transaction_id}`, {
             total_price: totalHarga
         }, {
             headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NTE3OTQyfQ.oj5euXRMipDo_ecOaxT0Xkl60IFwxRNbWWs7t0n4vQk`,
+                Authorization: `Bearer ${token}`,
             },
         }).then(res => {
             toast.success(`Transaksi Berhasil Silahkan Lanjut Pembayaran , redirect in 3s...`, {
@@ -244,23 +275,23 @@ function Checkout() {
                 progress: undefined,
                 theme: "colored",
             })
-
-
         }).catch(error => {
-            toast.error(`${error.response.data.message}`, {
-                position: "bottom-center",
-                autoClose: 2000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            })
+            console.log(error);
+            // toast.error(`${error.response}`, {
+            //     position: "bottom-center",
+            //     autoClose: 2000,
+            //     hideProgressBar: true,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "colored",
+            // })
         })
 
         await Axios.post(`https://be-tiketku-production.up.railway.app/api/v1/transaksi/payment/${transaction_id}`).then(res => {
             window.location.replace(`${res?.data?.link}`);
+
         }).catch(error => {
             toast.error(`${error.response.data.message}`, {
                 position: "bottom-center",
@@ -275,12 +306,10 @@ function Checkout() {
         })
     }
 
-
-
-
     if (!token) {
         return <Modal />;
     }
+
     return (
         <div>
             <ToastContainer
@@ -295,6 +324,8 @@ function Checkout() {
                 pauseOnHover
                 theme="light"
             />
+            <Toast ref={toast} />
+            <Toast ref={toastBC} position="bottom-center" />
             <header className="border-none shadow-md ">
                 <Navbar />
                 <div className="flex flex-row space-x-2 xl:ml-[260px] lg:ml-36 md:ml-20 sm:ml-10 mt-[47px]">
@@ -314,7 +345,7 @@ function Checkout() {
 
             </header>
             <div className="flex flex-row justify-center mt-4">
-                <form onSubmit={(e) => submit(e)}>
+                <div>
                     <div className="items-center">
                         {/* <div className="data w-[518px] h-[498px] border-2 border-[#8a8a8a] rounded mb-[34px]">
                             <h1 className="text-[20px] font-bold mt-[26px] mb-4 mx-4 ">Isi Data Pemesan</h1>
@@ -329,9 +360,9 @@ function Checkout() {
                                 <div className="flex flex-row">
                                     <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                     <div className="ml-[246px]">
-                                        <label class="relative inline-flex items-center cursor-pointer">
-                                            <input type="checkbox" value="" class="sr-only peer" checked />
-                                            <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
+                                        <label className="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" value="" className="sr-only peer" checked />
+                                            <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                         </label>
                                     </div>
                                 </div>
@@ -382,7 +413,7 @@ function Checkout() {
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
                                             <div className="ml-[246px]">
                                                 <label className="relative inline-flex items-center cursor-pointer">
-                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" class="sr-only peer" id="check" />
+                                                    <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" className="sr-only peer" id="check" />
                                                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>
                                                 </label>
                                             </div>
@@ -441,9 +472,9 @@ function Checkout() {
                     {button ? (
                         <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]" onClick={handlePayment}>Lanjut Bayar</button>
                     ) : (
-                        <button className="max-sm:w-[300px] max-sm:ml-7 sm:ml-2 bg-[#7126b5] sm:w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
+                        <button className="max-sm:w-[300px] max-sm:ml-7 sm:ml-2 bg-[#7126b5] sm:w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" onClick={confirm}>Submit</button>
                     )}
-                </form>
+                </div>
                 <div>
 
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />

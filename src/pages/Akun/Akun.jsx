@@ -64,7 +64,7 @@ function Akun() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`https://be-tiketku-production.up.railway.app/api/v1/user/${decode.id}`, { 
+        const response = await axios.get(`https://be-tiketku-production.up.railway.app/api/v1/user/${decode.id}`, {
           headers: {
             Authorization: `Bearer ${token}` // Menggunakan token dalam header permintaan
           }
@@ -106,7 +106,7 @@ function Akun() {
     });
   };
 
-  
+
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -117,8 +117,8 @@ function Akun() {
   return (
     <>
       <div>
-        <Navbar></Navbar>
-        <div className="mx-6">
+        <Navbar />
+        <div className="pt-20 mx-6">
           <Card>
             <div className="text-left mx-auto max-w-4xl">
               <div className="text-left mx-auto flex-auto">
@@ -137,23 +137,23 @@ function Akun() {
           <div className="body">
             <div className="text-left mt-6 sm:grid-cols-1 md:flex gap-2 mx-auto max-w-4xl">
               <div class="flex-1 md:w-16 sm:w-full md:mx-auto sm:mx-6">
-                  <Link to={'/akun'} className="flex items-center font-semibold gap-2 text-binar-purple" >
-                    <div className="text-2xl text-binar-purple"><HiOutlinePencil /></div>
-                    Ubah Profil
-                  </Link>
-                  <Divider className="w-10" />
-                  <Link
-                    to={'/about'} className="flex items-center font-semibold gap-2 text-binar-purple">
-                    <div className="text-2xl text-binar-purple"> <HiOutlineUserGroup /> </div>
-                    About
-                  </Link>
-                  <Divider className="w-10" />
-                  <div
-                    onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple">
-                    <div className="text-2xl text-binar-purple"> <LuLogOut /> </div>
-                    Keluar
-                  </div>
-                  <Divider className="w-10" />
+                <Link to={'/akun'} className="flex items-center font-semibold gap-2 text-binar-purple" >
+                  <div className="text-2xl text-binar-purple"><HiOutlinePencil /></div>
+                  Ubah Profil
+                </Link>
+                <Divider className="w-10" />
+                <Link
+                  to={'/about'} className="flex items-center font-semibold gap-2 text-binar-purple">
+                  <div className="text-2xl text-binar-purple"> <HiOutlineUserGroup /> </div>
+                  About
+                </Link>
+                <Divider className="w-10" />
+                <div
+                  onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple">
+                  <div className="text-2xl text-binar-purple"> <LuLogOut /> </div>
+                  Keluar
+                </div>
+                <Divider className="w-10" />
               </div>
               <div class="flex-auto flex my-auto gap-2">
                 <Card title="Ubah Data Profil" className="border shadow-none w-full md:mx-auto sm:mx-6">

@@ -146,9 +146,9 @@ const CompNavbar = () => {
         </>
 
     const logoItem =
-        <div to="/">
+        <Link to="/">
             <Image src={Logo} alt="Logo" width="200" />
-        </div>
+        </Link>
     return (
         <>
             <Navbar className="fixed top-0 z-10 mx-auto max-w-screen py-2 px-4 lg:px-8 lg:py-4">
