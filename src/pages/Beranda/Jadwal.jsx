@@ -29,6 +29,7 @@ const JadwalPenerbangan = () => {
 
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
     console.log(flightData)
+    const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
     const [seatClass, setSeatClass] = useState("");
