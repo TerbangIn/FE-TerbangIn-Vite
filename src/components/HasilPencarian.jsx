@@ -52,6 +52,28 @@ const HasilPencarian = () => {
   }, [location])
   console.log(filters, location?.state?.passenger);
 
+  function getDatesForWeekRange() {
+    const dates = [];
+    const today = new Date();
+
+    // Tanggal 1 minggu ke belakang
+    for (let i = 4; i >= 0; i--) {
+      const date = `${new Date(today.getFullYear(), today.getMonth(), today.getDate() - i).toDateString()}`;
+      dates.push(date);
+    }
+
+    // Tanggal 1 minggu ke depan
+    for (let i = 1; i <= 3; i++) {
+      const date = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i).toDateString();
+      dates.push(date);
+    }
+
+    return dates;
+  }
+
+  const weekRangeDates = getDatesForWeekRange();
+  console.log(weekRangeDates);
+
   const [filterDate, setFilterDate] = useState([
     {
       id: 1,
