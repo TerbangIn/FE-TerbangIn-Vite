@@ -173,7 +173,7 @@ const JadwalPenerbangan = () => {
                 pauseOnHover
                 theme="light"
             />
-            <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 md:w-1/2 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
+            <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 md:w-3/4 md:-mt-9 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
                 <p className="text-lg font-bold lg:ml-4 xl:ml-4 md:-mt-0 -mt-3">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
                 <div className="grid md:grid-cols-3 grid-cols mt-5">
                     <div>
@@ -188,7 +188,7 @@ const JadwalPenerbangan = () => {
                                     <List
                                         itemLayout="horizontal"
                                         dataSource={optionsFrom}
-                                        renderItem={(item, index) => (
+                                        renderItem={(item) => (
                                             <List.Item onClick={() => handleSelectionFrom(item)} className={selectedOptionFrom === item ? 'selected' : ''}>
                                                 <div className="text-md font-bold cursor-pointer">{item}</div>
                                             </List.Item>
@@ -201,7 +201,7 @@ const JadwalPenerbangan = () => {
                         <div className="flex flex-col">
                             <div className="flex items-center mx-10 mt-7 gap-2">
                                 <div className="text-base text-primary1 mx-10 lg:ml-16 xl:ml-14">Departure</div>
-                                <div className="text-base text-primary1 lg:ml-7 lg:mr-12 xl:ml-20 xl:mr-16 ml-2">Return</div>
+                                <div className="text-base text-primary1 lg:ml-9 lg:mr-12 xl:ml-20 xl:mr-16 ml-2">Return</div>
                                 <div className="md:ml-0 "><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
                             </div>
                             <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 md:pb-0 md:gap-0 gap-2 pb-11">
@@ -226,7 +226,7 @@ const JadwalPenerbangan = () => {
                                     <List
                                         itemLayout="horizontal"
                                         dataSource={optionsTo}
-                                        renderItem={(item, index) => (
+                                        renderItem={(item) => (
                                             <List.Item onClick={() => handleSelectionTo(item)} className={selectedOptionTo === item ? 'selected' : ''}>
                                                 <div className="text-md font-bold cursor-pointer">{item}</div>
                                             </List.Item>
@@ -253,7 +253,7 @@ const JadwalPenerbangan = () => {
                     </div>
                 </div>
             </Card>
-            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
+            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto md:w-3/4 lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
                 <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</p>
             </div>
         </>

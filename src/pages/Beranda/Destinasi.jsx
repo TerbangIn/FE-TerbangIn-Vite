@@ -52,12 +52,11 @@ function Destinasi() {
 
     return (
         <div className="flex justify-center">
-            <div className="container ml-20 sm:ml- lg:ml-48">
+            <div className="container ml-20 sm:ml- lg:ml-48 xl:ml-56 2xl:ml-64">
                 <div className="flex flex-row pt-10">
                     <p className="font-sans1 font-bold text-base">Destinasi Favorit</p>
                 </div>
                 <div className="flex mt-4 sm:mt-4 md:mt-4 lg:mt-4">
-
                     <div className="grid gap-4 sm:gap-2 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         <Button severity="help" onClick={() => { setFilter("") }} label="Semua" icon="pi pi-search" />
                         <Button severity="help" onClick={() => { setFilter("Asia") }} label="Asia" icon="pi pi-search" />
@@ -67,14 +66,14 @@ function Destinasi() {
                     </div>
                 </div>
                 <div className="w-4/5 xl:py-4 lg:py-4 md:py-8 sm:py-4 py-4">
-                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+                    <div className="grid gap-5 sm:gap-5 md:gap-6 lg:gap-5 xl:gap-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         {
                             filter == '' ?
 
                                 flightData.map((flight, i) => (
                                     // eslint-disable-next-line react/jsx-key
                                     (
-                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100" >
+                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                             <div>
                                                 <Image src={flight.image} alt="img" />
                                             </div>
@@ -96,7 +95,7 @@ function Destinasi() {
                                 : (
                                     flightData.filter((data) => data.destination.continent == filter).map((flight, i) => {
                                         return (
-                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer" >
+                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                                 <div>
                                                     <Image src={flight.image} alt="img" />
                                                 </div>

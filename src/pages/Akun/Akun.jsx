@@ -136,7 +136,7 @@ function Akun() {
           </Card>
           <div className="body">
             <div className="text-left mt-6 sm:grid-cols-1 md:flex gap-2 mx-auto max-w-4xl">
-              <div class="flex-1 md:w-16 sm:w-full md:mx-auto sm:mx-6">
+              <div className="flex-1 md:w-16 sm:w-full md:mx-auto sm:mx-6">
                 <Link to={'/akun'} className="flex items-center font-semibold gap-2 text-binar-purple" >
                   <div className="text-2xl text-binar-purple"><HiOutlinePencil /></div>
                   Ubah Profil
@@ -149,13 +149,13 @@ function Akun() {
                 </Link>
                 <Divider className="w-10" />
                 <div
-                  onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple">
+                  onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple cursor-pointer">
                   <div className="text-2xl text-binar-purple"> <LuLogOut /> </div>
                   Keluar
                 </div>
                 <Divider className="w-10" />
               </div>
-              <div class="flex-auto flex my-auto gap-2">
+              <div className="flex-auto flex my-auto gap-2">
                 <Card title="Ubah Data Profil" className="border shadow-none w-full md:mx-auto sm:mx-6">
                   <Panel header="Data Profil" className="pb-2 rounded-lg">
                     <div className="text-sm font-bold justify-items-end text-binar-purple">
