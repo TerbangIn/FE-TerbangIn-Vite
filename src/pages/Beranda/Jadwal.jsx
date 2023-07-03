@@ -207,7 +207,7 @@ const JadwalPenerbangan = () => {
                             <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 md:pb-0 md:gap-0 gap-2 pb-11">
                                 <Image src={icon_date} alt="icon_date" className="w-4 md:w-6 xl:ml-1" />
                                 <div className="text-base text-primary1 lg:ml-2 xl:px-1">Date</div>
-                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="md:w-60 w-28 h-7 lg:mx-6 lg:w-32 xl:w-48 xl:ml-3 ml-0 mr-27 border-b outline-none" required />
+                                <Calendar value={selectedDate1} onChange={handleDate1Change} numberOfMonths={2} dateFormat="dd MM yy" className="md:w-60 w-28 h-7 lg:mx-6 lg:w-32 xl:w-60 xl:ml-3 ml-0 mr-27 border-b outline-none" required />
                                 <Calendar value={selectedDate2} onChange={handleDate2Change} numberOfMonths={2} disabled={!checked} minDate={selectedDate1} dateFormat="dd MM yy" className="md:w-60 w-28 -ml-24 lg:mx-1 lg:w-36 xl:w-60 h-7 xl:ml-3 xl:mr-3 border-b" />
                             </div>
 
