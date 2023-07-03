@@ -35,6 +35,7 @@ import checklist from "../assets/images/checklist.svg"
 import save from "../assets/images/Brand_button.svg"
 import { useLocation, useNavigate } from "react-router";
 import Navbar from "./Navbar";
+import notfound from '../assets/notfound.png'
 
 const HasilPencarian = () => {
   const location = useLocation()
@@ -218,84 +219,85 @@ const HasilPencarian = () => {
   return (
     <div>
       <Navbar />
-      {
-        filters?.date !== undefined ?
-          (
-            <div className="flex justify-center md:mt-14 mt-8">
-              <div className="w-full flex flex-col justify-center items-center">
-                {/* Pilih Penerbangan */}
-                <div className="md:w-[1000px] w-11/12">
-                  <h1 className="text-2xl font-bold md:mb-8 mb-5">Pilih Penerbangan</h1>
-                  {/* Tag Pencarian */}
-                  <div className="flex md:flex-row flex-col gap-2 my-4 mx-2">
-                    <a href="/beranda" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
-                      <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
-                      <p className="md:pr-96 md:text-base text-[15px]"> JKT &gt; MLB - 2 Penumpang - Economy </p>
-                    </a>
-                    <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
-                      Ubah Pencarian
-                    </a>
-                  </div>
-                  {/* End of Tag Pencarian */}
+      <div className="pt-5 flex justify-center md:mt-14 mt-8">
+        <div className="w-full flex flex-col justify-center items-center">
+          {/* Pilih Penerbangan */}
+          <div className="md:w-[1000px] w-11/12">
+            <h1 className="text-2xl font-bold md:mb-8 mb-5">Pilih Penerbangan</h1>
+            {/* Tag Pencarian */}
+            <div className="flex md:flex-row flex-col gap-2 my-4 mx-2">
+              <a href="/" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
+                <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
+                <p className="md:pr-96 md:text-base text-[15px]"> JKT &gt; MLB - 2 Penumpang - Economy </p>
+              </a>
+              <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
+                Ubah Pencarian
+              </a>
+            </div>
+            {/* End of Tag Pencarian */}
 
-                  {/* Tag Hari */}
-                  <div className="flex justify-center">
-                    <div className="flex w-full snap-x snap-mandatory overflow-auto mx-auto no-scrollbar overflow-y-visible gap-3">
-                      {filterDate.map(data => {
-                        return (
-                          <div className={`shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] ${data.selected ? "bg-[#A06ECE]" : ""}   cursor-pointer py-2 rounded-xl group`} onClick={() => handleDate(data.date, data.id)} key={data.id}>
-                            <div className={`font-extrabold text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.name}</div>
-                            <div className={`text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.date}</div>
-                          </div>
-                        )
-                      })}
+            {/* Tag Hari */}
+            <div className="flex justify-center">
+              <div className="flex w-full snap-x snap-mandatory overflow-auto mx-auto no-scrollbar overflow-y-visible gap-3">
+                {filterDate.map(data => {
+                  return (
+                    <div className={`shrink-0 w-32 flex flex-col items-center text-sm text-center snap-always snap-center hover:bg-[#A06ECE] ${data.selected ? "bg-[#A06ECE]" : ""}   cursor-pointer py-2 rounded-xl group`} onClick={() => handleDate(data.date, data.id)} key={data.id}>
+                      <div className={`font-extrabold text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.name}</div>
+                      <div className={`text-black group-hover:text-white ${data.selected ? "text-white" : ""}`}>{data.date}</div>
                     </div>
-                  </div>
-                  {/* End of Tag Hari */}
+                  )
+                })}
+              </div>
+            </div>
+            {/* End of Tag Hari */}
 
-                  {/* Start of filter termurah */}
-                  <div className="flex justify-end py-4">
-                    <button onClick={() => setVisible(true)} className="flex border-solid border-2 space-x-4 rounded-full custom-border-termurah p-1 custom-text-termurah">
-                      <div className="flex">
-                        <img src={panahtermurah} alt="" />
-                        <div className="font-bold">Termurah</div>
-                      </div>
-                    </button>
-                    <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
-                      <div className="flex flex-col">
-                        <div className={`flex flex-row ${selectedSeatClass === 'Harga-Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga-Termurah')} style={{ cursor: "pointer" }}>
-                          <div className="pr-3">
-                            <p className="font-bold pt-2 ml-4 py-3">Harga - Termurah</p>
-                          </div>
-                          {selectedSeatClass === 'Harga-Termurah' && (
-                            <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
-                          )}
-                        </div>
-                        <Image src={Line} alt="line" />
-                        <div className={`flex flex-row ${selectedSeatClass === 'Awal' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Awal')} style={{ cursor: "pointer" }}>
-                          <div>
-                            <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Awal</p>
-                          </div>
-                          {selectedSeatClass === 'Awal' && (
-                            <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
-                          )}
-                        </div>
-                        <Image src={Line} alt="line" />
-                        <div className={`flex flex-row ${selectedSeatClass === 'Akhir' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Akhir')} style={{ cursor: "pointer" }}>
-                          <div className="pr-1">
-                            <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Akhir</p>
-                          </div>
-                          {selectedSeatClass === 'Akhir' && (
-                            <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
-                          )}
-                        </div>
-                        <Image src={Line} alt="line" />
-                      </div>
-                      <Image src={save} alt="save" className="flex justify-end" style={{ cursor: "pointer" }} onClick={handleSaveClick} />
-                    </Dialog>
+            {/* Start of filter termurah */}
+            <div className="flex justify-end py-4">
+              <button onClick={() => setVisible(true)} className="flex border-solid border-2 space-x-4 rounded-full custom-border-termurah p-1 custom-text-termurah">
+                <div className="flex">
+                  <img src={panahtermurah} alt="" />
+                  <div className="font-bold">Termurah</div>
+                </div>
+              </button>
+              <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
+                <div className="flex flex-col">
+                  <div className={`flex flex-row ${selectedSeatClass === 'Harga-Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga-Termurah')} style={{ cursor: "pointer" }}>
+                    <div className="pr-3">
+                      <p className="font-bold pt-2 ml-4 py-3">Harga - Termurah</p>
+                    </div>
+                    {selectedSeatClass === 'Harga-Termurah' && (
+                      <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                    )}
                   </div>
+                  <Image src={Line} alt="line" />
+                  <div className={`flex flex-row ${selectedSeatClass === 'Awal' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Awal')} style={{ cursor: "pointer" }}>
+                    <div>
+                      <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Awal</p>
+                    </div>
+                    {selectedSeatClass === 'Awal' && (
+                      <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                    )}
+                  </div>
+                  <Image src={Line} alt="line" />
+                  <div className={`flex flex-row ${selectedSeatClass === 'Akhir' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Akhir')} style={{ cursor: "pointer" }}>
+                    <div className="pr-1">
+                      <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Akhir</p>
+                    </div>
+                    {selectedSeatClass === 'Akhir' && (
+                      <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
+                    )}
+                  </div>
+                  <Image src={Line} alt="line" />
+                </div>
+                <Image src={save} alt="save" className="flex justify-end" style={{ cursor: "pointer" }} onClick={handleSaveClick} />
+              </Dialog>
+            </div>
 
-                  {/* Start of filter box */}
+            {
+              location?.state?.date !== undefined
+                ?
+                (
+
                   <div className="flex flex-col md:flex-row w-full">
                     <div className="md:w-[35%] w-full flex md:mb-0 mb-9">
                       <Card className="h-fit sticky top-40 w-[90%] p-4 shadow-xl shadow-gray-900/2 border-gray-950">
@@ -511,13 +513,18 @@ const HasilPencarian = () => {
 
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          )
-
-          : (<>Loading</>)
-      }
+                )
+                :
+                (
+                  <div className="flex w-full justify-center items-center py-5">
+                    <img src={notfound} alt="Loading" style={{ width: '30%', height: 'auto' }} />
+                  </div>
+                )
+            }
+            {/* Start of filter box */}
+          </div>
+        </div>
+      </div>
       {/* <Navbar/> */}
 
     </div>

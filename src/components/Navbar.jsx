@@ -151,7 +151,7 @@ const CompNavbar = () => {
         </div>
     return (
         <>
-            <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+            <Navbar className="fixed top-0 z-10 mx-auto max-w-screen py-2 px-4 lg:px-8 lg:py-4">
                 <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
                     {isToken
                         ?
@@ -226,9 +226,9 @@ const CompNavbar = () => {
                             <></>
                     }
                 </div>
-                <MobileNav open={openNav}>
+                <MobileNav className={`${openNav ? "!h-[144px]" : "h-0"}`} open={openNav}>
                     <div className="container mx-auto">
-                        <div className="flex flex-col items-center">{itemMobile}</div>
+                        <div className={`${openNav ? "flex" : "hidden"} flex-col items-center`}>{itemMobile}</div>
                     </div>
                 </MobileNav>
             </Navbar>
