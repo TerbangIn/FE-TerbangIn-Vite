@@ -1,6 +1,6 @@
 import React from "react";
 import success from './images/illustration _Cart shopping list_.svg';
-import Navbar from "./navbar";
+import Navbar from "../../components/Navbar";
 import { Link } from "react-router-dom";
 
 function Success(){

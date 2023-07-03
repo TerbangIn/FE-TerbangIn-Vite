@@ -166,14 +166,15 @@ function Riwayat() {
                         <Button onClick={showDialog} className="button-search h-8" rounded text >
                             <i className="pi pi-search" style={{ fontSize: '1.5rem' }}></i>
                         </Button>
-                        <Dialog className="w-1/3" visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button onClick={handleSearch} label="Simpan" />}>
+                        <Dialog className="md:w-1/3 sm:w-full" visible={visibleFilter} onHide={hideFilter} header="Tanggal berapa anda melakukan transaksi" footer={<Button onClick={handleSearch} label="Simpan" />}>
                             <Calendar selectionMode="range" value={dateRange} onChange={handleDateRangeChange} inline showWeek className="w-full"/>
                         </Dialog>
-                        <Dialog visible={visible} onHide={hideDialog} header="Cari Riwayat Pesananmu" footer={<button onClick={handleSearch}>Cari</button>}>
+                        <Dialog className="md:w-1/3 sm:w-full" visible={visible} onHide={hideDialog} header="Cari Riwayat Pesananmu" footer={<Button onClick={handleSearch}>Cari</Button>}>
                             <InputText
                                 value={searchText}
                                 onChange={(e) => setSearchText(e.target.value)}
-                                placeholder="Masukkan kata kunci pencarian"
+                                placeholder="Masukkan Kode Booking dicari"
+                                className="w-full"
                             />
                         </Dialog>
                     </div>

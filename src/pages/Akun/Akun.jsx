@@ -118,7 +118,7 @@ function Akun() {
     <>
       <div>
         <Navbar></Navbar>
-        <div className="">
+        <div className="mx-6">
           <Card>
             <div className="text-left mx-auto max-w-4xl">
               <div className="text-left mx-auto flex-auto">
@@ -158,7 +158,7 @@ function Akun() {
               <div class="flex-auto flex my-auto gap-2">
                 <Card title="Ubah Data Profil" className="border shadow-none w-full md:mx-auto sm:mx-6">
                   <Panel header="Data Profil" className="pb-2 rounded-lg">
-                    <div className="text-sm font-bold justify-items-end text-binar-darkPurple">
+                    <div className="text-sm font-bold justify-items-end text-binar-purple">
                       Nama Lengkap
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">
@@ -172,7 +172,7 @@ function Akun() {
                         name="first_name"
                       />
                     </div>
-                    <div className="text-sm font-bold justify-items-end text-binar-darkPurple">
+                    <div className="text-sm font-bold justify-items-end text-binar-purple">
                       Nomor Telepon
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">
@@ -186,7 +186,7 @@ function Akun() {
                         name="phone_number"
                       />
                     </div>
-                    <div className="text-sm font-bold justify-items-end text-binar-darkPurple">
+                    <div className="text-sm font-bold justify-items-end text-binar-purple">
                       Email
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">

@@ -23,7 +23,6 @@ const cardRiwayat = (props) => {
         setVisibleFilter(true);
     };
 
-    // console.log(props.data.id);
     const pickDetailHandler = (id) => {
         setVisible(true);
         const data = (props?.data?.filter(e => {
@@ -139,18 +138,17 @@ const cardRiwayat = (props) => {
         return total
       }
 
-      console.log(props?.data?.map(riwayat => riwayat.tiket));
     return (
         <>
         <div>
             {/* Tampilkan informasi riwayat pemesanan lainnya */}
                 {props?.data?.length > 0 ? (
-            <div className="text-left mt-6 grid md:grid-cols-1 md:grid-cols-2 sm:mx-4 xs:mx-4 md:mx-auto max-w-4xl">
+            <div className="text-left mt-6 grid sm:grid-cols-1 md:grid-cols-2 sm:mx-4 xs:mx-12 md:mx-auto max-w-4xl">
                 <div>
                     {props?.data?.map(riwayat => (
                         (riwayat.tiket.length != 0 ? (<div key={riwayat.id} className="pb-4">
-                        <div className="lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
-                        <Card className="p-0 button sm:mx-6 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
+                        <div className="mx-6 lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
+                        <Card className="p-0 button sm:mx-6 mx-8 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                             <div className="mx-4 mb-4">
                                 {getStatus(riwayat.status)}
                             </div>

@@ -13,15 +13,15 @@ import { Tag } from 'primereact/tag';
 const detailRiwayat = (props) => {
 
     const getButtonCheckOut = (detail) => {
-        switch (detail.status) {
-            case 'ISSUED':
-                return (<Button label="Cetak Tiket" raised className="w-12"/>)
+        switch (detail[0]) {
+            case 'Issued':
+                return (<Button label="Cetak Tiket" raised className="w-full"/>)
 
-            case 'UNPAID':
-                return (<Button label="Lanjut Bayar" severity="danger" raised className="w-12"/>)
+            case 'Unpaid':
+                return (<Button label="Lanjut Bayar" severity="danger" raised className="w-full"/>)
 
-            case 'CANCELLED':
-                return (<Button label="Cancelled" severity="secondary" raised className="w-12" disabled/>)
+            case 'Canclled':
+                return (<Button label="Cancelled" severity="secondary" raised className="w-full" disabled/>)
 
             default:
                 return null;
@@ -101,8 +101,6 @@ const detailRiwayat = (props) => {
             }
         }
         // return total
-        console.log(totalAdult);
-        console.log(sumAdult);
       }
 
     function getTimes(date){
@@ -209,7 +207,7 @@ const detailRiwayat = (props) => {
 
     let i = 1
     return (
-            <div className="sm:mx-6 md:mx-4 lg:mx-auto">
+            <div className="sm:mx-6 md:mx-4 lg:mx-auto mx-6">
                 <div className="lg:ps-8 mb-12">
                     <div className="text-base font-normal flex justify-between text-900">
                         <div className="text-md font-bold text-900">Detail Pesanan</div>
@@ -270,7 +268,10 @@ const detailRiwayat = (props) => {
                         <div className="text-md font-bold text-900">Total</div>
                         <div className="text-md font-bold justify-items-end text-binar-purple">{getHarga(props.data.map(e => e.tiket))}</div>
                     </div>
-                    <Button label="Lanjut Bayar" severity="danger" raised className="w-full"/>
+{/*                         
+                    <Button label="Lanjut Bayar" severity="danger" raised className="w-full md:mx-0 sm-mx-12"/> */}
+                    <div>
+                    </div>
                     {getButtonCheckOut(props.data.map(e => e.status))}
                 </div>
             </div>
