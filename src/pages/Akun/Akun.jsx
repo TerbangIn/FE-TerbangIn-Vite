@@ -149,7 +149,7 @@ function Akun() {
                   </Link>
                   <Divider className="w-10" />
                   <div
-                    onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple">
+                    onClick={handleLogout} className="flex items-center font-semibold gap-2 text-binar-purple cursor-pointer">
                     <div className="text-2xl text-binar-purple"> <LuLogOut /> </div>
                     Keluar
                   </div>
