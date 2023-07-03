@@ -97,14 +97,14 @@ const SeatCustomer = (props) => {
   return (
     <>
         <style>{style}</style>
-        <div>
-            <div className="w-[518px]  border-2 border-[#8a8a8a] rounded mb-[34px] mt-[26px]" >
+        <div className="flex justify-center items-center">
+            <div className="max-sm:w-[350px]  md:w-[518px]  border-2 border-[#8a8a8a] rounded mb-[34px] mt-[26px]" >
                 <h1 className="text-[20px] font-bold mb-4 mt-[26px] ml-4">Pilih Kursi</h1>
-                <div className="bg-[#73ca5c] w-[486px] h-10 rounded-sm ml-4" >
-                    <h1 className="text-sm text-white text-center pt-[10px] w-96.5">Economy - 64 Seats Available</h1>
+                <div className="bg-[#73ca5c] md:w-[486px] h-10 rounded-sm md:ml-4" >
+                    <h1 className="text-sm text-white max-sm:ml-[85px] md:text-center pt-[10px] w-96.5">Economy - 64 Seats Available</h1>
                 </div>
                 <div className="seat-picker ml-[90px]">
-                    <div className="flex flex-row ml-[110px] mb-[18px] mt-2" >
+                    <div className="flex flex-row max-sm:ml-[30px] md:ml-[110px] mb-[18px] mt-2" >
                         <p className="mb-0 ml-2 mr-6" style={{ color: "#8A8A8A" }}>
                             A
                         </p>
@@ -115,7 +115,7 @@ const SeatCustomer = (props) => {
                             C
                         </p>
                     </div>
-                    <div className="flex flex-1 space-x-[10px] ml-[110px] mb-[10px] ">
+                    <div className="flex flex-1 space-x-[10px] max-sm:ml-[30px] md:ml-[110px] mb-[10px] ">
                         <div className="grid grid-rows-6 grid-flow-col gap-x-3 gap-y-2">
                             {seat?.map(data=>{
                                 return( 
