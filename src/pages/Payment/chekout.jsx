@@ -357,15 +357,15 @@ function Checkout() {
                         </div> */}
                         {data.map((data, index) => {
                             return (
-                                <div key={index} className="data w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
+                                <div key={index} className="data max-sm:ml-[83px] max-sm:w-[350px] sm:w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
                                     <h1 className="text-[20px] font-bold mb-4 mx-4 mt-4">Isi Data Penumpang</h1>
-                                    <h1 className="w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - {data?.category}</h1>
-                                    <div className="font-semibold align-middle ml-8">
+                                    <h1 className="max-sm:w-[320px] sm:w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - {data?.category}</h1>
+                                    <div className="font-semibold align-middle max-sm:ml-3 sm:ml-8">
                                         <div className="flex-auto mb-3">
                                             <label className="font-bold block mb-1 mt-2 text-[#4b1979] ">
                                                 Title
                                             </label>
-                                            <select onChange={event => handleFormChange(event, index)} id="title" value={data.title} placeholder="Select title" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
+                                            <select onChange={event => handleFormChange(event, index)} id="title" value={data.title} placeholder="Select title" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
                                                 <option>Silahkan Dipilih Terlebih Dahulu</option>
                                                 <option id="Tn." value="Tn." >Tn.</option>
                                                 <option id="Mr." value="Mr." selected >Mr.</option>
@@ -376,7 +376,7 @@ function Checkout() {
                                             <label className="font-bold block mb-1 text-[#4b1979] ">
                                                 Nama Lengkap
                                             </label>
-                                            <input onChange={event => handleFormChange(event, index)} id="first_name" value={data.first_name} className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
+                                            <input onChange={event => handleFormChange(event, index)} id="first_name" value={data.first_name} className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
                                         </div>
                                         <div className="flex flex-row">
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
@@ -392,32 +392,32 @@ function Checkout() {
                                                 <label className="font-bold block mb-1 text-[#4b1979] ">
                                                     Nama Keluarga
                                                 </label>
-                                                <input onChange={event => handleFormChange(event, index)} id="last_name" value={data.last_name} className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
+                                                <input onChange={event => handleFormChange(event, index)} id="last_name" value={data.last_name} className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
                                             </div>
                                         )}
                                         <div className="flex-auto mb-3">
                                             <label className="font-bold block mb-1 text-[#4b1979] ">
                                                 Tanggal Lahir
                                             </label>
-                                            <input onChange={event => handleFormChange(event, index)} id="date_of_birth" value={data.date_of_birth} type="date" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
+                                            <input onChange={event => handleFormChange(event, index)} id="date_of_birth" value={data.date_of_birth} type="date" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
                                         </div>
                                         <div className="flex-auto mb-3">
                                             <label htmlFor="alphanumeric" className="font-bold block mb-1 text-[#4b1979] ">
                                                 Kewarganegaraan
                                             </label>
-                                            <input onChange={event => handleFormChange(event, index)} id="country" value={data.country} className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
+                                            <input onChange={event => handleFormChange(event, index)} id="country" value={data.country} className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md" />
                                         </div>
                                         <div className="flex-auto mb-3 ">
                                             <label htmlFor="number" className="font-bold block mb-1 text-[#4b1979] ">
                                                 KTP/Paspor
                                             </label>
-                                            <InputText onChange={event => handleFormChange(event, index)} id="identity_number" value={data.identity_number} keyfilter="num" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md " />
+                                            <InputText onChange={event => handleFormChange(event, index)} id="identity_number" value={data.identity_number} keyfilter="num" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md " />
                                         </div>
                                         <div className="flex-auto mb-3">
                                             <label className="font-bold block mb-1 text-[#4b1979] ">
                                                 Negara Penerbit
                                             </label>
-                                            <select onChange={event => handleFormChange(event, index)} id="identity_number_of_country" value={data.identity_number_of_country} placeholder="Select country" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
+                                            <select onChange={event => handleFormChange(event, index)} id="identity_number_of_country" value={data.identity_number_of_country} placeholder="Select country" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
                                                 <option id="indonesia" value="indonesia">Indonesia</option>
                                                 <option id="malaysia" value="malaysia">Malaysia</option>
                                             </select>
@@ -426,7 +426,7 @@ function Checkout() {
                                             <label className="font-bold block mb-1 text-[#4b1979] ">
                                                 Berlaku Sampai
                                             </label>
-                                            <input onChange={event => handleFormChange(event, index)} id="expired_date" value={data.expired_date} type="date" className="w-[454px] h-10 ps-4 border border-gray-400 rounded-md mb-8" />
+                                            <input onChange={event => handleFormChange(event, index)} id="expired_date" value={data.expired_date} type="date" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md mb-8" />
                                         </div>
                                     </div>
                                 </div>
@@ -441,7 +441,7 @@ function Checkout() {
                     {button ? (
                         <button className="lg:hidden bg-[#FF0000] w-[500px] h-[62px] ml-2 mt-3 rounded-xl text-white mb-[132px]" onClick={handlePayment}>Lanjut Bayar</button>
                     ) : (
-                        <button className="ml-2 bg-[#7126b5] w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
+                        <button className="max-sm:w-[300px] max-sm:ml-7 sm:ml-2 bg-[#7126b5] sm:w-[500px] h-[62px] rounded-lg drop-shadow-lg text-white mb-[132px]" type="submit" >Submit</button>
                     )}
                 </form>
                 <div>
