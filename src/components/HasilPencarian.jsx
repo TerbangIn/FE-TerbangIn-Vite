@@ -121,21 +121,19 @@ const HasilPencarian = () => {
   const [datas, setDatas] = useState([]);
 
   const getData = async () => {
-    await axios.get('https://be-tiketku-production.up.railway.app/api/v1/flight/filter', {
-      from: "Indonesia",
-      to: "Indonesia",
-      category: "economy",
-      date: "2023-07-02"
+    await axios.post('https://be-tiketku-production.up.railway.app/api/v1/flight/filter', {
+      from: filters.from,
+      to: filters.to,
+      category: filters.category,
+      date: filters.date,
+    }).then(res => {
+      setDatas(res?.data?.data)
     })
-      .then(response => {
-        console.log(response?.data?.data);
-        // setDatas(response?.data?.data);
-      })
   }
 
   useEffect(() => {
     getData()
-  }, []);
+  }, [filters]);
 
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(dater)
@@ -161,7 +159,7 @@ const HasilPencarian = () => {
         format = new Date(data).toLocaleString('id-ID', { hour: "2-digit" })
         break;
       case "minute":
-        format = new Date(data).getUTCMinutes()
+        format = new Date(data).toTimeString().slice(3, 5)
         break;
       case "second":
         format = new Date(data).getUTCSeconds()
@@ -219,7 +217,7 @@ const HasilPencarian = () => {
   return (
     <div>
       <Navbar />
-      <div className="pt-5 flex justify-center md:mt-14 mt-8">
+      <div className="pt-16 flex justify-center md:mt-14 mt-8">
         <div className="w-full flex flex-col justify-center items-center">
           {/* Pilih Penerbangan */}
           <div className="md:w-[1000px] w-11/12">
@@ -228,7 +226,7 @@ const HasilPencarian = () => {
             <div className="flex md:flex-row flex-col gap-2 my-4 mx-2">
               <a href="/" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
                 <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
-                <p className="md:pr-96 md:text-base text-[15px]"> JKT &gt; MLB - 2 Penumpang - Economy </p>
+                <p className="md:pr-96 md:text-base text-[15px]"> {location?.state?.from} &gt; {location?.state?.to} - {location?.state?.passenger?.jumlah} Penumpang - {location?.state?.category} </p>
               </a>
               <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
                 Ubah Pencarian
