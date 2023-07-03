@@ -74,7 +74,7 @@ function Destinasi() {
                                 flightData.map((flight, i) => (
                                     // eslint-disable-next-line react/jsx-key
                                     (
-                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100" >
+                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                             <div>
                                                 <Image src={flight.image} alt="img" />
                                             </div>
@@ -96,7 +96,7 @@ function Destinasi() {
                                 : (
                                     flightData.filter((data) => data.destination.continent == filter).map((flight, i) => {
                                         return (
-                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100" >
+                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                                 <div>
                                                     <Image src={flight.image} alt="img" />
                                                 </div>
