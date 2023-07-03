@@ -12,9 +12,9 @@ import miftakhul from '../../assets/member/Miftakhul.png'
 import rafli from '../../assets/member/Rafli.png'
 import shifly from '../../assets/member/Shifly.png'
 import rio from '../../assets/member/Rio.png'
-import sekar from '../../assets/member/sekar.png'
+import sekar from '../../assets/member/Sekar.png'
 import dheva from '../../assets/member/dheva.png'
-import oryza from '../../assets/member/oryza.png'
+import oryza from '../../assets/member/Oryza.png'
 
 
 

@@ -51,12 +51,6 @@ const HasilPencarian = () => {
   }, [location])
   console.log(filters, location?.state?.passenger);
 
-  const boolSelected = (date) => {
-    return new Date(date).toDateString() === new Date(filters?.date).toDateString()
-  }
-
-  // console.log(boolSelected("07/01/2023"), filters.date);
-
   const [filterDate, setFilterDate] = useState([
     {
       id: 1,
@@ -123,20 +117,25 @@ const HasilPencarian = () => {
     }
   ])
 
-  // console.log(filterDate[5].selected);
-
   const [datas, setDatas] = useState([]);
+
+  const getData = async () => {
+    await axios.get('https://be-tiketku-production.up.railway.app/api/v1/flight/filter', {
+      from: "Indonesia",
+      to: "Indonesia",
+      category: "economy",
+      date: "2023-07-02"
+    })
+      .then(response => {
+        console.log(response?.data?.data);
+        // setDatas(response?.data?.data);
+      })
+  }
+
   useEffect(() => {
     getData()
   }, []);
 
-  const getData = async () => {
-    await axios.get('https://be-tiketku-production.up.railway.app/api/v1/flight')
-      .then(response => {
-        // console.log(response?.data?.data);
-        setDatas(response?.data?.data);
-      })
-  }
   const [visible, setVisible] = useState(false);
   const [selected, setSelected] = useState(dater)
 

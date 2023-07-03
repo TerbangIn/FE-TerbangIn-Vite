@@ -5,11 +5,11 @@ import { useNavigate } from "react-router";
 import { Image } from "primereact/image";
 import { Calendar } from 'primereact/calendar';
 import { InputSwitch } from "primereact/inputswitch";
+import { List, Button, Modal } from 'antd';
 import ModalPassengers from "../../components/modal_beranda/ModalPassengers";
 import ModalSeatClass from "../../components/modal_beranda/ModalSeatClass";
-import ModalFlightFrom from "../../components/modal_beranda/ModalFlightFrom";
-import ModalFlightTo from "../../components/modal_beranda/ModalFlightTo";
 import { ToastContainer, toast } from "react-toastify"
+
 import "react-toastify/dist/ReactToastify.css"
 
 
@@ -35,8 +35,26 @@ const JadwalPenerbangan = () => {
     const [seatClass, setSeatClass] = useState("");
     const [passenger, setPassenger] = useState("");
     const [checked, setChecked] = useState(false);
-    const [from, setFrom] = useState("Indonesia (CGK)");
-    const [to, setTo] = useState("Indonesia (SUB)");
+    let optionsFrom = flightData.map((data) => `${data?.source?.country} (${data?.source?.code})`);
+    let optionsTo = flightData.map((data) => `${data.destination.country} (${data.destination.code})`);
+
+    const [selectedOptionFrom, setSelectedOptionFrom] = useState('Indonesia (CGK)');
+    const [selectedOptionTo, setSelectedOptionTo] = useState('Indonesia (SUB)');
+
+    function removeDuplicates(arr) {
+        return arr.filter((item,
+            index) => arr.indexOf(item) === index);
+    }
+
+    optionsFrom = removeDuplicates(optionsFrom)
+
+    function removeDuplicatesTo(arr) {
+        return arr.filter((item,
+            index) => arr.indexOf(item) === index);
+    }
+
+    optionsTo = removeDuplicatesTo(optionsTo)
+
     const navigate = useNavigate()
     useEffect(() => {
         setPassenger({
@@ -45,10 +63,10 @@ const JadwalPenerbangan = () => {
             "baby": counterBaby,
             "child": counterChild
         })
-    }, [])
+    }, [counterAdult, counterBaby, counterChild])
     console.log({
-        from,
-        to,
+        selectedOptionFrom,
+        selectedOptionTo,
         category: seatClass,
         date: selectedDate1,
         passenger: passenger
@@ -68,14 +86,6 @@ const JadwalPenerbangan = () => {
     const handleToSelect = (value) => {
         setTo(value);
     };
-
-    const return1Handler = () => {
-        // const temp = from
-        // setFrom(to)
-        // setTo(temp)
-        setFrom(to);
-        setTo(from);
-    }
 
     const handleDate1Change = (e) => {
         setSelectedDate1(e.value)
@@ -98,12 +108,12 @@ const JadwalPenerbangan = () => {
     const handleFromChange = (value) => {
         const lowerFlightFrom = value.toLowerCase();
         // const lowerFlightFrom = e.target.value();
-        setFrom(lowerFlightFrom);
+        setSelectedOptionFrom(lowerFlightFrom);
     };
 
     const handleToChange = (value) => {
         const lowerFlightTo = value.toLowerCase();
-        setTo(lowerFlightTo);
+        setSelectedOptionTo(lowerFlightTo);
     };
 
     const handleFromBlur = (event) => {
@@ -120,6 +130,37 @@ const JadwalPenerbangan = () => {
         setTo(from);
         setFrom("");
     };
+
+   
+
+    const [isModalOpenFrom, setIsModalOpenFrom] = useState(false);
+    const showModalFrom = () => {
+        setIsModalOpenFrom(true);
+    };
+
+    const handleSelectionFrom = (selectedValue) => {
+        setIsModalOpenFrom(false);
+        setSelectedOptionFrom(selectedValue);
+        onSelect(selectedValue);
+    };
+
+    
+
+    const [isModalOpenTo, setIsModalOpenTo] = useState(false);
+    const showModalTo = () => {
+        setIsModalOpenTo(true);
+    };
+
+    const handleSelectionTo = (selectedValue) => {
+        setIsModalOpenTo(false);
+        setSelectedOptionTo(selectedValue);
+        onSelect(selectedValue);
+    };
+
+    const return1Handler = () => {
+        setSelectedOptionFrom(selectedOptionTo);
+        setSelectedOptionTo(selectedOptionFrom);
+    }
 
     const buttonHandler = async () => {
         if (selectedDate1 == null && passenger.jumlah == 0) {
@@ -140,8 +181,8 @@ const JadwalPenerbangan = () => {
         } else {
             navigate('/hasil-pencarian', {
                 state: {
-                    from,
-                    to,
+                    selectedOptionFrom,
+                    selectedOptionTo,
                     category: seatClass,
                     date: selectedDate1,
                     passenger: passenger
@@ -173,12 +214,20 @@ const JadwalPenerbangan = () => {
                             <Image src={icon_pesawat} alt="icon_pesawat" className="lg:w-4 xl:w-4" />
                             <p className="text-primary1 text-base md:text-base ml-2 mr-2 lg:ml-2 xl:ml-2">From</p>
                             <div >
-                                <ModalFlightFrom
-                                    value={from}
-                                    onChange={handleFromChange}
-                                    onSelect={handleFromSelect}
-                                    onBlur={handleFromBlur}
-                                />
+                                <div className="font-bold md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={showModalFrom}>
+                                    {selectedOptionFrom}
+                                </div>
+                                <Modal title="TerbangIn" open={isModalOpenFrom} onCancel={() => setIsModalOpenFrom(false)} footer={null}>
+                                    <List
+                                        itemLayout="horizontal"
+                                        dataSource={optionsFrom}
+                                        renderItem={(item, index) => (
+                                            <List.Item onClick={() => handleSelectionFrom(item)} className={selectedOptionFrom === item ? 'selected' : ''}>
+                                                <div className="text-md font-bold cursor-pointer">{item}</div>
+                                            </List.Item>
+                                        )}
+                                    />
+                                </Modal>
                             </div>
                         </div>
                         <hr className="flex md:ml-0 ml-[70px] border-1 lg:w-52 xl:w-60 w-44 lg:ml-[102px] xl:ml-[100px]" />
@@ -208,13 +257,20 @@ const JadwalPenerbangan = () => {
                             <Image src={icon_pesawat} alt="icon_pesawat" className="w-6 mr-2 ml-24 sm:w-4 min-[1154px]:ml-2 max-[1279px]:2 lg:w-4 lg:mr-3 lg:ml-4 xl:mr-3" />
                             <p className="text-primary1 text-base md:text-base mr-2 lg:ml-2 xl:ml-2">To</p>
                             <div className="">
-                                <ModalFlightTo
-                                    value={to}
-                                    onChange={handleToChange}
-                                    onSelect={handleToSelect}
-                                    onBlur={handleToBlur}
-                                    onFocus={handleToFocus}
-                                />
+                                <div className="font-bold md:text-base cursor-pointer sm:ml-3 lg:ml-4" onClick={showModalTo}>
+                                    {selectedOptionTo}
+                                </div>
+                                <Modal title="TerbangIn" open={isModalOpenTo} onCancel={() => setIsModalOpenTo(false)} footer={null}>
+                                    <List
+                                        itemLayout="horizontal"
+                                        dataSource={optionsTo}
+                                        renderItem={(item, index) => (
+                                            <List.Item onClick={() => handleSelectionTo(item)} className={selectedOptionTo === item ? 'selected' : ''}>
+                                                <div className="text-md font-bold cursor-pointer">{item}</div>
+                                            </List.Item>
+                                        )}
+                                    />
+                                </Modal>
                             </div>
                         </div>
                         {/* <hr className="flex md:ml-0 ml-[70px] border-1 lg:w-52 xl:w-60 w-44 lg:ml-[102px] xl:ml-[100px]" /> */}
@@ -237,7 +293,7 @@ const JadwalPenerbangan = () => {
                     </div>
                 </div>
             </Card>
-            <div className="relative bg-primary2 rounded-b-xl mx-auto lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
+            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
                 <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</p>
             </div>
             {/* <div className="relative md:max-w-screen-md lg:max-w-screen-md rounded-lg shadow-lg mx-auto bg-white -mt-12">
