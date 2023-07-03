@@ -77,7 +77,7 @@ function Notifikasi() {
                 </div>
             </Card>
             {userData?.notification?.length > 0 ? (
-                <div className="body">
+                <div className="mx-6">
                     {userData?.notification.map(notif => (
                         <div className="text-left mt-6 flex gap-2 mx-auto max-w-4xl">
                             <div class="flex-none my-auto">
