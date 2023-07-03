@@ -131,71 +131,80 @@ const detailRiwayat = (props) => {
         }
     }
     
-    function getPassenger(tiket){
-        const jumlahPenumpang = {};
-        console.log(tiket.map(e=>e.map(p=> {
-            console.log(p);
-            const typeOfPassenger = p.type_of_passenger;
-            if (jumlahPenumpang[typeOfPassenger]) {
-                jumlahPenumpang[typeOfPassenger]++;
-            } else {
-                jumlahPenumpang[typeOfPassenger] = 1;
-            }
-        })));
-        
-        for (const [typeOfPassenger, count] of Object.entries(jumlahPenumpang)) {
-            console.log(`${count} ${typeOfPassenger}`);
-            return <div>{count} {typeOfPassenger}</div>
-        }
-        
-        
-        
-    }
-
-    function getPricePass(tiket){
-        const typePass = []
-        const hargaPenumpang = {}
-        console.log(tiket.map(e=>e.map(p=> {
-            const typeOfPassenger = p.type_of_passenger;
-            const flight = p.flight;
-            let price = 0;
-
-            if (typeOfPassenger === "Adult") {
-                const adultPricePercentage = flight.adult_price_percentage;
-                const adultPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
-                price = adultPrice * adultPricePercentage / 100;
-            } else if (typeOfPassenger === "Child") {
-                const childPricePercentage = flight.child_price_percentage;
-                const childPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
-                price = childPrice * childPricePercentage / 100;
-            } else if (typeOfPassenger === "Baby") {
-                const babyPricePercentage = flight.baby_price_percentage;
-                const babyPrice = flight.economy_class_price || flight.business_class_price || flight.first_class_price || flight.premium_price;
-                price = babyPrice * babyPricePercentage / 100;
-            }
-
-            if (hargaPenumpang[typeOfPassenger]) {
-                hargaPenumpang[typeOfPassenger] += price;
-            } else {
-                hargaPenumpang[typeOfPassenger] = price;
-            }
-        })));
-
-        for (const [typeOfPassenger, price] of Object.entries(hargaPenumpang)) {
-            console.log(`Harga untuk kelompok penumpang ${typeOfPassenger}: ${price}`);
-            return <div className="text-md font-normal justify-items-end">{price}</div>
-        }
-        
-    }
+   
 
     const detailList = (tiket) => {
-        if (tiket.map(e=>e.type_of_passenger == "Adult")){
-
-        }else if(tiket.map(e=>e.type_of_passenger == "Child")){
-            
-        }else if(tiket.map(e=>e.type_of_passenger == "Baby")){
-
+        let hargaAdult = 0
+        let hargaChild = 0
+        let hargaBaby = 0
+        let jumlahAdult = 0
+        let jumlahChild = 0
+        let jumlahBaby = 0
+        
+        for(let i = 0; i < tiket.length;i++){
+            for (let j = 0; j < tiket[i].length ; j++){
+                if (tiket[i][j].type_of_passenger == "Adult" && tiket.length > 0){
+                    let flightHarga = 0
+                    if(tiket[i][j].flight.economy_class_price != null){
+                        flightHarga = tiket[i][j].flight.economy_class_price
+                    }else if(tiket[i][j].flight.business_class_price != null){
+                        flightHarga = tiket[i][j].flight.business_class_price
+                    }else if(tiket[i][j].flight.first_class_price != null){
+                        flightHarga = tiket[i][j].flight.first_class_price
+                    }else if(tiket[i][j].flight.premium_price != null){
+                        flightHarga = tiket[i][j].flight.premium_price
+                    }
+    
+                    jumlahAdult += 1
+                    hargaAdult += flightHarga * tiket[i][j].flight.adult_price_percentage /100
+    
+                }
+                else if(tiket[i][j].type_of_passenger == "Child" && tiket.length > 0){
+                    let flightHarga = 0
+                    if(tiket[i][j].flight.economy_class_price != null){
+                        flightHarga = tiket[i][j].flight.economy_class_price
+                    }else if(tiket[i][j].flight.business_class_price != null){
+                        flightHarga = tiket[i][j].flight.business_class_price
+                    }else if(tiket[i][j].flight.first_class_price != null){
+                        flightHarga = tiket[i][j].flight.first_class_price
+                    }else if(tiket[i][j].flight.premium_price != null){
+                        flightHarga = tiket[i][j].flight.premium_price
+                    }
+    
+                    jumlahChild += 1
+                    hargaChild += flightHarga * tiket[i][j].flight.child_price_percentage /100
+                    
+                }else if(tiket[i][j].type_of_passenger == "Baby" && tiket.length > 0){
+                    let flightHarga = 0
+                    if(tiket[i][j].flight.economy_class_price != null){
+                        flightHarga = tiket[i][j].flight.economy_class_price
+                    }else if(tiket[i][j].flight.business_class_price != null){
+                        flightHarga = tiket[i][j].flight.business_class_price
+                    }else if(tiket[i][j].flight.first_class_price != null){
+                        flightHarga = tiket[i][j].flight.first_class_price
+                    }else if(tiket[i][j].flight.premium_price != null){
+                        flightHarga = tiket[i][j].flight.premium_price
+                    }
+    
+                    jumlahBaby += 1
+                    hargaBaby += flightHarga * tiket[i][j].flight.baby_price_percentage /100
+                }
+            }
         }
+        return (
+            <div className="text-base font-normal flex justify-between text-900">
+                <div className="grid-cols-1">
+                    {jumlahAdult != 0 ? (<>{jumlahAdult} Adult</>) : (<></>)}
+                    {jumlahChild != 0 ? (<>{jumlahChild} Child</>) : (<></>)}
+                    {jumlahBaby != 0 ? (<>{jumlahBaby} Baby</>) : (<></>)}
+                </div>
+                <div className="grid-cols-1">
+                    {hargaAdult != 0 ? (hargaAdult) : (<></>)}
+                    {hargaChild != 0 ? (hargaChild) : (<></>)}
+                    {hargaBaby != 0 ? (hargaBaby) : (<></>)}
+                </div>
+            </div>
+        )
     }
 
     let i = 1
@@ -254,16 +263,7 @@ const detailRiwayat = (props) => {
                     <Divider className="m-2"/>
                     <div>
                         <div className="text-base font-bold text-900">Rincian Harga</div>
-                        {/* <div className="text-base font-normal flex justify-between text-900">
-                            <div className="grid-cols-1">
-                                {getPassenger(props.data.map(e => e.tiket))}
-                            </div>
-                            <div className="grid-cols-1">
-                                {getPricePass(props.data.map(e => e.tiket))}
-                            </div>
-                        </div> */}
-                        {/* {detailList(props.data.map(e => e.tiket))} */}
-                        
+                        {detailList(props.data.map(e => e.tiket))}
                     </div>
                     <Divider className="m-2"/>
                     <div className="text-base font-normal flex justify-between text-900 pb-4">
