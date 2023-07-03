@@ -140,8 +140,9 @@ const HasilPencarian = () => {
 
   // console.log(datas);
   // console.log(filters);
-  const [selectedSeatClass, setSelectedSeatClass] = useState("Harga-Termurah");
+  const [selectedSeatClass, setSelectedSeatClass] = useState('Termurah');
   const [savedSeatClass, setSavedSeatClass] = useState(null);
+  console.log(savedSeatClass)
 
   const handleSeatClassClick = (seatClass) => {
     setSelectedSeatClass(seatClass);
@@ -149,7 +150,9 @@ const HasilPencarian = () => {
 
   const handleSaveClick = () => {
     setSavedSeatClass(selectedSeatClass);
+    setVisible(false)
   }
+
 
   const formatDate = (data, tipe) => {
     // console.log(new Date("2023-06-27T17:40:57.207Z").getUTCHours());
@@ -254,34 +257,34 @@ const HasilPencarian = () => {
               <button onClick={() => setVisible(true)} className="flex border-solid border-2 space-x-4 rounded-full custom-border-termurah p-1 custom-text-termurah">
                 <div className="flex">
                   <img src={panahtermurah} alt="" />
-                  <div className="font-bold">Termurah</div>
+                  <div className="font-bold">{savedSeatClass || selectedSeatClass}</div>
                 </div>
               </button>
               <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
                 <div className="flex flex-col">
-                  <div className={`flex flex-row ${selectedSeatClass === 'Harga-Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga-Termurah')} style={{ cursor: "pointer" }}>
+                  <div className={`flex flex-row ${selectedSeatClass === 'Harga Termurah' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Harga Termurah')} style={{ cursor: "pointer" }}>
                     <div className="pr-3">
                       <p className="font-bold pt-2 ml-4 py-3">Harga - Termurah</p>
                     </div>
-                    {selectedSeatClass === 'Harga-Termurah' && (
+                    {selectedSeatClass === 'Harga Termurah' && (
                       <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                     )}
                   </div>
                   <Image src={Line} alt="line" />
-                  <div className={`flex flex-row ${selectedSeatClass === 'Awal' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Awal')} style={{ cursor: "pointer" }}>
+                  <div className={`flex flex-row ${selectedSeatClass === 'Keberangkatan Paling Awal' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Keberangkatan Paling Awal')} style={{ cursor: "pointer" }}>
                     <div>
                       <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Awal</p>
                     </div>
-                    {selectedSeatClass === 'Awal' && (
+                    {selectedSeatClass === 'Keberangkatan Paling Awal' && (
                       <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                     )}
                   </div>
                   <Image src={Line} alt="line" />
-                  <div className={`flex flex-row ${selectedSeatClass === 'Akhir' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Akhir')} style={{ cursor: "pointer" }}>
+                  <div className={`flex flex-row ${selectedSeatClass === 'Keberangkatan Paling Akhir' ? 'selected text-white bg-purple3' : ''}`} onClick={() => handleSeatClassClick('Keberangkatan Paling Akhir')} style={{ cursor: "pointer" }}>
                     <div className="pr-1">
                       <p className="font-bold ml-4 pt-2 py-3">Keberangkatan - Paling Akhir</p>
                     </div>
-                    {selectedSeatClass === 'Akhir' && (
+                    {selectedSeatClass === 'Keberangkatan Paling Akhir' && (
                       <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                     )}
                   </div>
