@@ -132,10 +132,6 @@ const detailRiwayat = (props) => {
     }
     
     function getPassenger(tiket){
-        const harga = 0
-        const adult = 0
-        const Child = 0
-        const baby = 0
         const jumlahPenumpang = {};
         console.log(tiket.map(e=>e.map(p=> {
             console.log(p);
@@ -157,6 +153,7 @@ const detailRiwayat = (props) => {
     }
 
     function getPricePass(tiket){
+        const typePass = []
         const hargaPenumpang = {}
         console.log(tiket.map(e=>e.map(p=> {
             const typeOfPassenger = p.type_of_passenger;
@@ -189,6 +186,16 @@ const detailRiwayat = (props) => {
             return <div className="text-md font-normal justify-items-end">{price}</div>
         }
         
+    }
+
+    const detailList = (tiket) => {
+        if (tiket.map(e=>e.type_of_passenger == "Adult")){
+
+        }else if(tiket.map(e=>e.type_of_passenger == "Child")){
+            
+        }else if(tiket.map(e=>e.type_of_passenger == "Baby")){
+
+        }
     }
 
     let i = 1
@@ -247,22 +254,17 @@ const detailRiwayat = (props) => {
                     <Divider className="m-2"/>
                     <div>
                         <div className="text-base font-bold text-900">Rincian Harga</div>
-                        <div className="text-base font-normal flex justify-between text-900">
+                        {/* <div className="text-base font-normal flex justify-between text-900">
                             <div className="grid-cols-1">
-                            {getPassenger(props.data.map(e => e.tiket))}
-
+                                {getPassenger(props.data.map(e => e.tiket))}
                             </div>
                             <div className="grid-cols-1">
-                            {getPricePass(props.data.map(e => e.tiket))}
-
+                                {getPricePass(props.data.map(e => e.tiket))}
                             </div>
-                            {/* {getHargaDetail(props.data.map(e => e.tiket))} */}
-                            
-                            {/* {getpricePassenger(props.data.map(e => e.tiket))} */}
-                            {/* <div className="text-sm font-normal justify-items-end">{getpricePassenger(props.data.map(e => e.tiket))}</div> */}
-                        </div>
+                        </div> */}
+                        {/* {detailList(props.data.map(e => e.tiket))} */}
+                        
                     </div>
-                    {/* <div>{listAmountBaby(filter.orders)}</div> */}
                     <Divider className="m-2"/>
                     <div className="text-base font-normal flex justify-between text-900 pb-4">
                         <div className="text-md font-bold text-900">Total</div>

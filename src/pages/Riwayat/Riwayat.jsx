@@ -79,6 +79,7 @@ function Riwayat() {
         
         fetchUserData();
       }, [token]);
+      console.log(decode.id);
 
       const Hasil = [];
       function cariDataPemesanan(kode) {

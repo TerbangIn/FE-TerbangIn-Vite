@@ -139,6 +139,7 @@ const cardRiwayat = (props) => {
         return total
       }
 
+      console.log(props?.data?.map(riwayat => riwayat.tiket));
     return (
         <>
         <div>
@@ -147,50 +148,50 @@ const cardRiwayat = (props) => {
             <div className="text-left mt-6 grid md:grid-cols-1 md:grid-cols-2 sm:mx-4 xs:mx-4 md:mx-auto max-w-4xl">
                 <div>
                     {props?.data?.map(riwayat => (
-                        <div key={riwayat.id} className="pb-4">
-                            <div className="lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
-                            <Card className="p-0 button sm:mx-6 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
-                                <div className="mx-4 mb-4">
-                                    {getStatus(riwayat.status)}
+                        (riwayat.tiket.length != 0 ? (<div key={riwayat.id} className="pb-4">
+                        <div className="lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
+                        <Card className="p-0 button sm:mx-6 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
+                            <div className="mx-4 mb-4">
+                                {getStatus(riwayat.status)}
+                            </div>
+                            <div className="flex">
+                                <div className="flex ms-4 gap-2">
+                                <i className="pi pi-map-marker my-auto"></i>
+                                <div className="align-items-center sm:align-items-center">
+                                    <div className="text-md font-bold text-900">{riwayat.tiket[0].flight.source.name}</div>
+                                    <div className="text-sm">{getTanggal(riwayat.tiket[0].flight.departure_date)}</div>
+                                    <div className="text-xs">{getTimes(riwayat.tiket[0].flight.departure_date)}</div>
                                 </div>
-                                <div className="flex">
-                                    <div className="flex ms-4 gap-2">
-                                    <i className="pi pi-map-marker my-auto"></i>
-                                    <div className="align-items-center sm:align-items-center">
-                                        <div className="text-md font-bold text-900">{riwayat.tiket[0].flight.source.name}</div>
-                                        <div className="text-sm">{getTanggal(riwayat.tiket[0].flight.departure_date)}</div>
-                                        <div className="text-xs">{getTimes(riwayat.tiket[0].flight.departure_date)}</div>
-                                    </div>
-                                    </div>
-                                    <div className="shrink-0 my-auto w-32">
-                                        {/* <div className="text-md font-bold text-900 pb-2">{rangeTime(props.data.map(e => e.tiket[0].flight.departure_date), props.data.map(e => e.tiket[0].flight.arrival_date))}</div> */}
-                                        <img src={arrow} alt="arrow" className="w-24 mx-auto pe-4"/>
-                                    </div>
-                                    <div className="flex gap-2">
-                                    <i className="pi pi-map-marker my-auto"></i>
-                                    <div className="col-3 align-items-center sm:align-items-center">
-                                        <div className="text-md font-bold text-900">{riwayat.tiket[0].flight.destination.name}</div>
-                                        <div className="text-sm">{getTanggal(riwayat.tiket[0].flight.arrival_date)}</div>
-                                        <div className="text-xs">{getTimes(riwayat.tiket[0].flight.arrival_date)}</div>
-                                    </div>
-                                    </div>
                                 </div>
-                                <Divider className="m-0"/>
-                                <div class="flex mx-4 gap-2">
-                                    <div class="flex-1">
-                                        <div className="text-xs font-semibold text-900">Booking code :</div>
-                                        <div className="text-xs">{riwayat.kode_booking}</div>
-                                    </div>
-                                    <div class="shrink-0 w-32 text-center">
-                                        <div className="text-xs font-semibold text-900">Class :</div>
-                                        <div className="text-xs">{getClass((riwayat.tiket.map(a=> a.flight.economy_class_price)),(riwayat.tiket.map(a=> a.flight.business_class_price)),(riwayat.tiket.map(a=> a.flight.first_class_price)),(riwayat.tiket.map(a=> a.flight.premium_price)))}</div>
-                                    </div>
-                                    <div class="flex-1 text-right">
-                                        <div className="text-md ps-4 justify-end font-bold text-binar-purple">IDR {getHarga(riwayat.tiket)}</div>
-                                    </div>
+                                <div className="shrink-0 my-auto w-32">
+                                    {/* <div className="text-md font-bold text-900 pb-2">{rangeTime(props.data.map(e => e.tiket[0].flight.departure_date), props.data.map(e => e.tiket[0].flight.arrival_date))}</div> */}
+                                    <img src={arrow} alt="arrow" className="w-24 mx-auto pe-4"/>
                                 </div>
-                            </Card>
-                        </div>
+                                <div className="flex gap-2">
+                                <i className="pi pi-map-marker my-auto"></i>
+                                <div className="col-3 align-items-center sm:align-items-center">
+                                    <div className="text-md font-bold text-900">{riwayat.tiket[0].flight.destination.name}</div>
+                                    <div className="text-sm">{getTanggal(riwayat.tiket[0].flight.arrival_date)}</div>
+                                    <div className="text-xs">{getTimes(riwayat.tiket[0].flight.arrival_date)}</div>
+                                </div>
+                                </div>
+                            </div>
+                            <Divider className="m-0"/>
+                            <div class="flex mx-4 gap-2">
+                                <div class="flex-1">
+                                    <div className="text-xs font-semibold text-900">Booking code :</div>
+                                    <div className="text-xs">{riwayat.kode_booking}</div>
+                                </div>
+                                <div class="shrink-0 w-32 text-center">
+                                    <div className="text-xs font-semibold text-900">Class :</div>
+                                    <div className="text-xs">{getClass((riwayat.tiket.map(a=> a.flight.economy_class_price)),(riwayat.tiket.map(a=> a.flight.business_class_price)),(riwayat.tiket.map(a=> a.flight.first_class_price)),(riwayat.tiket.map(a=> a.flight.premium_price)))}</div>
+                                </div>
+                                <div class="flex-1 text-right">
+                                    <div className="text-md ps-4 justify-end font-bold text-binar-purple">IDR {getHarga(riwayat.tiket)}</div>
+                                </div>
+                            </div>
+                        </Card>
+                    </div>) : (<></>))
                     ))}
                 </div>
                 <div>
