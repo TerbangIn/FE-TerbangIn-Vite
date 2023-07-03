@@ -241,7 +241,7 @@ function Checkout() {
             headers: {
                 Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NTE3OTQyfQ.oj5euXRMipDo_ecOaxT0Xkl60IFwxRNbWWs7t0n4vQk`,
             },
-        }).then(res => {
+        }).then(  res => {
             toast.success(`Transaksi Berhasil Silahkan Lanjut Pembayaran , redirect in 3s...`, {
                 position: "bottom-center",
                 autoClose: 2000,
@@ -252,12 +252,23 @@ function Checkout() {
                 progress: undefined,
                 theme: "colored",
             })
-            nav("/payment", {
-                state: {
-                    transaction_id: transaction_id,
-                    flight_id: flight
-                }
+            
+            
+        }).catch(error => {
+            toast.error(`${error.response.data.message}`, {
+                position: "bottom-center",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
             })
+        })
+
+        await Axios.post(`https://be-tiketku-production.up.railway.app/api/v1/transaksi/payment/${transaction_id}`).then(res => {
+            window.location.replace(`${res?.data?.link}`);
         }).catch(error => {
             toast.error(`${error.response.data.message}`, {
                 position: "bottom-center",
@@ -445,9 +456,9 @@ function Checkout() {
 
                     <Detail className=" md:display:none" flight={flight} passenger={location?.state?.passenger} setTotalHarga={setTotalHarga} />
                     {button && (
-                        <Link to="/payment" >
-                            <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white">Lanjut Bayar</button>
-                        </Link>
+
+                        <button className="hidden lg:block bg-[#FF0000] w-[330px] h-[62px] ml-7 mt-3 rounded-xl text-white" onClick={handlePayment}>Lanjut Bayar</button>
+
                     )}
                 </div>
             </div>
