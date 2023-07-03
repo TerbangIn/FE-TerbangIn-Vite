@@ -237,7 +237,7 @@ const JadwalPenerbangan = () => {
                     </div>
                 </div>
             </Card>
-            <div className="relative bg-primary2 rounded-b-xl mx-auto lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
+            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
                 <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</p>
             </div>
             {/* <div className="relative md:max-w-screen-md lg:max-w-screen-md rounded-lg shadow-lg mx-auto bg-white -mt-12">

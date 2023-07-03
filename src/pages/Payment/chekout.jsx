@@ -37,13 +37,11 @@ function Checkout() {
     const [child, setChild] = useState([])
     const [baby, setBaby] = useState([])
     const [adult, setAdult] = useState([])
-    const [passengerID, setPassengerID] = useState([])
 
-
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
-    // cookies.get('token')
-    const decode = jwtDecode(token)
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     const cookies = new Cookies();
+    const token = cookies.get('token')
+    const decode = jwtDecode(token)
     const getTransaction = async () => {
         return await Axios.post(urlTransaction, {
             user_id: decode.id,
@@ -171,10 +169,6 @@ function Checkout() {
                 },
             })
                 .then(resPassenger => {
-                    // console.log(resPassenger);
-                    // setPassengerID([...passengerID, resPassenger?.data?.data?.id])
-                    // console.log(passengerID, resPassenger);
-                    // selectedSeat.map((seat, index) => {
                     Axios.put(`https://be-tiketku-production.up.railway.app/api/v1/seat/${selectedSeat[index]}`, {
                         status: "Unavailable"
                     }, {
@@ -219,8 +213,6 @@ function Checkout() {
 
     }
 
-    console.log(passengerID);
-
     const handleSeat = (data) => {
         setSelectedSeats(data)
     }
@@ -241,7 +233,7 @@ function Checkout() {
             headers: {
                 Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg3NTE3OTQyfQ.oj5euXRMipDo_ecOaxT0Xkl60IFwxRNbWWs7t0n4vQk`,
             },
-        }).then(  res => {
+        }).then(res => {
             toast.success(`Transaksi Berhasil Silahkan Lanjut Pembayaran , redirect in 3s...`, {
                 position: "bottom-center",
                 autoClose: 2000,
@@ -252,8 +244,8 @@ function Checkout() {
                 progress: undefined,
                 theme: "colored",
             })
-            
-            
+
+
         }).catch(error => {
             toast.error(`${error.response.data.message}`, {
                 position: "bottom-center",
