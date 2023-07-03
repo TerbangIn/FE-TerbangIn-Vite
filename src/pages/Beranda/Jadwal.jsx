@@ -8,8 +8,6 @@ import { InputSwitch } from "primereact/inputswitch";
 import { List, Button, Modal } from 'antd';
 import ModalPassengers from "../../components/modal_beranda/ModalPassengers";
 import ModalSeatClass from "../../components/modal_beranda/ModalSeatClass";
-import ModalFlightFrom from "../../components/modal_beranda/ModalFlightFrom";
-import ModalFlightTo from "../../components/modal_beranda/ModalFlightTo";
 import { ToastContainer, toast } from "react-toastify"
 
 import "react-toastify/dist/ReactToastify.css"
@@ -183,8 +181,8 @@ const JadwalPenerbangan = () => {
         } else {
             navigate('/hasil-pencarian', {
                 state: {
-                    from,
-                    to,
+                    selectedOptionFrom,
+                    selectedOptionTo,
                     category: seatClass,
                     date: selectedDate1,
                     passenger: passenger
