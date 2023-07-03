@@ -45,7 +45,7 @@ const JadwalPenerbangan = () => {
             "baby": counterBaby,
             "child": counterChild
         })
-    }, [])
+    }, [counterAdult, counterBaby, counterChild])
     console.log({
         from,
         to,
