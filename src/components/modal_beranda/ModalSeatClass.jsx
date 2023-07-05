@@ -22,13 +22,11 @@ function ModalSeatClass({onChange}) {
         setVisible(false);
     }
 
-
     return (
         <>
             <div className="font-bold mx-12 md:ml-14 ml-12" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
                 {savedSeatClass || selectedSeatClass}
             </div>
-
             <div className="card flex justify-content-center">
                 <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
                     <div className="flex flex-col">
@@ -72,10 +70,8 @@ function ModalSeatClass({onChange}) {
                     <Image src={save} alt="save" className="flex justify-end" style={{ cursor: "pointer" }} onClick={handleSaveClick} />
                 </Dialog>
             </div>
-
         </>
     );
-
 }
 
 export default ModalSeatClass;

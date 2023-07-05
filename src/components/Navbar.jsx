@@ -120,13 +120,6 @@ const CompNavbar = () => {
                         <>
                             <div className="flex gap-6 items-center justify-between">
                                 {logoItem}
-                                <label className="relative block">
-                                    <span className="sr-only">Search</span>
-                                    <input className="placeholder:italic placeholder:text-slate-400 xl:block lg:block md:block hidden bg-white w-full border border-slate-300 rounded-md py-3 xl:pr-20 lg:pr-20 md:pr-20 pr-5 pl-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search" />
-                                    <span className="absolute inset-y-0 right-3 flex items-center pl-2 xl:flex lg:flex md:flex hidden">
-                                        <MagnifyingGlassIcon className="w-5 h-5 text-slate-600" />
-                                    </span>
-                                </label>
                             </div>
                             <Link to={"/login"}>
                                 <Button label="Masuk" severity="help" icon={<svg className="me-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

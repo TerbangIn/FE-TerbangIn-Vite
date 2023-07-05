@@ -34,7 +34,6 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          {/* <Route path ="/" element={<Beranda />}/> */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/otp-register" element={<OTPRegister />} />
