@@ -14,7 +14,6 @@ import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { Link } from "react-router-dom";
-import { Dialog } from 'primereact/dialog';
 
 
 function Notifikasi() {
@@ -23,10 +22,8 @@ function Notifikasi() {
     const token = cookies.get('token')
 
     const [userData, setUserData] = useState([]);
-    // console.log(token);
 
     const decode = jwt_decode(token);
-    // console.log(decode.id);
     useEffect(() => {
         const fetchUserData = async () => {
             try {

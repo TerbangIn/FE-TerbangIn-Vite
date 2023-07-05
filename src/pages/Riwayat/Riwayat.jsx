@@ -12,8 +12,6 @@ import "../../index.css";
 import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
 import { Calendar } from 'primereact/calendar';
-import RiwayatKosong from "./riwayatKosong";
-import { OverlayPanel } from 'primereact/overlaypanel';
 import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
@@ -79,7 +77,6 @@ function Riwayat() {
 
     fetchUserData();
   }, [token]);
-  console.log(decode.id);
 
   const Hasil = [];
   function cariDataPemesanan(kode) {

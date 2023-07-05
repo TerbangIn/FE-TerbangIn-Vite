@@ -8,7 +8,6 @@ import CompNavbar from '../../components/Navbar';
 
 function Beranda() {
   const { flightData } = useSelector((state) => state.FlightDestinationReducer)
-  console.log(flightData)
 
   const dispatch = useDispatch();
 

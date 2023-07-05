@@ -41,8 +41,6 @@ const Login = () => {
                     const cookies = new Cookies()
                     const token = res.data.data.token
                     cookies.set("token", token, { path: "/" })
-                    console.log(token);
-                    // toast.success(`${res.data.message}, redirect in 3s...`, {
                     await toast.success('Login Success, redirect in 3s...', {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -73,7 +71,6 @@ const Login = () => {
                     })
                 }
             )
-            // console.log(username, password);
         } catch (error) {
             console.log(error)
         }

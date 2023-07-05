@@ -12,13 +12,11 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import "react-toastify/dist/ReactToastify.css"
 import { Tag } from 'primereact/tag';
-import { differenceInYears } from 'date-fns';
 
 const cardRiwayat = (props) => {
     const [visiblefilter, setVisibleFilter] = useState(false);
     const [visible, setVisible] = useState(false);
     const [filter, setfilter] = useState([]);
-    const [harga, setHarga] = useState(0);
     const showFilter = () => {
         setVisibleFilter(true);
     };
@@ -69,18 +67,6 @@ const cardRiwayat = (props) => {
         const jam = new Date(date).getHours()
         const menit = new Date(date).getMinutes()
         return <>{jam} : {menit}</>
-    }
-    function rangeTime(departureTime, arrivalTime){
-        // console.log(departureTime[0]);
-        // console.log(arrivalTime[0]);
-        // const durationInMilliseconds = new Date(arrivalTime.getTime()) - new Date(departureTime.getTime());
-        // const durationInMilliseconds = new Date(arrivalTime.getTime()) - new Date(departureTime.getTime());
-
-        // const hours = Math.floor(durationInMilliseconds / (1000 * 60 * 60));
-        // const minutes = Math.floor((durationInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
-        // const seconds = Math.floor((durationInMilliseconds % (1000 * 60)) / 1000);
-
-        // console.log(`Lama waktu: ${hours} jam, ${minutes} menit, ${seconds} detik`);
     }
 
     const getClass = (economy, bussiness, first, premium) => {

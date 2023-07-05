@@ -1,46 +1,5 @@
-// const [value, setValue] = useState('');
-// const [items, setItems] = useState([]);
-
-// const search = (event) => {
-//     setItems([...Array(10).keys()].map(item => event.query + '-' + item));
-// }
-
-// const handleSearch = () => {
-//     // Lakukan aksi pencarian sesuai dengan nilai `value`
-//     console.log("Melakukan pencarian:", value);
-// };
-
-// const logoItem =
-//     <div to="/" className="ms-24">
-//         <Image src={Logo} alt="Logo" width="200" />
-//     </div>
-
-// const buttonItem =
-//     <div className="card justify-end me-24">
-//         <span className="p-input-icon-right">
-//             <Link to={'/riwayat'}>
-//                 <Button icon="pi pi-list" rounded text severity="secondary" aria-label="User" />
-//             </Link>
-//             <Link to={'/notifikasi'}>
-//                 <Button icon="pi pi-bell" rounded text severity="secondary" aria-label="User" />
-//             </Link>
-//             <Link to={'/akun'}>
-//                 <Button icon="pi pi-user" rounded text severity="secondary" aria-label="User" />
-//             </Link>
-//         </span>
-
-//     </div>
-
-// return (
-//     <div className="card col-12">
-//         <Menubar className="" start={logoItem} end={buttonItem} />
-//     </div>
-// )
 import { useEffect, useState } from "react";
-import Cookies from 'universal-cookie';
-// import { Button } from 'primereact/button';
-// import './Navbar.css';
-// import { Image } from "primereact/image";
+import Cookies from 'universal-cookie';;
 
 import Logo from "../assets/logo (1).png"
 import { Link } from "react-router-dom";
@@ -68,8 +27,6 @@ const CompNavbar = () => {
             setIsToken(false)
         }
     }, [token]);
-
-    console.log(isToken);
 
     const navList = (
         <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">

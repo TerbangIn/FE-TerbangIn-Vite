@@ -1,13 +1,8 @@
-import React, { useState , useRef , useEffect} from "react";
 import "./Riwayat.css";
 import "../../index.css";
-import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
-import { Divider } from 'primereact/divider';
-// import logoflower from './flower_logo.png'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
-import "primereact/resources/primereact.min.css";    
-import { Tag } from 'primereact/tag';   
+import "primereact/resources/primereact.min.css"; 
 import EmptyLogo from './empty.png'                                
          
 

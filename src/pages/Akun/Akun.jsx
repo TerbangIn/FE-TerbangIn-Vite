@@ -8,15 +8,13 @@ import "react-toastify/dist/ReactToastify.css"
 import { Button } from "primereact/button";
 import { HiOutlinePencil } from "react-icons/hi";
 import { HiOutlineUserGroup } from "react-icons/hi";
-import { HiUserGroup } from "react-icons/hi";
 import { LuLogOut } from "react-icons/lu";
 import { Card } from "primereact/card";
 import { Divider } from "primereact/divider";
-import { InputSwitch } from "primereact/inputswitch";
 import { InputText } from "primereact/inputtext";
 import { Panel } from "primereact/panel";
 import { Toast } from 'primereact/toast';
-import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { ConfirmDialog } from 'primereact/confirmdialog';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -93,7 +91,6 @@ function Akun() {
           },
         }
       );
-      console.log(response.status);
     } catch (error) {
       console.error(error);
     }
