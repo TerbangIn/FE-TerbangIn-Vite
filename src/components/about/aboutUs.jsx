@@ -39,7 +39,7 @@ function AboutUs() {
             </div>
         </Card>
             <Card className="w-4/5 mx-auto my-auto">
-                <Panel className="pb-2 rounded-lg" header="C7 BINAR ACADEMY BATCH 4">
+                <Panel className="pb-2 rounded-lg" header="C8 BINAR ACADEMY BATCH 4">
                     <div className="text-2xl font-bold text-900 text-center">TEAM LINEUP</div>
                     <div className="grid grid-cols-4 gap-4">
                         <Card className="hover:scale-105">
