@@ -23,7 +23,6 @@ function Destinasi() {
         "November",
         "Desember",
     ];
-    console.log(filter)
 
     const date = (dateString) => {
         const date = new Date(dateString);

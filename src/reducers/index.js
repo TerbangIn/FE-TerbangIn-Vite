@@ -5,5 +5,4 @@ import ModalPassengerReducer from "./landingPage/Passenger";
 export default combineReducers({
     FlightDestinationReducer,
     ModalPassengerReducer,
-
 })

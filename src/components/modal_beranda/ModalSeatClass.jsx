@@ -7,7 +7,7 @@ import Line from "../../assets/images/line_thin.svg"
 import checklist from "../../assets/images/checklist.svg"
 import save from "../../assets/images/Brand_button.svg"
 
-function ModalSeatClass({onChange}) {
+function ModalSeatClass({ onChange }) {
     const [visible, setVisible] = useState(false);
     const [selectedSeatClass, setSelectedSeatClass] = useState("Bussiness");
     const [savedSeatClass, setSavedSeatClass] = useState(null);
@@ -35,7 +35,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold pt-2 ml-4 py-3">Economy</p>
                             </div>
                             {selectedSeatClass === 'Economy' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -44,7 +44,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">Premium Economy</p>
                             </div>
                             {selectedSeatClass === 'Premium Economy' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -53,7 +53,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">Business</p>
                             </div>
                             {selectedSeatClass === 'Business' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -62,7 +62,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">First Class</p>
                             </div>
                             {selectedSeatClass === 'First Class' && (
-                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" className="mb-4" />

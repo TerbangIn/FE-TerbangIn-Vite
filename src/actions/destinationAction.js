@@ -9,7 +9,6 @@ export const getFlight = () => {
             }
         })
             .then(function (response) {
-                console.log(response.data.data)
                 dispatch({
                     type: GET_FLIGHT,
                     payload: {
@@ -18,7 +17,6 @@ export const getFlight = () => {
                 })
             })
             .catch(function (error) {
-                console.log(error.message)
                 dispatch({
                     type: GET_FLIGHT,
                     payload: {
