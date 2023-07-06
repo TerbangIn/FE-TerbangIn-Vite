@@ -7,7 +7,6 @@ import { Button } from "primereact/button";
 
 import destination from "../../assets/images/jkt_bnk1.svg"
 
-
 function Destinasi() {
     const { flightData } = useSelector((state) => state.FlightDestinationReducer)
     const [filter, setFilter] = useState('');
