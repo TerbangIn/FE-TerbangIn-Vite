@@ -1,12 +1,12 @@
 import Header from '../components/header'
 import Login from '../components/login'
 import Logo from './tiketku.png'
-import { Image } from 'primereact/image';
+// import { Image } from 'primereact/image';
 
 export default function LoginPage() {
     return (
         <div className="flex items-center overflow-y-hidden h-screen">
-            <div className='max-xl:w-[90%] xl:w-9/12 lg:w-8/12 hidden lg:block'>
+            <div className='max-xl:w-[90%] xl:w-10/12 lg:w-8/12 hidden lg:block'>
                 <img src={Logo} alt="Image" />
             </div>
             <div className='flex flex-col w-full'>
