@@ -1,16 +1,12 @@
 import "./Riwayat.css";
 import "../../index.css";
-import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
 import { Divider } from 'primereact/divider';
-import logoflower from './flower_logo.png'
+import logo from '../../assets/logo (1).png'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
-import "primereact/resources/primereact.min.css";    
-import { Tag } from 'primereact/tag';                               
+import "primereact/resources/primereact.min.css";                          
 import { useLocation } from "react-router";
-import React, { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
-// import { setProducts } from '../../actions';
+import React from "react";
 import Navbar from "../../components/Navbar";
 import "../../index.css";
 import 'primeicons/primeicons.css';
@@ -67,8 +63,13 @@ const Cetak = (props) => {
                     </div>
                 </Card>
                     <Card className="md:w-1/3 sm:w-full mx-auto border-4 border-binar-purple my-4">
-                        <div className="text-md text-center justify-end font-bold text-binar-purple">Cetak Tiket</div>
-                        <div className="text-md text-center justify-end font-base">Nikmati Perjalanan Anda!</div>
+                        <div className="grid grid-cols-2 mx-2 mb-4">
+                            <img alt="logo" src={logo} className="flex w-40 text-center"></img>
+                            <div >
+                                <div className="text-md text-end font-bold text-binar-purple">Cetak Tiket</div>
+                                <div className="text-md text-end font-base">Nikmati Perjalanan Anda!</div>
+                            </div>
+                        </div>
                         <Card className="p-0 button sm:mx-6 md:mx-auto border-2 justify-center border-binar-purple">
                             <div className="flex">
                                 <div className="flex-1">
@@ -79,7 +80,7 @@ const Cetak = (props) => {
                                 </div>
                                 </div>
                                 <div className="shrink-0 my-auto w-8">
-                                    <div className="text-md font-bold text-binar-purple">to</div>
+                                    <div className="text-md font-bold text-binar-purple text-center">to</div>
                                 </div>
                                 <div className="flex-1">
                                 <div className="col-3 align-items-center align-items-center text-center">
@@ -104,22 +105,19 @@ const Cetak = (props) => {
                                 </div>
                             </div>
                         </Card>
-                    <div className="text-center my-4">
-                        <h1 className="text-sm font-semibold  text-binar-purple">Penumpang : {Location?.state?.props?.data[0].tiket[0].passenger.first_name}</h1>
-                        <div className="text-sm font-medium text-700">ID : {Location?.state?.props?.data[0].tiket[0].passenger.identity_number}</div>
-                    </div>
-                    <div className="text-base font-semibold text-900 pt-4 text-center">Fasilitas</div>
-                    <div className="text-base font-semibold text-900 pt-4 text-center">{Location?.state?.props?.data[0].tiket[0].flight.information.map(e=> 
-                                (
-                                    <h1 className="text-sm font-semibold  text-binar-purple">- {e.name}</h1>
-                                ))}</div>
+                        <div className="text-center my-4">
+                            <h1 className="text-sm font-semibold  text-binar-purple">Penumpang : {Location?.state?.props?.data[0].tiket[0].passenger.first_name}</h1>
+                            <div className="text-sm font-medium text-700">ID : {Location?.state?.props?.data[0].tiket[0].passenger.identity_number}</div>
+                        </div>
+                        <div className="text-base font-semibold text-900 pt-4 text-center">Fasilitas</div>
+                        <div className="text-base font-semibold text-900 text-center">{Location?.state?.props?.data[0].tiket[0].flight.information.map(e=> 
+                                    (
+                                        <h1 className="text-sm font-semibold  text-binar-purple">- {e.name}</h1>
+                                    ))}</div>
                     </Card>
-                    <div className="text-left mt-6 grid sm:grid-cols-1 md:grid-cols-2 sm:mx-4 xs:mx-12 md:mx-auto max-w-4xl">
-                <div>
-                </div>
+                
                 <div>
 
-                </div>
             </div>
             </div>
     )
