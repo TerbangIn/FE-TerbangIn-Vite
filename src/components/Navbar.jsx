@@ -20,6 +20,7 @@ const CompNavbar = () => {
     const [isToken, setIsToken] = useState(false);
     const cookies = new Cookies()
     const token = cookies.get("token")
+    console.log(token)
 
     useEffect(() => {
         window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
