@@ -160,7 +160,7 @@ const JadwalPenerbangan = () => {
                 pauseOnHover
                 theme="light"
             />
-            <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 md:w-3/4 md:-mt-9 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
+            <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 sm:mx-auto sm:w-4/5 md:w-3/4 md:-mt-9 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
                 <p className="text-lg font-bold lg:ml-4 xl:ml-4 md:-mt-0 -mt-3">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
                 <div className="grid md:grid-cols-3 grid-cols mt-5">
                     <div>
@@ -240,7 +240,7 @@ const JadwalPenerbangan = () => {
                     </div>
                 </div>
             </Card>
-            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto md:w-3/4 lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
+            <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto sm:w-4/5 md:w-3/4 lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
                 <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</p>
             </div>
         </>
