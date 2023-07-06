@@ -35,6 +35,7 @@ import save from "../assets/images/Brand_button.svg"
 import { useLocation, useNavigate } from "react-router";
 import Navbar from "./Navbar";
 import notfound from '../assets/notfound.png'
+import rupiah from "../formatter/rupiah";
 
 const HasilPencarian = () => {
   const location = useLocation()
@@ -148,6 +149,7 @@ const HasilPencarian = () => {
       category: filters.category,
       date: filters.date,
     }).then(res => {
+      console.log(res?.data);
       setDatas(res?.data?.data)
     })
   }
@@ -403,7 +405,7 @@ const HasilPencarian = () => {
                                       </div>
                                       <div className="flex md:ml-11 ml-8 p-3">
                                         <div className="flex flex-col font-bold gap-2">
-                                          <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                          <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                           <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                         </div>
                                       </div>
@@ -487,7 +489,7 @@ const HasilPencarian = () => {
                                         </div>
                                         <div className="flex md:ml-11 ml-8 p-3">
                                           <div className="flex flex-col font-bold gap-2">
-                                            <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                            <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                             <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                           </div>
                                         </div>
@@ -570,7 +572,7 @@ const HasilPencarian = () => {
                                           </div>
                                           <div className="flex md:ml-11 ml-8 p-3">
                                             <div className="flex flex-col font-bold gap-2">
-                                              <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                              <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                               <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                             </div>
                                           </div>
@@ -653,7 +655,7 @@ const HasilPencarian = () => {
                                             </div>
                                             <div className="flex md:ml-11 ml-8 p-3">
                                               <div className="flex flex-col font-bold gap-2">
-                                                <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                                <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                                 <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                               </div>
                                             </div>
@@ -736,7 +738,7 @@ const HasilPencarian = () => {
                                               </div>
                                               <div className="flex md:ml-11 ml-8 p-3">
                                                 <div className="flex flex-col font-bold gap-2">
-                                                  <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                                  <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                                   <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                                 </div>
                                               </div>
@@ -817,7 +819,7 @@ const HasilPencarian = () => {
                                               </div>
                                               <div className="flex md:ml-11 ml-8 p-3">
                                                 <div className="flex flex-col font-bold gap-2">
-                                                  <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                                  <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                                   <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                                 </div>
                                               </div>
