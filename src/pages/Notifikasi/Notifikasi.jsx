@@ -87,7 +87,7 @@ function Notifikasi() {
                                 </div>
                                 <div class="flex-16 flex my-auto gap-2">
                                     <div className="text-sm font-normal opacity-50 justify-items-end">{getTanggal(notif.updatedAt)}, {getTimes(notif.updatedAt)}</div>
-                                    <i className="pi pi-circle-fill my-auto" style={{ color: 'green' }}></i>
+                                    <i className="pi pi-circle-fill my-auto" style={{ color: 'green', fontSize: '0.5rem' }}></i>
                                 </div>
                             </div>
                         ))}

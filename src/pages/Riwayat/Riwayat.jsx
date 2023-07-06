@@ -148,7 +148,7 @@ function Riwayat() {
       <div className="pt-20 column-12 body">
         <Card>
           <div className="text-left mx-auto max-w-4xl">
-            <div className="text-left mx-auto flex-auto">
+            <div className="text-left mx-auto flex-auto ms-1">
               <div className="text-md font-bold text-900 lg:pb-4 sm:pb-2">Riwayat Pemesanan</div>
               <div className="text-base font-bold flex space-y-2 justify-between ">
                 <button className="w-4/5 rounded-lg h-12 bg-binar-purple">
