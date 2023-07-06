@@ -40,7 +40,7 @@ const Login = () => {
                 async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
-                    cookies.set("token", token, { path: "/" })
+                    cookies.set("token", token, { path: "/beranda" })
                     await toast.success('Login Success, redirect in 3s...', {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -59,7 +59,8 @@ const Login = () => {
                 }
             ).catch(
                 function (err) {
-                    toast.error(`${err}`, {
+                    // console.log(err.response.data.message);
+                    toast.error(`${err.response.data.message}`, {
                         position: "bottom-center",
                         autoClose: 2000,
                         hideProgressBar: true,

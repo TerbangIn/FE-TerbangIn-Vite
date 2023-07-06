@@ -7,21 +7,30 @@ import { Divider } from 'primereact/divider';
 import logoflower from './flower_logo.png'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
 import "primereact/resources/primereact.min.css";    
-import { Tag } from 'primereact/tag';                                   
+import { Tag } from 'primereact/tag';
+import { useNavigate } from "react-router";
          
 
 const detailRiwayat = (props) => {
+    const Navigate = useNavigate()
+
+    function cetakTiket (){
+        Navigate('/cetak', {state:{props}})
+    }
 
     const getButtonCheckOut = (detail) => {
         switch (detail[0]) {
-            case 'Issued':
-                return (<Button label="Cetak Tiket" raised className="w-full"/>)
+            case 'waiting':
+                return (<Button label="Waiting" severity="help" raised className="w-full"/>)
 
-            case 'Unpaid':
-                return (<Button label="Lanjut Bayar" severity="danger" raised className="w-full"/>)
+            case 'failure':
+                return (<Button label="Failure" severity="danger" raised className="w-full" disabled/>)
 
-            case 'Canclled':
+            case 'cancelled':
                 return (<Button label="Cancelled" severity="secondary" raised className="w-full" disabled/>)
+
+            case 'success':
+                return (<Button label="Cetak Tiket" severity="success" raised className="w-full" onClick={cetakTiket}/>)
 
             default:
                 return null;
@@ -29,12 +38,15 @@ const detailRiwayat = (props) => {
     };
 
     const getStatus = (detail) => {
-        if(detail === 'Issued')  {
-            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="success" value="Issued"></Tag>);
-        }else if(detail == 'Unpaid')  {
-            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="danger" value="Unpaid"></Tag>)
-        }else if(detail == 'Cancelled')  {
-            return 'First'
+        console.log(detail);
+        if(detail[0] === 'waiting')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="help" value="Waiting"></Tag>);
+        }else if(detail[0] == 'failure')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="danger" value="Failure"></Tag>)
+        }else if(detail[0] == 'cancelled')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="secondary" value="Cancelled"></Tag>)
+        }else if(detail[0] == 'success')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="success" value="Success"></Tag>)
         }
     };
 
@@ -197,9 +209,18 @@ const detailRiwayat = (props) => {
                     {jumlahBaby != 0 ? (<>{jumlahBaby} Baby</>) : (<></>)}
                 </div>
                 <div className="grid-cols-1">
-                    {hargaAdult != 0 ? (hargaAdult) : (<></>)}
-                    {hargaChild != 0 ? (hargaChild) : (<></>)}
-                    {hargaBaby != 0 ? (hargaBaby) : (<></>)}
+                    {hargaAdult != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaAdult)) : (<></>)}
+                    {hargaChild != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaChild)) : (<></>)}
+                    {hargaBaby != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaBaby)) : (<></>)}
                 </div>
             </div>
         )
@@ -211,7 +232,7 @@ const detailRiwayat = (props) => {
                 <div className="lg:ps-8 mb-12">
                     <div className="text-base font-normal flex justify-between text-900">
                         <div className="text-md font-bold text-900">Detail Pesanan</div>
-                        {/* {getStatus(props.data.map(e => e.status))} */}
+                        {getStatus(props.data.map(e => e.payment_status))}
                     </div>
                     <div>
                         <div className="flex justify-start">
@@ -266,14 +287,15 @@ const detailRiwayat = (props) => {
                     <Divider className="m-2"/>
                     <div className="text-base font-normal flex justify-between text-900 pb-4">
                         <div className="text-md font-bold text-900">Total</div>
-                        <div className="text-md font-bold justify-items-end text-binar-purple">{getHarga(props.data.map(e => e.tiket))}</div>
+                        <div className="text-md font-bold justify-items-end text-binar-purple">{Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(getHarga(props.data.map(e => e.tiket)))}</div>
                     </div>
-{/*                         
-                    <Button label="Lanjut Bayar" severity="danger" raised className="w-full md:mx-0 sm-mx-12"/> */}
                     <div>
                     </div>
-                    {/* {getButtonCheckOut(props.data.map(e => e.status))} */}
-                    <Button label="Cetak Tiket" raised className="w-full"/>
+                    {getButtonCheckOut(props.data.map(e => e.payment_status))}
+                    {/* <Button label="Cetak Tiket" raised className="w-full"/> */}
                 </div>
             </div>
     )

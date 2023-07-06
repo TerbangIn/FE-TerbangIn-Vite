@@ -87,7 +87,7 @@ function Akun() {
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzYXlhYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg2NTYzMDg4fQ.zCE_OynwEoymILiP9N9OrGdCbPRZjxejG1h1lH1_qUU`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -122,7 +122,7 @@ function Akun() {
                 <div className="text-md font-bold lg:pb-4 sm:pb-2">Akun</div>
                 <div className="text-base font-bold flex space-y-2 justify-between ">
                   <button className="w-full rounded-lg h-12 bg-binar-purple">
-                    <Link to={'/'} className="flex items-center font-semibold gap-2 ms-4 text-white">
+                    <Link to={'/beranda'} className="flex items-center font-semibold gap-2 ms-4 text-white">
                       <div className="pi pi-arrow-left"></div>
                       Beranda
                     </Link>
@@ -153,7 +153,7 @@ function Akun() {
                 <Divider className="w-10" />
               </div>
               <div className="flex-auto flex my-auto gap-2">
-                <Card title="Ubah Data Profil" className="border shadow-none w-full md:mx-auto sm:mx-6">
+                <Card title="Ubah Data Profil" className="border-4 border-binar-purple shadow-none w-full md:mx-auto sm:mx-6">
                   <Panel header="Data Profil" className="pb-2 rounded-lg">
                     <div className="text-sm font-bold justify-items-end text-binar-purple">
                       Nama Lengkap

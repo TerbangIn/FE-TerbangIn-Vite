@@ -154,7 +154,7 @@ export default function OTPRegister() {
               type="numeric"
               inputMode="number"
               style={{ paddingTop: '44px', paddingBottom: '24px' }}
-              inputStyle={{ border: '1px solid #D0D0D0', borderRadius: '16px', margin: '0 7px' }}
+              inputStyle={{ border: '1px solid #D0D0D0', borderRadius: '16px', margin: '0 2px' }}
               // inputFocusStyle={{borderColor: 'blue'}}
               onComplete={(value, index) => { }}
               autoSelect={true}
@@ -162,7 +162,7 @@ export default function OTPRegister() {
             />
 
             {seconds > 0 ? (
-              <h2>
+              <h2 className='flex text-center'>
                 Kirim ulang OTP dalam {seconds < 10 ? `${seconds}` : seconds} detik
               </h2>
             ) : (

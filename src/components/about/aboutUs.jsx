@@ -23,21 +23,20 @@ import oryza from '../../assets/member/Oryza.png'
 function AboutUs() {
 
     return (
-
         <div>
-        <CompNavbar/>
-        <Card className="my-4">
-            <div className="max-w-full">
-                    <div className="text-base font-bold flex mx-auto justify-center ">
+            <CompNavbar />
+            <Card className="my-4">
+                <div className="max-w-full">
+                    <div className="text-base font-bold flex mx-auto justify-center mt-14">
                         <button className="w-4/5 rounded-lg h-16 bg-binar-purple">
-                            <Link to={'/riwayat'} className="flex items-center font-bold gap-2 ms-4 text-white">
+                            <Link to={'/akun'} className="flex items-center font-bold gap-2 ms-4 text-white">
                                 <div className="pi pi-arrow-left"></div>
-                                Beranda
+                                Akun
                             </Link>
                         </button>
                     </div>
-            </div>
-        </Card>
+                </div>
+            </Card>
             <Card className="w-4/5 mx-auto my-auto">
                 <Panel className="pb-2 rounded-lg" header="C8 BINAR ACADEMY BATCH 4">
                     <div className="text-2xl font-bold text-900 text-center">TEAM LINEUP</div>
