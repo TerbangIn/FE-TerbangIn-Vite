@@ -211,7 +211,7 @@ const detailRiwayat = (props) => {
                 <div className="lg:ps-8 mb-12">
                     <div className="text-base font-normal flex justify-between text-900">
                         <div className="text-md font-bold text-900">Detail Pesanan</div>
-                        {getStatus(props.data.map(e => e.status))}
+                        {/* {getStatus(props.data.map(e => e.status))} */}
                     </div>
                     <div>
                         <div className="flex justify-start">
@@ -272,7 +272,8 @@ const detailRiwayat = (props) => {
                     <Button label="Lanjut Bayar" severity="danger" raised className="w-full md:mx-0 sm-mx-12"/> */}
                     <div>
                     </div>
-                    {getButtonCheckOut(props.data.map(e => e.status))}
+                    {/* {getButtonCheckOut(props.data.map(e => e.status))} */}
+                    <Button label="Cetak Tiket" raised className="w-full"/>
                 </div>
             </div>
     )

@@ -136,7 +136,7 @@ const cardRiwayat = (props) => {
                         <div className="mx-6 lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
                         <Card className="p-0 button sm:mx-6 mx-8 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                             <div className="mx-4 mb-4">
-                                {getStatus(riwayat.status)}
+                                {/* {getStatus(riwayat.status)} */}
                             </div>
                             <div className="flex">
                                 <div className="flex ms-4 gap-2">
