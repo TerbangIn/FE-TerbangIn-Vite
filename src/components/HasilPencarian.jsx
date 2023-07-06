@@ -249,7 +249,7 @@ const HasilPencarian = () => {
             <h1 className="text-2xl font-bold md:mb-8 mb-5">Pilih Penerbangan</h1>
             {/* Tag Pencarian */}
             <div className="flex md:flex-row flex-col gap-2 my-4 mx-2">
-              <a href="/" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
+              <a href="/beranda" className="tag bg-[#A06ECE] text-white rounded-lg py-1 flex items-center md:gap-4 gap-4 mx-5 md:mx-0 md:w-10/12 w-full ml-0 mr-80">
                 <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
                 <p className="md:pr-96 md:text-base text-[15px]"> {location?.state?.from} &gt; {location?.state?.to} - {location?.state?.passenger?.jumlah} Penumpang - {location?.state?.category} </p>
               </a>

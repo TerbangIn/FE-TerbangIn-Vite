@@ -6,6 +6,7 @@ import Register from "./pages/register";
 import OTPRegister from "./pages/otpRegister";
 import OTPResetPassword from "./pages/otpResetPassword";
 import ResetPassword from "./pages/resetPassword";
+import ResetPasswordBaru from "./pages/resetPasswordBaru";
 import Riwayat from "./pages/Riwayat/Riwayat";
 import Beranda from './pages/Beranda/Beranda';
 import BerandaLogin from './pages/Beranda/BerandaLogin';
@@ -39,7 +40,7 @@ function App() {
           <Route path="/otp-register" element={<OTPRegister />} />
           <Route path="/otp-reset-password" element={<OTPResetPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/reset-password-baru" element={<ResetPassword />} />
+          <Route path="/reset-password-baru" element={<ResetPasswordBaru />} />
           <Route path="/" element={<Beranda />} />
           <Route path="/beranda" element={<BerandaLogin />} />
           <Route path="/BerandaLoading" element={<BerandaLoading />} />

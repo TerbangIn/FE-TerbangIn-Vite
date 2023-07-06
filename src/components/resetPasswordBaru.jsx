@@ -64,7 +64,7 @@ function ResetPasswordBaru() {
                         theme: "colored",
                     })
                     setTimeout(() => {
-                        navigate("/")
+                        navigate("/login")
                     }, 3000);
                 }
             ).catch(
