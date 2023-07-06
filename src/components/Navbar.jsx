@@ -12,6 +12,9 @@ import {
 import { Button } from "primereact/button";
 import { Image } from "primereact/image";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
+
+import fi_login from "../assets/images/fi_log-in.svg"
+
 const CompNavbar = () => {
     const [openNav, setOpenNav] = useState(false);
     const [isToken, setIsToken] = useState(false);
@@ -122,12 +125,10 @@ const CompNavbar = () => {
                                 {logoItem}
                             </div>
                             <Link to={"/login"}>
-                                <Button label="Masuk" severity="help" icon={<svg className="me-2" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M8.3335 14.1663L12.5002 9.99967L8.3335 5.83301" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12.5 10H2.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M12.5 2.5H15.8333C16.2754 2.5 16.6993 2.67559 17.0118 2.98816C17.3244 3.30072 17.5 3.72464 17.5 4.16667V15.8333C17.5 16.2754 17.3244 16.6993 17.0118 17.0118C16.6993 17.3244 16.2754 17.5 15.8333 17.5H12.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                                } iconPos="left" />
+                                <div className="flex items-center w-26 h-12 rounded-xl bg-primary2 hover:bg-purple1" >
+                                    <Image src={fi_login} alt="login" className="mx-2 pl-1"/>
+                                    <div className=" pr-4">Masuk</div>
+                                </div>
                             </Link>
                         </>
 

@@ -5,7 +5,7 @@ import { Card } from "primereact/card";
 import rupiah from "../../formatter/rupiah";
 import { Button } from "primereact/button";
 
-import destination from "../../assets/images/jakarta_bangkok.svg"
+import destination from "../../assets/images/jkt_bnk1.svg"
 
 
 function Destinasi() {
