@@ -98,7 +98,6 @@ const JadwalPenerbangan = () => {
     const handleSelectionFrom = (selectedValue) => {
         setIsModalOpenFrom(false);
         setSelectedOptionFrom(selectedValue);
-        onSelect(selectedValue);
     };
 
     const [isModalOpenTo, setIsModalOpenTo] = useState(false);
@@ -109,7 +108,6 @@ const JadwalPenerbangan = () => {
     const handleSelectionTo = (selectedValue) => {
         setIsModalOpenTo(false);
         setSelectedOptionTo(selectedValue);
-        onSelect(selectedValue);
     };
 
     const return1Handler = () => {
