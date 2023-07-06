@@ -186,7 +186,7 @@ const JadwalPenerbangan = () => {
                         <div className="flex flex-col">
                             <div className="flex items-center mx-10 mt-7 gap-2">
                                 <div className="text-base text-primary1 mx-10 lg:ml-16 xl:ml-14">Departure</div>
-                                <div className="text-base text-primary1 lg:ml-9 lg:mr-12 xl:ml-20 xl:mr-16 ml-2">Return</div>
+                                <div className="text-base text-primary1 lg:ml-9 lg:mr-12 xl:ml-18 xl:mr-16 ml-2">Return</div>
                                 <div className="md:ml-0 "><InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} /></div>
                             </div>
                             <div className="flex items-center lg:mt-2 -mr-28 lg:ml-4 xl:ml-4 md:pb-0 md:gap-0 gap-2 pb-11">

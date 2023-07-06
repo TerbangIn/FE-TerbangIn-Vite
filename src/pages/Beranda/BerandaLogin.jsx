@@ -6,7 +6,7 @@ import Destinasi from './Destinasi';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFlight } from '../../actions/destinationAction';
 
-function Beranda() {
+function BerandaLogin() {
   const { flightData } = useSelector((state) => state.FlightDestinationReducer)
   console.log(flightData)
 
@@ -26,4 +26,4 @@ function Beranda() {
   )
 }
 
-export default Beranda
+export default BerandaLogin;
