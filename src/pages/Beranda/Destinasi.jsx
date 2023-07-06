@@ -74,7 +74,7 @@ function Destinasi() {
                                     (
                                         <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                             <div>
-                                                <Image src={destination} alt="img" width="200px"/>
+                                                <Image src={flight?.image} alt="img" width="200px" />
                                             </div>
                                             <div>
                                                 <p className="mt-2 font-semibold">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
@@ -96,7 +96,7 @@ function Destinasi() {
                                         return (
                                             <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
                                                 <div>
-                                                    <Image src={destination} alt="img" width="200px"/>
+                                                    <Image src={flight?.image} alt="img" width="200px" />
                                                 </div>
                                                 <div>
                                                     <p className="mt-2 font-semibold">{flight?.source?.country} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.country}</p>
