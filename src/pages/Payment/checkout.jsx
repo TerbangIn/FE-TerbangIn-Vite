@@ -388,7 +388,7 @@ function Checkout() {
                         </div> */}
                         {data.map((data, index) => {
                             return (
-                                <div key={index} className="data max-sm:ml-[83px] max-sm:w-[350px] sm:w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
+                                <div key={index} className="data max-sm:w-[350px] sm:w-[518px] border-2 border-[#8a8a8a] rounded mt-2">
                                     <h1 className="text-[20px] font-bold mb-4 mx-4 mt-4">Isi Data Penumpang</h1>
                                     <h1 className="max-sm:w-[320px] sm:w-[486px] h-10 mx-3 bg-[#3c3c3c] text-white text-base rounded-t-lg pt-2 pl-4 ">Data Diri Penumpang {index + 1} - {data?.category}</h1>
                                     <div className="font-semibold align-middle max-sm:ml-3 sm:ml-8">
@@ -411,7 +411,7 @@ function Checkout() {
                                         </div>
                                         <div className="flex flex-row">
                                             <h1 className="text-sm">Punya Nama Keluarga?</h1>
-                                            <div className="ml-[246px]">
+                                            <div className="max-sm:ml-[100px] sm:ml-[246px]">
                                                 <label className="relative inline-flex items-center cursor-pointer">
                                                     <input onClick={() => setIsChecked(!isChecked)} type="checkbox" value="" className="sr-only peer" id="check" />
                                                     <div className="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 border-2 border-purple-900  peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-900"></div>

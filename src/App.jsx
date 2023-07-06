@@ -46,14 +46,14 @@ function App() {
           <Route path="/TiketHabis" element={<TiketHabis />} />
           <Route path="/PencarianEmpty" element={<PencarianEmpty />} />
           <Route path="/hasil-pencarian" element={<HasilPencarian />} />
-          <Route path="/riwayat" element={<Riwayat />} />
-          <Route path="/akun" element={<Akun />} />
-          <Route path="/notifikasi" element={<Notifikasi />} />
+          <Route path="/riwayat" element={<Authmiddleware><Riwayat/></Authmiddleware>} />
+          <Route path="/akun" element={<Authmiddleware><Akun/></Authmiddleware>} />
+          <Route path="/notifikasi" element={<Authmiddleware><Notifikasi/></Authmiddleware>} />
           <Route path="/about" element={<About />} />
-          <Route path="/waiting" element={<Waiting />} />
-          <Route path='/checkout' element={<Checkout />} />
-          <Route path='/payment' element={<Payment />} />
-          <Route path='/payment-success' element={<Success />} />
+          <Route path="/waiting" element={<Authmiddleware><Waiting/></Authmiddleware>} />
+          <Route path='/checkout' element={<Authmiddleware><Checkout/></Authmiddleware>} />
+          <Route path='/payment' element={<Authmiddleware><Payment/></Authmiddleware>} />
+          <Route path='/payment-success' element={<Authmiddleware><Success/></Authmiddleware>} />
         </Routes>
       </BrowserRouter>
     </>
