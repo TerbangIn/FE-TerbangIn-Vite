@@ -85,7 +85,7 @@ function Destinasi() {
                                                 <p>{date(flight.departure_date)}</p>
                                             </div>
                                             <div>
-                                                <p className="text-lg"><span className="font-bold text-primary5">{rupiah(flight.economy_class_price ? flight.economy_class_price : flight.first_class_price)} </span></p>
+                                                <p className="text-lg"><span className="font-bold text-primary5">{rupiah(flight?.economy_class_price ? flight?.economy_class_price : flight?.first_class_price ? flight?.first_class_price : flight?.business_class_price ? flight?.business_class_price : flight?.premium_price)} </span></p>
                                             </div>
                                         </Card>
                                     )
@@ -107,7 +107,7 @@ function Destinasi() {
                                                     <p>{date(flight.departure_date)}</p>
                                                 </div>
                                                 <div>
-                                                    <p className="text-lg"><span className="font-bold text-primary5">{rupiah(flight.economy_class_price ? flight.economy_class_price : flight.first_class_price)} </span></p>
+                                                    <p className="text-lg"><span className="font-bold text-primary5">{rupiah(flight?.economy_class_price ? flight?.economy_class_price : flight?.first_class_price ? flight?.first_class_price : flight?.business_class_price ? flight?.business_class_price : flight?.premium_price)} </span></p>
                                                 </div>
                                             </Card>
                                         )

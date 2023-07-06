@@ -36,11 +36,20 @@ function Checkout() {
     const [child, setChild] = useState([])
     const [baby, setBaby] = useState([])
     const [adult, setAdult] = useState([])
-
-    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     const cookies = new Cookies();
     const token = cookies.get('token')
     const decode = jwtDecode(token)
+
+    // console.log(token);
+
+    // useEffect(() => {
+    //     if (!token) {
+    //         console.log(true);
+    //         nav("/login")
+    //     }
+    // }, [])
+
+    // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ6b2RwbHVnaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg4MTI2MjQ0fQ.Gl40INc4zsM8YQZSAvpsD6THAhjT3vC4VMSd-7tjuK0";
     const getTransaction = async () => {
         return await Axios.post(urlTransaction, {
             user_id: decode.id,
@@ -147,9 +156,6 @@ function Checkout() {
         getTransaction()
         getFlightById()
     }, [])
-
-    console.log(data)
-
 
     const toast = useRef(null);
     const toastBC = useRef(null);
