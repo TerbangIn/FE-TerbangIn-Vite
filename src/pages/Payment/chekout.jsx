@@ -191,7 +191,6 @@ function Checkout() {
 
     function submit(e) {
         e.preventDefault();
-
         data.map((data, index) => {
             Axios.post(url, {
                 title: data.title,
