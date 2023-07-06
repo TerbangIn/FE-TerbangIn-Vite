@@ -29,9 +29,9 @@ function AboutUs() {
                 <div className="max-w-full">
                     <div className="text-base font-bold flex mx-auto justify-center mt-14">
                         <button className="w-4/5 rounded-lg h-16 bg-binar-purple">
-                            <Link to={'/riwayat'} className="flex items-center font-bold gap-2 ms-4 text-white">
+                            <Link to={'/akun'} className="flex items-center font-bold gap-2 ms-4 text-white">
                                 <div className="pi pi-arrow-left"></div>
-                                Beranda
+                                Akun
                             </Link>
                         </button>
                     </div>

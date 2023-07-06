@@ -7,10 +7,16 @@ import { Divider } from 'primereact/divider';
 import logoflower from './flower_logo.png'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
 import "primereact/resources/primereact.min.css";    
-import { Tag } from 'primereact/tag';                                   
+import { Tag } from 'primereact/tag';
+import { useNavigate } from "react-router";
          
 
 const detailRiwayat = (props) => {
+    const Navigate = useNavigate()
+
+    function cetakTiket (){
+        Navigate('/cetak', {state:{props}})
+    }
 
     const getButtonCheckOut = (detail) => {
         switch (detail[0]) {
@@ -24,7 +30,7 @@ const detailRiwayat = (props) => {
                 return (<Button label="Cancelled" severity="secondary" raised className="w-full" disabled/>)
 
             case 'success':
-                return (<Button label="Cetak Tiket" severity="success" raised className="w-full" disabled/>)
+                return (<Button label="Cetak Tiket" severity="success" raised className="w-full" onClick={cetakTiket}/>)
 
             default:
                 return null;
@@ -203,9 +209,18 @@ const detailRiwayat = (props) => {
                     {jumlahBaby != 0 ? (<>{jumlahBaby} Baby</>) : (<></>)}
                 </div>
                 <div className="grid-cols-1">
-                    {hargaAdult != 0 ? (hargaAdult) : (<></>)}
-                    {hargaChild != 0 ? (hargaChild) : (<></>)}
-                    {hargaBaby != 0 ? (hargaBaby) : (<></>)}
+                    {hargaAdult != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaAdult)) : (<></>)}
+                    {hargaChild != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaChild)) : (<></>)}
+                    {hargaBaby != 0 ? (Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(hargaBaby)) : (<></>)}
                 </div>
             </div>
         )
@@ -272,7 +287,10 @@ const detailRiwayat = (props) => {
                     <Divider className="m-2"/>
                     <div className="text-base font-normal flex justify-between text-900 pb-4">
                         <div className="text-md font-bold text-900">Total</div>
-                        <div className="text-md font-bold justify-items-end text-binar-purple">{getHarga(props.data.map(e => e.tiket))}</div>
+                        <div className="text-md font-bold justify-items-end text-binar-purple">{Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(getHarga(props.data.map(e => e.tiket)))}</div>
                     </div>
                     <div>
                     </div>

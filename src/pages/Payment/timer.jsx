@@ -24,7 +24,7 @@ function Timer({seconds}){
     useEffect(() => {
         if (countdown <= 0) {
             clearInterval(timerId.current)
-            Link="/"
+            Link="/beranda"
             alert("Waktu habis")
             
         }

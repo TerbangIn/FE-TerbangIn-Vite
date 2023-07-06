@@ -41,7 +41,7 @@ function Success() {
                     <Link to={"/riwayat"}>
                         <button className="w-[347px] h-12 text-white bg-purple-700 rounded-lg mt-[52px]">Liat Riwayat</button><br />
                     </Link>
-                    <Link to="/" >
+                    <Link to="/beranda" >
                         <button className="w-[347px] h-12 text-white bg-[#beaacf] rounded-lg mt-3">Cari Penerbangan Lain</button>
                     </Link>
                 </div>
