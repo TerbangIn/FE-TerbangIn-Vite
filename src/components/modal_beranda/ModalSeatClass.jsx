@@ -7,7 +7,7 @@ import Line from "../../assets/images/line_thin.svg"
 import checklist from "../../assets/images/checklist.svg"
 import save from "../../assets/images/Brand_button.svg"
 
-function ModalSeatClass({onChange}) {
+function ModalSeatClass({ onChange }) {
     const [visible, setVisible] = useState(false);
     const [selectedSeatClass, setSelectedSeatClass] = useState("Bussiness");
     const [savedSeatClass, setSavedSeatClass] = useState(null);
@@ -22,13 +22,11 @@ function ModalSeatClass({onChange}) {
         setVisible(false);
     }
 
-
     return (
         <>
             <div className="font-bold mx-12 md:ml-14 ml-12" onClick={() => setVisible(true)} style={{ cursor: "pointer" }}>
                 {savedSeatClass || selectedSeatClass}
             </div>
-
             <div className="card flex justify-content-center">
                 <Dialog visible={visible} modal={false} style={{ width: '400px' }} onHide={() => setVisible(false)}>
                     <div className="flex flex-col">
@@ -37,7 +35,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold pt-2 ml-4 py-3">Economy</p>
                             </div>
                             {selectedSeatClass === 'Economy' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -46,7 +44,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">Premium Economy</p>
                             </div>
                             {selectedSeatClass === 'Premium Economy' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -55,7 +53,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">Business</p>
                             </div>
                             {selectedSeatClass === 'Business' && (
-                                    <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" />
@@ -64,7 +62,7 @@ function ModalSeatClass({onChange}) {
                                 <p className="font-bold ml-4 pt-2 py-3">First Class</p>
                             </div>
                             {selectedSeatClass === 'First Class' && (
-                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10"/>
+                                <Image src={checklist} alt="checklist" className="absolute my-3 right-10" />
                             )}
                         </div>
                         <Image src={Line} alt="line" className="mb-4" />
@@ -72,10 +70,8 @@ function ModalSeatClass({onChange}) {
                     <Image src={save} alt="save" className="flex justify-end" style={{ cursor: "pointer" }} onClick={handleSaveClick} />
                 </Dialog>
             </div>
-
         </>
     );
-
 }
 
 export default ModalSeatClass;

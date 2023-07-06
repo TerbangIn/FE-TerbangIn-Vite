@@ -9,9 +9,7 @@ import { List, Modal } from 'antd';
 import ModalPassengers from "../../components/modal_beranda/ModalPassengers";
 import ModalSeatClass from "../../components/modal_beranda/ModalSeatClass";
 import { ToastContainer, toast } from "react-toastify"
-
 import "react-toastify/dist/ReactToastify.css"
-
 
 import icon_pesawat from "../../assets/images/icon_pesawat.svg"
 import icon_date from "../../assets/images/icon_date.svg"
@@ -19,16 +17,13 @@ import return1 from "../../assets/images/return.svg"
 import airline_seat from "../../assets/images/airline-seat.svg"
 import { Card } from "primereact/card";
 
-
 const JadwalPenerbangan = () => {
-
     const counterAdult = useSelector(state => state.ModalPassengerReducer.counterAdult);
     const counterChild = useSelector(state => state.ModalPassengerReducer.counterChild);
     const counterBaby = useSelector(state => state.ModalPassengerReducer.counterBaby);
 
 
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
-    console.log(flightData)
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
@@ -64,13 +59,6 @@ const JadwalPenerbangan = () => {
             "child": counterChild
         })
     }, [counterAdult, counterBaby, counterChild])
-    console.log({
-        selectedOptionFrom,
-        selectedOptionTo,
-        category: seatClass,
-        date: selectedDate1,
-        passenger: passenger
-    })
 
     const dateString = selectedDate1;
     const dateObj = new Date(dateString);
@@ -148,8 +136,8 @@ const JadwalPenerbangan = () => {
         } else {
             navigate('/hasil-pencarian', {
                 state: {
-                    from : selectedOptionFrom,
-                    to :selectedOptionTo,
+                    from: selectedOptionFrom,
+                    to: selectedOptionTo,
                     category: seatClass,
                     date: selectedDate1,
                     passenger: passenger
@@ -157,7 +145,6 @@ const JadwalPenerbangan = () => {
             });
         }
     }
-
 
     return (
         <>

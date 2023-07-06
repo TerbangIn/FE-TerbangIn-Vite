@@ -1,4 +1,3 @@
-
 const initialState = { counterAdult: 0, counterChild: 0, counterBaby: 0, counterAmount: 0 + ' Penumpang', showCounter: true, showCounterAdult: true, showCounterChild: true, showCounterBaby: true }
 
 const passengersReducer = (state = initialState, action) => {
@@ -41,7 +40,7 @@ const passengersReducer = (state = initialState, action) => {
         return {
             ...state,
             counterBaby: state.counterBaby - 1,
-            showCounterBaby: state.showCounteBaby
+            showCounterBaby: state.showCounterBaby
         }
     } if (action.type === 'amountPassengers') {
         return {
