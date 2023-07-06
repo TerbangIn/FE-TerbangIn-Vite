@@ -5,6 +5,7 @@ import { Card } from "primereact/card";
 import rupiah from "../../formatter/rupiah";
 import { Button } from "primereact/button";
 
+import destination from "../../assets/images/jkt_bnk1.svg"
 
 function Destinasi() {
     const { flightData } = useSelector((state) => state.FlightDestinationReducer)
@@ -71,12 +72,13 @@ function Destinasi() {
 
                                 flightData.map((flight, i) => (
                                     (
-                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
+                                        <Card key={i} onClick={() => { console.log(formatRupiah(Math.floor(Math.random() * 9000000) + 1000000)) }} className="button cursor-pointer hover:bg-neutral-100 hover:scale-105 overflow-hidden" header={
+                                            <Image src={flight?.image} preview alt="img" width="200" height="100" />
+                                        }>
+                                            {/* <div> */}
+                                            {/* </div> */}
                                             <div>
-                                                <Image src={flight.image} alt="img" />
-                                            </div>
-                                            <div>
-                                                <p className="mt-2 font-semibold">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
+                                                <p className="font-semibold">{flight?.source?.city} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.city}</p>
                                             </div>
                                             <div>
                                                 <p className="text-button1 font-bold text-sm  text-purple-600">{flight.airline}</p>
@@ -93,12 +95,13 @@ function Destinasi() {
                                 : (
                                     flightData.filter((data) => data.destination.continent == filter).map((flight, i) => {
                                         return (
-                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="p button cursor-pointer hover:bg-neutral-100 hover:scale-105" >
+                                            <Card key={i} onClick={() => { console.log("aaaa") }} className="button cursor-pointer hover:bg-neutral-100 hover:scale-105 overflow-hidden" header={
+                                                <Image src={flight?.image} preview alt="img" width="200" height="100" />
+                                            }>
+                                                {/* <div> */}
+                                                {/* </div> */}
                                                 <div>
-                                                    <Image src={flight.image} alt="img" />
-                                                </div>
-                                                <div>
-                                                    <p className="mt-2 font-semibold">{flight?.source?.country} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.country}</p>
+                                                    <p className="font-semibold">{flight?.source?.country} <i className="pi pi-arrow-right" style={{ fontSize: '12px' }}></i> {flight?.destination?.country}</p>
                                                 </div>
                                                 <div>
                                                     <p className="text-button1 font-bold text-sm  text-purple-600">{flight.airline}</p>

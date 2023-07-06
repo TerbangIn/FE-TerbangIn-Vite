@@ -51,7 +51,7 @@ const signupFields = [
         type: "telepon",
         autoComplete: "telepon",
         isRequired: true,
-        placeholder: "+62 "
+        placeholder: "Masukkan Nomor Telepon"
     },
     {
         labelText: "Buat Password",

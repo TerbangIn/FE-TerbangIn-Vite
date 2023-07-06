@@ -9,7 +9,7 @@ import ResetPassword from "./pages/resetPassword";
 import Riwayat from "./pages/Riwayat/Riwayat";
 import Beranda from './pages/Beranda/Beranda';
 import BerandaLogin from './pages/Beranda/BerandaLogin';
-import Chekout from './pages/Payment/chekout';
+import Checkout from './pages/Payment/checkout';
 import Akun from './pages/Akun/Akun';
 import Notifikasi from './pages/Notifikasi/Notifikasi';
 import About from "./components/about/aboutUs";
@@ -51,7 +51,7 @@ function App() {
           <Route path="/notifikasi" element={<Notifikasi />} />
           <Route path="/about" element={<About />} />
           <Route path="/waiting" element={<Waiting />} />
-          <Route path='/checkout' element={<Authmiddleware component={Chekout} />} />
+          <Route path='/checkout' element={<Checkout />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/payment-success' element={<Success />} />
         </Routes>

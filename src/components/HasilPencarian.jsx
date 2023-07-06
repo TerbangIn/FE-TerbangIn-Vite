@@ -4,7 +4,7 @@ import 'primereact/resources/primereact.min.css';
 import { Button } from 'primereact/button';
 // import Link from "react"
 import { FaArrowLeft } from 'react-icons/fa';
-import yellowlogo from '../assets/yellowlogo.png'
+import yellowlogo from '../assets/yellowlogo.svg'
 import koper from '../assets/koper.png'
 import panahtermurah from '../assets/panahtermurah.svg'
 // import Navbar from "./Navbar/Navbar";
@@ -35,6 +35,7 @@ import save from "../assets/images/Brand_button.svg"
 import { useLocation, useNavigate } from "react-router";
 import Navbar from "./Navbar";
 import notfound from '../assets/notfound.png'
+import rupiah from "../formatter/rupiah";
 
 const HasilPencarian = () => {
   const location = useLocation()
@@ -157,7 +158,7 @@ const HasilPencarian = () => {
   }, [filters]);
 
   const [visible, setVisible] = useState(false);
-  const [selected, setSelected] = useState(dater)
+  const [selected, setSelected] = useState(location?.state?.date)
 
   // console.log(datas);
   // console.log(filters);
@@ -252,7 +253,7 @@ const HasilPencarian = () => {
                 <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
                 <p className="md:pr-96 md:text-base text-[15px]"> {location?.state?.from} &gt; {location?.state?.to} - {location?.state?.passenger?.jumlah} Penumpang - {location?.state?.category} </p>
               </a>
-              <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
+              <a href="/beranda" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
                 Ubah Pencarian
               </a>
             </div>
@@ -366,10 +367,10 @@ const HasilPencarian = () => {
                     {/* Start of Cards */}
                     <div className="flex flex-col w-full">
                       {
-                        selected && savedSeatClass == 'Harga Termurah' ?
+                        ((savedSeatClass === 'Harga Termurah') && selected) ?
                           datas?.filter(data => {
                             return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
-                          }).sort((a, b) => a?.economy_class_price ? a?.economy_class_price.localeCompare(b?.economy_class_price, undefined, { numeric: true }) : a?.first_class_price ? a?.first_class_price.localeCompare(b?.first_class_price, undefined, { numeric: true }) : a?.business_class_price ? a?.business_class_price.localeCompare(b?.business_class_price, undefined, { numeric: true }) : a?.premium_class ? a?.premium_class.localeCompare(b?.premium_class, undefined, { numeric: true }) : "").map(data => {
+                          }).sort((a, b) => (a?.economy_class_price < b.economy_class_price ? -1 : 1) || (a?.business_class_price < b.business_class_price ? -1 : 1) || (a?.first_class_price < b.first_class_price ? -1 : 1) || (a?.premium_price < b.premium_price ? -1 : 1) ).map(data => {
                             return (
                               <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
                                 <AccordionTab className="w-full" header={
@@ -403,7 +404,7 @@ const HasilPencarian = () => {
                                       </div>
                                       <div className="flex md:ml-11 ml-8 p-3">
                                         <div className="flex flex-col font-bold gap-2">
-                                          <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                          <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                           <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                         </div>
                                       </div>
@@ -450,93 +451,10 @@ const HasilPencarian = () => {
                             )
                           })
                           :
-                          selected && savedSeatClass == 'Harga Termahal' ?
-                            datas?.filter(data => {
-                              return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
-                            }).sort((a, b) => b?.economy_class_price ? b?.economy_class_price.localeCompare(a?.economy_class_price, undefined, { numeric: true }) : b?.first_class_price ? b?.first_class_price.localeCompare(a?.first_class_price, undefined, { numeric: true }) : b?.business_class_price ? b?.business_class_price.localeCompare(a?.business_class_price, undefined, { numeric: true }) : b?.premium_class ? b?.premium_class.localeCompare(a?.premium_class, undefined, { numeric: true }) : "").map(data => {
-                              return (
-                                <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
-                                  <AccordionTab className="w-full" header={
-                                    <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
-                                      <div className="flex items-center gap-2">
-                                        <img src={yellowlogo} alt="" className="w-6 h-6" />
-                                        <div>{data?.airline}</div>
-                                      </div>
-                                      <div className="flex justify-between w-full">
-                                        <div className="flex items-center md:gap-3 gap-1 w-1/2">
-                                          <div className="flex flex-col gap-2">
-                                            <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
-                                            <div>{data?.destination?.code}</div>
-                                          </div>
-                                          <div className="flex flex-col items-center mx-4">
-                                            <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
-                                            <div className="flex items-center ">
-                                              <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
-                                              <div className="pi pi-angle-right -mx-2.5"></div>
-                                            </div>
-                                            {/* <img src={arrow} alt="arrow" className="w-full" /> */}
-                                            <div className="text-xs text-neutral-500">Direct</div>
-                                          </div>
-                                          <div className="flex flex-col gap-2">
-                                            <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
-                                            <div>{data?.source?.code}</div>
-                                          </div>
-                                          {/* <div className="flex items-center"> */}
-                                          <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
-                                          {/* </div> */}
-                                        </div>
-                                        <div className="flex md:ml-11 ml-8 p-3">
-                                          <div className="flex flex-col font-bold gap-2">
-                                            <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
-                                            <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  }>
-                                    <div className="flex flex-col items-start md:text-base text-xs ">
-                                      <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
-                                      <div className="flex justify-between w-full">
-                                        <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
-                                        <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
-                                      </div>
-                                      <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
-                                      <p className="font-bold">{data?.source?.name}</p>
-                                      <Divider />
-                                      <div className="ms-8 text-left">
-                                        <h5 className="font-bold">{data?.airline}</h5>
-                                        <h5 className="font-bold">{data?.flight_number}</h5>
-                                      </div>
-                                      <div className="flex gap-2 justify-center">
-                                        <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
-                                        <div className="flex flex-col items-start">
-
-                                          <h5 className="font-bold mt-2">Informasi:</h5>
-                                          {data?.information?.map(info => {
-                                            return (
-                                              <>
-                                                <p>{info?.name}</p>
-                                              </>
-                                            )
-                                          })}
-                                        </div>
-                                      </div>
-                                      <Divider />
-                                      <div className="flex justify-between w-full">
-                                        <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
-                                        <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
-                                      </div>
-                                      <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
-                                      <p className="font-bold">{data?.destination?.name}</p>
-                                    </div>
-                                  </AccordionTab>
-                                </Accordion>
-                              )
-                            })
-                            : selected && savedSeatClass == 'Keberangkatan Paling Awal' ?
+                     selected && savedSeatClass == 'Keberangkatan Paling Awal' ?
                               datas?.filter(data => {
                                 return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
-                              }).filter((a, b) => a?.departure_date < b?.departure_date ? -1 : 1).map(data => {
+                              }).sort((a, b) => new Date(a?.departure_date).getTime() < new Date(b?.departure_date).getTime() ? -1 : 1).map(data => {
                                 return (
                                   <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
                                     <AccordionTab className="w-full" header={
@@ -570,7 +488,7 @@ const HasilPencarian = () => {
                                           </div>
                                           <div className="flex md:ml-11 ml-8 p-3">
                                             <div className="flex flex-col font-bold gap-2">
-                                              <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                              <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                               <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                             </div>
                                           </div>
@@ -616,90 +534,90 @@ const HasilPencarian = () => {
                                   </Accordion>
                                 )
                               }) :
-                              selected && savedSeatClass == 'Keberangkatan Paling Akhir' ?
-                                datas?.filter(data => {
-                                  return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
-                                }).filter((a, b) => a?.departure_date > b?.departure_date ? -1 : 1).map(data => {
-                                  return (
-                                    <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
-                                      <AccordionTab className="w-full" header={
-                                        <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
-                                          <div className="flex items-center gap-2">
-                                            <img src={yellowlogo} alt="" className="w-6 h-6" />
-                                            <div>{data?.airline}</div>
-                                          </div>
-                                          <div className="flex justify-between w-full">
-                                            <div className="flex items-center md:gap-3 gap-1 w-1/2">
-                                              <div className="flex flex-col gap-2">
-                                                <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
-                                                <div>{data?.destination?.code}</div>
-                                              </div>
-                                              <div className="flex flex-col items-center mx-4">
-                                                <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
-                                                <div className="flex items-center ">
-                                                  <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
-                                                  <div className="pi pi-angle-right -mx-2.5"></div>
-                                                </div>
-                                                {/* <img src={arrow} alt="arrow" className="w-full" /> */}
-                                                <div className="text-xs text-neutral-500">Direct</div>
-                                              </div>
-                                              <div className="flex flex-col gap-2">
-                                                <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
-                                                <div>{data?.source?.code}</div>
-                                              </div>
-                                              {/* <div className="flex items-center"> */}
-                                              <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
-                                              {/* </div> */}
+                                  selected && savedSeatClass == 'Keberangkatan Paling Akhir' ?
+                              datas?.filter(data => {
+                                return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
+                              }).sort((a, b) => new Date(a?.departure_date).getTime() > new Date(b?.departure_date).getTime() ? -1 : 1).map(data => {
+                                return (
+                                  <Accordion className="mb-2 border-2 rounded-lg border-purple-400" multiple activeIndex={0} key={data?.id} >
+                                    <AccordionTab className="w-full" header={
+                                      <div className="flex flex-col flex-1 shrink-0 md:text-base text-xs">
+                                        <div className="flex items-center gap-2">
+                                          <img src={yellowlogo} alt="" className="w-6 h-6" />
+                                          <div>{data?.airline}</div>
+                                        </div>
+                                        <div className="flex justify-between w-full">
+                                          <div className="flex items-center md:gap-3 gap-1 w-1/2">
+                                            <div className="flex flex-col gap-2">
+                                              <div className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</div>
+                                              <div>{data?.destination?.code}</div>
                                             </div>
-                                            <div className="flex md:ml-11 ml-8 p-3">
-                                              <div className="flex flex-col font-bold gap-2">
-                                                <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
-                                                <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
+                                            <div className="flex flex-col items-center mx-4">
+                                              <div className="text-xs text-neutral-500">{estimasi(data?.departure_date, data?.arrival_date)}</div>
+                                              <div className="flex items-center ">
+                                                <div className="border-b-2 border-bg-black md:w-80 w-12 "></div>
+                                                <div className="pi pi-angle-right -mx-2.5"></div>
                                               </div>
+                                              {/* <img src={arrow} alt="arrow" className="w-full" /> */}
+                                              <div className="text-xs text-neutral-500">Direct</div>
+                                            </div>
+                                            <div className="flex flex-col gap-2">
+                                              <div className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</div>
+                                              <div>{data?.source?.code}</div>
+                                            </div>
+                                            {/* <div className="flex items-center"> */}
+                                            <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
+                                            {/* </div> */}
+                                          </div>
+                                          <div className="flex md:ml-11 ml-8 p-3">
+                                            <div className="flex flex-col font-bold gap-2">
+                                              <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
+                                              <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                             </div>
                                           </div>
                                         </div>
-                                      }>
-                                        <div className="flex flex-col items-start md:text-base text-xs ">
-                                          <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
-                                          <div className="flex justify-between w-full">
-                                            <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
-                                            <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
-                                          </div>
-                                          <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
-                                          <p className="font-bold">{data?.source?.name}</p>
-                                          <Divider />
-                                          <div className="ms-8 text-left">
-                                            <h5 className="font-bold">{data?.airline}</h5>
-                                            <h5 className="font-bold">{data?.flight_number}</h5>
-                                          </div>
-                                          <div className="flex gap-2 justify-center">
-                                            <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
-                                            <div className="flex flex-col items-start">
+                                      </div>
+                                    }>
+                                      <div className="flex flex-col items-start md:text-base text-xs ">
+                                        <h4 className="text-[#A06ECE] font-bold">Detail Penerbangan</h4>
+                                        <div className="flex justify-between w-full">
+                                          <h1 className="font-bold">{`${formatDate(data?.departure_date, "hour")}:${formatDate(data?.departure_date, "minute")}`}</h1>
+                                          <h6 className="text-[#A06ECE] font-bold">Keberangkatan</h6>
+                                        </div>
+                                        <p>{formatDate(data?.departure_date, "day")} {formatDate(data?.departure_date, "month")} {formatDate(data?.departure_date, "year")}</p>
+                                        <p className="font-bold">{data?.source?.name}</p>
+                                        <Divider />
+                                        <div className="ms-8 text-left">
+                                          <h5 className="font-bold">{data?.airline}</h5>
+                                          <h5 className="font-bold">{data?.flight_number}</h5>
+                                        </div>
+                                        <div className="flex gap-2 justify-center">
+                                          <img src={yellowlogo} alt="" className="w-6 h-6 mt-2" />
+                                          <div className="flex flex-col items-start">
 
-                                              <h5 className="font-bold mt-2">Informasi:</h5>
-                                              {data?.information?.map(info => {
-                                                return (
-                                                  <>
-                                                    <p>{info?.name}</p>
-                                                  </>
-                                                )
-                                              })}
-                                            </div>
+                                            <h5 className="font-bold mt-2">Informasi:</h5>
+                                            {data?.information?.map(info => {
+                                              return (
+                                                <>
+                                                  <p>{info?.name}</p>
+                                                </>
+                                              )
+                                            })}
                                           </div>
-                                          <Divider />
-                                          <div className="flex justify-between w-full">
-                                            <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
-                                            <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
-                                          </div>
-                                          <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
-                                          <p className="font-bold">{data?.destination?.name}</p>
                                         </div>
-                                      </AccordionTab>
-                                    </Accordion>
-                                  )
-                                })
-                                : selected ?
+                                        <Divider />
+                                        <div className="flex justify-between w-full">
+                                          <h1 className="font-bold">{`${formatDate(data?.arrival_date, "hour")}:${formatDate(data?.arrival_date, "minute")}`}</h1>
+                                          <h6 className="text-[#A06ECE] font-bold">Kedatangan</h6>
+                                        </div>
+                                        <p>{formatDate(data?.arrival_date, "day")} {formatDate(data?.arrival_date, "month")} {formatDate(data?.arrival_date, "year")}</p>
+                                        <p className="font-bold">{data?.destination?.name}</p>
+                                      </div>
+                                    </AccordionTab>
+                                  </Accordion>
+                                )
+                              }):
+                              selected ?
                                   datas?.filter(data => {
                                     return (new Date(data?.departure_date).toDateString() === new Date(selected).toDateString())
                                   }).map(data => {
@@ -734,9 +652,9 @@ const HasilPencarian = () => {
                                                 <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
                                                 {/* </div> */}
                                               </div>
-                                              <div className="flex md:ml-11 ml-8 p-3">
+                                              <div className="flex xl:ml-14 md:ml-11 ml-8 p-3">
                                                 <div className="flex flex-col font-bold gap-2">
-                                                  <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                                  <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                                   <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                                 </div>
                                               </div>
@@ -815,9 +733,9 @@ const HasilPencarian = () => {
                                                 <img src={koper} alt="" className="w-6 h-6 md:ms-8 ms-4" />
                                                 {/* </div> */}
                                               </div>
-                                              <div className="flex md:ml-11 ml-8 p-3">
+                                              <div className="flex xl:ml-14 md:ml-11 ml-8 p-3">
                                                 <div className="flex flex-col font-bold gap-2">
-                                                  <div className="text-[#A06ECE]">IDR {data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_class}</div>
+                                                  <div className="text-[#A06ECE]">IDR {rupiah(data?.economy_class_price ? data?.economy_class_price : data?.first_class_price ? data?.first_class_price : data?.business_class_price ? data?.business_class_price : data?.premium_price)}</div>
                                                   <Button label="Pilih" severity="help" rounded onClick={() => handlePilih(data?.id)}></Button>
                                                 </div>
                                               </div>
@@ -864,7 +782,6 @@ const HasilPencarian = () => {
                                     )
                                   })
                       }
-
                     </div>
                   </div>
                 )
