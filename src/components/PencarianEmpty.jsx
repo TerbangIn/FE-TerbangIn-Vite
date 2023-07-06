@@ -75,7 +75,7 @@ const PencarianEmpty = () => {
                 <FaArrowLeft className="w-4 h-4 mr-2" />
                 JKT &gt; MLB - 2 Penumpang - Economy
               </p>
-              <p className="tag text-center bg-custom-color-green text-white rounded-lg px-4 py-2 w-1/4">
+              <p href="/beranda" className="tag text-center bg-custom-color-green text-white rounded-lg px-4 py-2 w-1/4">
                 Ubah Pencarian
               </p>
             </div>

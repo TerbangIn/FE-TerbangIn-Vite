@@ -4,7 +4,7 @@ import 'primereact/resources/primereact.min.css';
 import { Button } from 'primereact/button';
 // import Link from "react"
 import { FaArrowLeft } from 'react-icons/fa';
-import yellowlogo from '../assets/yellowlogo.png'
+import yellowlogo from '../assets/yellowlogo.svg'
 import koper from '../assets/koper.png'
 import panahtermurah from '../assets/panahtermurah.svg'
 // import Navbar from "./Navbar/Navbar";
@@ -252,7 +252,7 @@ const HasilPencarian = () => {
                 <div className="md:mr-0 mr-3"><FaArrowLeft className="w-4 h-8 md:mr-2 md:ml-0 ml-7" /></div>
                 <p className="md:pr-96 md:text-base text-[15px]"> {location?.state?.from} &gt; {location?.state?.to} - {location?.state?.passenger?.jumlah} Penumpang - {location?.state?.category} </p>
               </a>
-              <a href="" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
+              <a href="/beranda" className="tag justify-center flex items-center bg-custom-color-green text-white rounded-lg px-4 py-2 md:w-2/12 w-full">
                 Ubah Pencarian
               </a>
             </div>
