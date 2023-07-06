@@ -136,7 +136,7 @@ const cardRiwayat = (props) => {
                 <div>
                     {props?.data?.map(riwayat => (
                         (riwayat.tiket.length != 0 ? (<div key={riwayat.id} className="pb-4">
-                        <div className="mx-6 lg:text-md font-bold text-00 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
+                        <div className="mx-6 lg:text-md font-bold text-700 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
                         <Card className="p-0 button sm:mx-6 mx-8 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                             <div className="mx-4 mb-4">
                                 {getStatus(riwayat.payment_status)}
@@ -174,7 +174,10 @@ const cardRiwayat = (props) => {
                                     <div className="text-xs">{getClass((riwayat.tiket.map(a=> a.flight.economy_class_price)),(riwayat.tiket.map(a=> a.flight.business_class_price)),(riwayat.tiket.map(a=> a.flight.first_class_price)),(riwayat.tiket.map(a=> a.flight.premium_price)))}</div>
                                 </div>
                                 <div class="flex-1 text-right">
-                                    <div className="text-md ps-4 justify-end font-bold text-binar-purple">IDR {getHarga(riwayat.tiket)}</div>
+                                    <div className="text-md ps-4 justify-end font-bold text-binar-purple">{Intl.NumberFormat ("id-ID", {
+                                style: "currency",
+                                currency: "IDR"
+                                }).format(getHarga(riwayat.tiket))}</div>
                                 </div>
                             </div>
                         </Card>

@@ -87,7 +87,7 @@ function Akun() {
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzYXlhYWRtaW5AZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjg2NTYzMDg4fQ.zCE_OynwEoymILiP9N9OrGdCbPRZjxejG1h1lH1_qUU`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -153,7 +153,7 @@ function Akun() {
                 <Divider className="w-10" />
               </div>
               <div className="flex-auto flex my-auto gap-2">
-                <Card title="Ubah Data Profil" className="border shadow-none w-full md:mx-auto sm:mx-6">
+                <Card title="Ubah Data Profil" className="border-4 border-binar-purple shadow-none w-full md:mx-auto sm:mx-6">
                   <Panel header="Data Profil" className="pb-2 rounded-lg">
                     <div className="text-sm font-bold justify-items-end text-binar-purple">
                       Nama Lengkap
