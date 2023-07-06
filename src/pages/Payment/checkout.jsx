@@ -54,7 +54,7 @@ function Checkout() {
                 Authorization: `Bearer ${token}`,
             },
         }).then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             setTransaction_id(res?.data?.data?.id)
         })
     }
@@ -306,9 +306,9 @@ function Checkout() {
         })
     }
 
-    if (!token) {
-        return <Modal />;
-    }
+    // if (!token) {
+    //     return <Modal />;
+    // }
 
     return (
         <div>
