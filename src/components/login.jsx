@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginFields } from "../constants/formFields";
 import { ToastContainer, toast } from "react-toastify"
@@ -53,9 +53,9 @@ const Login = () => {
                     })
 
                     setTimeout(() => {
-                        nav('/beranda')
-                    },1000);
-                    
+                        nav('/')
+                    }, 1000);
+
                 }
             ).catch(
                 function (err) {

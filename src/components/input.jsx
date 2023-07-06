@@ -41,6 +41,15 @@ export default function Input({
         className={fixedInputClass + customClass}
         placeholder={placeholder}
       />
+      {
+        name == "password"
+          ?
+          <small id="username-help">
+            Password harus berisi 1 huruf besar, 1 simbol, dan 1 angka.
+          </small>
+          :
+          <></>
+      }
     </div>
   )
 }
