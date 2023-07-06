@@ -16,6 +16,9 @@ import "primereact/resources/primereact.min.css";
 import { Link } from "react-router-dom";
 
 const Cetak = (props) => {
+
+    
+
     const Location = useLocation()
     console.log(Location?.state?.props?.data[0]);
 
