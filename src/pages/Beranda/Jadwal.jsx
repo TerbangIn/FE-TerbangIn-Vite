@@ -158,7 +158,7 @@ const JadwalPenerbangan = () => {
                 pauseOnHover
                 theme="light"
             />
-            <Card className="relative flex flex-row md:mx-auto mx-8 -mt-4 sm:mx-auto sm:w-4/5 md:w-3/4 md:-mt-9 lg:w-2/3 xl:w-2/3 lg:-mt-10 xl:-mt-14">
+            <Card className="relative flex flex-row mx-8 -mt-4 sm:mx-auto sm:w-4/5 md:w-3/4 md:-mt-9 lg:w-2/3 xl:w-2/3 md:mx-auto lg:-mt-10 lg:mx-auto xl:-mt-14 xl:mx-auto">
                 <p className="text-lg font-bold lg:ml-4 xl:ml-4 md:-mt-0 -mt-3">Pilih Jadwal Penerbangan spesial di<span className=" text-primary2"> TerbangIn!</span></p>
                 <div className="grid md:grid-cols-3 grid-cols mt-5">
                     <div>
