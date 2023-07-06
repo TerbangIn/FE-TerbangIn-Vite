@@ -152,7 +152,7 @@ function Riwayat() {
               <div className="text-md font-bold text-900 lg:pb-4 sm:pb-2">Riwayat Pemesanan</div>
               <div className="text-base font-bold flex space-y-2 justify-between ">
                 <button className="w-4/5 rounded-lg h-12 bg-binar-purple">
-                  <Link to={'/riwayat'} className="flex items-center font-semibold gap-2 ms-4 text-white">
+                  <Link to={'/'} className="flex items-center font-semibold gap-2 ms-4 text-white">
                     <div className="pi pi-arrow-left"></div>
                     Beranda
                   </Link>

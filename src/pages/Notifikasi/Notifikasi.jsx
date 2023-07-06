@@ -64,7 +64,7 @@ function Notifikasi() {
                             <div className="text-md font-bold text-900 lg:pb-4 sm:pb-2">Notifikasi</div>
                             <div className="text-base font-bold flex space-y-2 justify-between ">
                                 <button className="w-full rounded-lg h-12 bg-binar-purple">
-                                    <Link to={'/riwayat'} className="flex items-center font-semibold gap-2 ms-4 text-white">
+                                    <Link to={'/'} className="flex items-center font-semibold gap-2 ms-4 text-white">
                                         <div className="pi pi-arrow-left"></div>
                                         Beranda
                                     </Link>
