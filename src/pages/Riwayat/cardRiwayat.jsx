@@ -98,12 +98,15 @@ const cardRiwayat = (props) => {
       }
     
     const getStatus = (detail) => {
-        if(detail === 'Issued')  {
-            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="success" value="Issued"></Tag>);
-        }else if(detail == 'Unpaid')  {
-            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="danger" value="Unpaid"></Tag>)
+        console.log(detail);
+        if(detail === 'waiting')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="help" value="Waiting"></Tag>);
+        }else if(detail == 'failure')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="danger" value="Failure"></Tag>)
         }else if(detail == 'Cancelled')  {
-            return 'First'
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="secondary" value="Cancelled"></Tag>)
+        }else if(detail == 'success')  {
+            return (<Tag rounded className="h-8 w-20 px-3 text-sm font-base" severity="success" value="Success"></Tag>)
         }
     };
     function getHarga(tiket){
@@ -133,10 +136,10 @@ const cardRiwayat = (props) => {
                 <div>
                     {props?.data?.map(riwayat => (
                         (riwayat.tiket.length != 0 ? (<div key={riwayat.id} className="pb-4">
-                        <div className="mx-6 lg:text-md font-bold text-900 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
+                        <div className="mx-6 lg:text-md font-bold text-00 pb-2">{getDateAndTime(riwayat.createdAt)}</div>
                         <Card className="p-0 button sm:mx-6 mx-8 md:mx-auto justify-center hover:border-4 border-binar-purple"  onClick={() => pickDetailHandler(riwayat.id)}>
                             <div className="mx-4 mb-4">
-                                {/* {getStatus(riwayat.status)} */}
+                                {getStatus(riwayat.payment_status)}
                             </div>
                             <div className="flex">
                                 <div className="flex ms-4 gap-2">
