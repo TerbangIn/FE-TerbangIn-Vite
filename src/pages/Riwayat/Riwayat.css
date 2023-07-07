@@ -1,5 +1,3 @@
-
-
 .button-search{
     color: #A06ECE !important;
 }
@@ -10,4 +8,8 @@
 
 .p-card-body{
   padding: 0.5rem !important;
+}
+
+.table {
+  border-collapse: collapse;
 }

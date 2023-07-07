@@ -3,8 +3,8 @@ import "../../index.css";
 import 'primeicons/primeicons.css';
 import { Divider } from 'primereact/divider';
 import logo from '../../assets/logo (1).png'
-import "primereact/resources/themes/lara-light-indigo/theme.css";     
-import "primereact/resources/primereact.min.css";                          
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
 import { useLocation } from "react-router";
 import React from "react";
 import Navbar from "../../components/Navbar";
@@ -15,112 +15,123 @@ import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { Link } from "react-router-dom";
 
-const Cetak = (props) => {
-    const Location = useLocation()
-    console.log(Location?.state?.props?.data[0]);
 
-    function getTimes(date){
+export default class ComponentToPrint extends React.Component {
+
+    getTimes(date) {
         const jam = new Date(date).getHours()
         const menit = new Date(date).getMinutes()
         return <>{jam} : {menit}</>
     }
 
-    function getTanggal(dateIn){
+    getTanggal(dateIn) {
         const date = new Date(dateIn);
         const options = { day: '2-digit', month: 'long', year: 'numeric' };
         const formattedDate = date.toLocaleDateString('id-ID', options);
 
-        return(formattedDate);
+        return (formattedDate);
     }
 
-    const getClass = (economy, bussiness, first, premium) => {
-        if(economy != null)  {
+    getClass = (economy, bussiness, first, premium) => {
+        if (economy != null) {
             return 'Economy'
-        }else if(bussiness != null)  {
+        } else if (bussiness != null) {
             return 'Bussiness'
-        }else if(first != null)  {
+        } else if (first != null) {
             return 'First'
-        }else if(premium != null)  {
+        } else if (premium != null) {
             return 'Premium'
         }
     }
-    return (
-        <div>
-                <Navbar />
-                <Card>
-                    <div className="pt-20 text-left mx-auto max-w-4xl">
-                        <div className="text-left mx-auto flex-auto">
-                            <div className="text-md font-bold text-900 lg:pb-4 sm:pb-2">Cetak Tiket</div>
-                            <div className="text-base font-bold flex space-y-2 justify-between ">
-                                <button className="w-full rounded-lg h-12 bg-binar-purple">
-                                    <Link to={'/riwayat'} className="flex items-center font-semibold gap-2 ms-4 text-white">
-                                        <div className="pi pi-arrow-left"></div>
-                                        Riwayat
-                                    </Link>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </Card>
-                    <Card className="md:w-1/3 sm:w-full mx-auto border-4 border-binar-purple my-4">
+    penumpang = 1;
+
+    render() {
+        return (
+            <>
+
+                <Card className="md:w-2/3 sm:w-full mx-auto border-4 border-binar-purple my-12">
                         <div className="grid grid-cols-2 mx-2 mb-4">
-                            <img alt="logo" src={logo} className="flex w-40 text-center"></img>
-                            <div >
-                                <div className="text-md text-end font-bold text-binar-purple">Cetak Tiket</div>
-                                <div className="text-md text-end font-base">Nikmati Perjalanan Anda!</div>
+                            <img alt="logo" src={logo} className="flex w-40"></img>
+                            <div>
+                                <div className="text-xl text-right font-bold text-binar-purple">E-Tiket</div>
+                                <div className="text-sm text-right font-bold text-amber-400">Penerbangan Pergi</div>
                             </div>
                         </div>
+                            <div className="text-xl font-bold text-binar-purple">Keberangkatan</div>
                         <Card className="p-0 button sm:mx-6 md:mx-auto border-2 justify-center border-binar-purple">
                             <div className="flex">
-                                <div className="flex-1">
-                                <div className="align-items-center align-items-center text-center">
-                                    <div className="text-md font-bold text-900">{Location?.state?.props?.data[0].tiket[0].flight.source.name}</div>
-                                    <div className="text-md">{getTanggal(Location?.state?.props?.data[0].tiket[0].flight.departure_date)}</div>
-                                    <div className="text-md">{getTimes(Location?.state?.props?.data[0].tiket[0].flight.departure_date)}</div>
+                                <div className="text-lg w-1/2 font-bold text-binar-purple">{this.props.data.tiket[0].flight.airline} - {this.props.data.tiket[0].flight.flight_number}</div>
+                                <div className="text-lg w-1/2 text-right font-bold text-binar-purple">Kode Booking : {this.props.data.kode_booking}</div>
+                            </div>
+                            <Divider className="m-0"/>
+                            <div class="flex gap-6">
+                                <div class="flex-1">
+                                    <div className="text-md font-semibold font-bold text-binar-purple"></div>
+                                    <div className="text-md font-semibold">{this.getTanggal(this.props.data.tiket[0].flight.departure_date)}</div>
+                                    <div className="text-md font-semibold">{this.props.data.tiket[0].flight.source.city} / {this.props.data.tiket[0].flight.source.country}</div>
+                                    <div className="text-md font-semibold">Berangkat {this.getTimes(this.props.data.tiket[0].flight.departure_date)}</div>
                                 </div>
+                                <div class="shrink-0 w-32 my-auto">
+                                    <div className="text-lg font-bold text-binar-purple text-center">{this.getClass((this.props.data.tiket[0].flight.economy_class_price),(this.props.data.tiket[0].flight.business_class_price),(this.props.data.tiket[0].flight.first_class_price),(this.props.data.tiket[0].flight.premium_price))}</div>
                                 </div>
-                                <div className="shrink-0 my-auto w-8">
-                                    <div className="text-md font-bold text-binar-purple text-center">to</div>
-                                </div>
-                                <div className="flex-1">
-                                <div className="col-3 align-items-center align-items-center text-center">
-                                    <div className="text-md font-bold text-900">{Location?.state?.props?.data[0].tiket[0].flight.destination.name}</div>
-                                    <div className="text-md">{getTanggal(Location?.state?.props?.data[0].tiket[0].flight.arrival_date)}</div>
-                                    <div className="text-md">{getTimes(Location?.state?.props?.data[0].tiket[0].flight.arrival_date)}</div>
-                                </div>
+                                <div class="flex-1 text-right">
+                                    {/* <div className="text-md font-semibold ps-4 justify-end font-bold text-binar-purple">IDR {Location?.state?.props?.data[0].total_price}</div> */}
+                                    <div className="text-md font-semibold">{this.getTanggal(this.props.data.tiket[0].flight.arrival_date)}</div>
+                                    <div className="text-md font-semibold">{this.props.data.tiket[0].flight.destination.city} / {this.props.data.tiket[0].flight.destination.country}</div>
+                                    <div className="text-md font-semibold">Tiba {this.getTimes(this.props.data.tiket[0].flight.arrival_date)}</div>
                                 </div>
                             </div>
                             <Divider className="m-0"/>
-                            <div class="flex mx-4">
-                                <div class="flex-1">
-                                    <div className="text-xs font-semibold text-900">Class :</div>
-                                    <div className="text-xs">{getClass((Location?.state?.props?.data[0].tiket[0].flight.economy_class_price),(Location?.state?.props?.data[0].tiket[0].flight.business_class_price),(Location?.state?.props?.data[0].tiket[0].flight.first_class_price),(Location?.state?.props?.data[0].tiket[0].flight.premium_price))}</div>
+                            <div className="flex">
+                                <div className="flex-1">
+                                    <div className="text-md font-bold text-900">{this.props.data.tiket[0].flight.source.name} ({this.props.data.tiket[0].flight.source.code})</div>
                                 </div>
-                                <div class="shrink-0 w-32 text-center">
-                                    <div className="text-xs font-semibold text-900">Booking code :</div>
-                                    <div className="text-md font-bold text-binar-purple">{Location?.state?.props?.data[0].kode_booking}</div>
+                                <div className="shrink-0 my-auto w-32">
+                                    <div className="text-md font-bold text-binar-purple text-center">Menuju</div>
                                 </div>
-                                <div class="flex-1 text-right">
-                                    <div className="text-md ps-4 justify-end font-bold text-binar-purple">IDR {Location?.state?.props?.data[0].total_price}</div>
+                                <div className="flex-1">
+                                    <div className="text-md font-bold text-900 text-end">{this.props.data.tiket[0].flight.destination.name} ({this.props.data.tiket[0].flight.destination.code})</div>
                                 </div>
+                            </div>
+                            <Divider className="m-0"/>
+                            <div className="text-md font-semibold">Note :
+                            <div className="ms-2 text-sm font-light">
+                                <li>Semua waktu  tertera adalah waktu bandara setempat</li>
+                                <li>Mohon Lakukan Check-In Minimal 1 Jam Sebelum Waktu Keberangkatan</li>
+                            </div>
                             </div>
                         </Card>
                         <div className="text-center my-4">
-                            <h1 className="text-sm font-semibold  text-binar-purple">Penumpang : {Location?.state?.props?.data[0].tiket[0].passenger.first_name}</h1>
-                            <div className="text-sm font-medium text-700">ID : {Location?.state?.props?.data[0].tiket[0].passenger.identity_number}</div>
-                        </div>
-                        <div className="text-base font-semibold text-900 pt-4 text-center">Fasilitas</div>
-                        <div className="text-base font-semibold text-900 text-center">{Location?.state?.props?.data[0].tiket[0].flight.information.map(e=> 
+                        <table className="w-full">
+                            <tr>
+                                <th>No</th>
+                                <th>Title</th>
+                                <th>Nama</th>
+                                <th>Jenis Tiket</th>
+                                <th>Nomor Identitas</th>
+                                <th>Fasilitas</th>
+                            </tr>
+                            {this.props.data.tiket.map(a=> (
+                                <>
+                                    <td className="text-sm font-semibold  text-binar-purple">{this.penumpang++}</td>
+                                    <td className="text-sm font-semibold  text-binar-purple">{a.passenger.title}</td>
+                                    <td className="text-sm font-semibold  text-binar-purple">{a.passenger.first_name}</td>
+                                    <td className="text-sm font-semibold  text-binar-purple">{a.type_of_passenger}</td>
+                                    <td className="text-sm font-semibold  text-binar-purple0">ID : {a.passenger.identity_number}</td>
+                            <td>
+                        <div className="text-base font-semibold text-900 text-center">{this.props.data.tiket[0].flight.information.map(e=> 
                                     (
                                         <h1 className="text-sm font-semibold  text-binar-purple">- {e.name}</h1>
                                     ))}</div>
+
+                            </td>
+                                </>
+                            ))}
+                            
+                        </table>
+                        </div>
                     </Card>
-                
-                <div>
-
-            </div>
-            </div>
-    )
+            </>
+        )
+    }
 }
-
-export default Cetak;

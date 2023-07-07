@@ -14,6 +14,8 @@ import { Divider } from "primereact/divider";
 import { InputText } from "primereact/inputtext";
 import { Panel } from "primereact/panel";
 import { Toast } from 'primereact/toast';
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import axios from "axios";
@@ -25,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Akun() {
   const [visible, setVisible] = useState(false);
-  const toast = useRef(null);
+  // const toast = useRef(null);
 
   const accept = () => {
     toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
@@ -35,7 +37,6 @@ function Akun() {
     toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
   }
   const [pick, setPick] = useState("");
-  const [filter, setfilter] = useState("");
   const overlayRef = useRef(null);
   const [form, setForm] = useState({
     first_name: "",
@@ -48,17 +49,20 @@ function Akun() {
 
   const decode = jwt_decode(token);
 
+  let nav = useNavigate()
+  console.log(token)
+
+  useEffect(() => {
+    window.addEventListener("resize", () => window.innerWidth >= 960);
+
+    if (!token) {
+      nav('/login')
+    }
+  }, [token]);
   useClickOutside(overlayRef, () => {
     setVisible(false);
   });
 
-  function pickDetailHandler(id) {
-    setVisible(true);
-    setPick(id);
-  }
-  const showSuccess = () => {
-    toast.current.show({ severity: 'success', summary: 'Success', detail: 'Message Content', life: 3000 });
-  }
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -90,7 +94,23 @@ function Akun() {
             Authorization: `Bearer ${token}`,
           },
         }
-      );
+      )
+        .then(res => {
+          toast.success(`${res.data.status}, redirect in 3s...`, {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          })
+
+          setTimeout(() => {
+            nav("/akun")
+          }, 2000);
+        })
     } catch (error) {
       console.error(error);
     }
@@ -198,7 +218,19 @@ function Akun() {
                       />
                     </div>
                   </Panel>
-                  <Toast ref={toast} />
+                  {/* <Toast ref={toast} /> */}
+                  <ToastContainer
+                    position="bottom-center"
+                    autoClose={2000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Anda Yakin Ingin Mengubahnya?"
                     header="Confirmation" icon="pi pi-exclamation-triangle" accept={handleSubmit} reject={reject} />
                   <div className="w-full text-center">

@@ -17,6 +17,7 @@ import Cookies from 'universal-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function OTPRegister() {
+  const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(60);
@@ -44,7 +45,7 @@ export default function OTPRegister() {
     await axios.post('https://be-tiketku-production.up.railway.app/api/v1/user/otp', {
       email: emailHidden
     }).then(res => {
-      toast.success(`${res.status}, redirect in 3s...`, {
+      toast.success(`${res.data.message}`, {
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: true,
@@ -73,7 +74,13 @@ export default function OTPRegister() {
         progress: undefined,
         theme: "colored",
       })
-      navigate("/login")
+
+      setTimeout(() => {
+        setLoading(false)
+        setTimeout(() => {
+          navigate("/login")
+        }, 1000);
+      }, 2000);
     }).catch(error => {
       toast.error(`${error.response.data.message}`, {
         position: "bottom-center",
@@ -85,28 +92,9 @@ export default function OTPRegister() {
         progress: undefined,
         theme: "colored",
       })
+      setLoading(false)
     })
   }
-
-  // useEffect(() => {
-  //   setEmailHidden(location?.state)
-  //   console.log(emailHidden)
-  //   console.log(hideEmail(emailHidden))
-  // }, [emailHidden]);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (seconds > 0) {
-  //       setSeconds(seconds - 1);
-  //     }
-  //     if (seconds === 0) {
-  //       clearInterval(interval);
-  //     }
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [seconds]);
 
   const backButton = () => {
     navigate('/register')
@@ -150,13 +138,11 @@ export default function OTPRegister() {
               initialValue=""
               secret={false}
               // secretDelay={100}
-              onChange={(value, index) => { setOtp(value) }}
+              onChange={(value) => { setOtp(value) }}
               type="numeric"
               inputMode="number"
               style={{ paddingTop: '44px', paddingBottom: '24px' }}
               inputStyle={{ border: '1px solid #D0D0D0', borderRadius: '16px', margin: '0 2px' }}
-              // inputFocusStyle={{borderColor: 'blue'}}
-              onComplete={(value, index) => { }}
               autoSelect={true}
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
@@ -173,7 +159,7 @@ export default function OTPRegister() {
         </div>
         <div className='flex flex-col items-center justify-center'>
           <div className='w-1/4'>
-            <FormAction handleSubmit={handleSubmit} text="Simpan" />
+            <FormAction loading={loading} handleSubmit={handleSubmit} text="Simpan" />
           </div>
         </div>
         <ToastContainer

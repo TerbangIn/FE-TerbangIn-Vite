@@ -11,6 +11,7 @@ import "./Riwayat.css";
 import "../../index.css";
 import { Button } from "primereact/button";
 import 'primeicons/primeicons.css';
+import { ToastContainer, toast } from "react-toastify"
 import { Calendar } from 'primereact/calendar';
 import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
@@ -19,15 +20,26 @@ import { Link } from "react-router-dom";
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import jwt_decode from 'jwt-decode'
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Riwayat() {
-
   const cookies = new Cookies()
   const token = cookies.get('token')
   const decode = jwt_decode(token);
 
+  let nav = useNavigate()
+    console.log(token)
+
+    useEffect(() => {
+        window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+
+        if (!token) {
+            nav('/login')
+        }
+    }, [token]);
+    
   const [userData, setUserData] = useState([]);
   const [searching, setSearching] = useState([]);
   const [search, setSearch] = useState(false);
