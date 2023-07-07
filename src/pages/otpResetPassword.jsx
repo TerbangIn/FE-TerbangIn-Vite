@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { useNavigate, useLocation } from 'react-router-dom';
 
 function OTPResetPassword() {
+  const [loading, setLoading] = useState(false);
   const [otp, setOtp] = useState("");
   const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(60);
@@ -23,20 +24,16 @@ function OTPResetPassword() {
   const location = useLocation()
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   setEmailHidden(location?.state)
-  // }, [emailHidden]);
-
   let hideEmail = function (email) {
-   
-    if(emailHidden != null){
-    return email.replace(/(.{1})(.*)(?=@)/,
-    function(gp1, gp2, gp3) { 
-      for(let i = 0; i < gp3.length; i++) { 
-        gp2+= "*"; 
-      } return gp2; 
-    });
-  }
+
+    if (emailHidden != null) {
+      return email.replace(/(.{1})(.*)(?=@)/,
+        function (gp1, gp2, gp3) {
+          for (let i = 0; i < gp3.length; i++) {
+            gp2 += "*";
+          } return gp2;
+        });
+    }
   };
 
   const start =
@@ -77,12 +74,18 @@ function OTPResetPassword() {
         progress: undefined,
         theme: "colored",
       })
-      navigate("/reset-password-baru", {
-        state: {
-          email: emailHidden,
-          otp: otp
-        }
-      })
+
+      setTimeout(() => {
+        setLoading(false)
+        setTimeout(() => {
+          navigate("/reset-password-baru", {
+            state: {
+              email: emailHidden,
+              otp: otp
+            }
+          })
+        }, 1000);
+      }, 2000);
     }).catch(error => {
       toast.error(`${error.response.data.message}`, {
         position: "bottom-center",
@@ -97,72 +100,11 @@ function OTPResetPassword() {
     })
   }
 
-  // const handleSubmit = async (e) => {
-
-  //   // window.location.href = "/reset-password-baru";
-  //   e.preventDefault();
-  //   try {
-  //     navigate("/otp-reset-password", {
-  //       state: email
-  //     })
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-  // const handleSubmit = async () => {
-  //   await axios.post('https://be-tiketku-production.up.railway.app/api/v1/user/otp', {
-  //     otp: otp,
-  //     email: emailHidden
-  //   }).then(res => {
-  //     toast.success(`${res.data.message}, redirect in 3s...`, {
-  //       position: "bottom-center",
-  //       autoClose: 2000,
-  //       hideProgressBar: true,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     })
-  //     navigate("/reset-password-baru")
-  //   }).catch(error => {
-  //     toast.error(`${error.response.data.message}, redirect in 3s...`, {
-  //       position: "bottom-center",
-  //       autoClose: 2000,
-  //       hideProgressBar: true,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //       theme: "colored",
-  //     })
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     if (seconds > 0) {
-  //       setSeconds(seconds - 1);
-  //     }
-
-  //     if (seconds === 0) {
-  //       //   if (minutes === 0) {
-  //       clearInterval(interval);
-  //       //   } else {
-  //       // setSeconds(60);
-  //       //   }
-  //     }
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [seconds]);
-
   const backButton = () => {
     navigate('/reset-password')
   }
   useEffect(() => {
-    if(location.state === null){
+    if (location.state === null) {
       navigate('/reset-password')
     }
     setEmailHidden(location?.state)
@@ -199,13 +141,11 @@ function OTPResetPassword() {
               initialValue=""
               secret={false}
               // secretDelay={100}
-              onChange={(value, index) => { setOtp(value) }}
+              onChange={(value) => { setOtp(value) }}
               type="numeric"
               inputMode="number"
               style={{ paddingTop: '44px', paddingBottom: '24px' }}
-              inputStyle={{ border: '1px solid #D0D0D0', borderRadius: '16px' , margin: '0 7px' }}
-              // inputFocusStyle={{borderColor: 'blue'}}
-              onComplete={(value, index) => { }}
+              inputStyle={{ border: '1px solid #D0D0D0', borderRadius: '16px', margin: '0 7px' }}
               autoSelect={true}
               regexCriteria={/^[ A-Za-z0-9_@./#&+-]*$/}
             />
@@ -222,7 +162,7 @@ function OTPResetPassword() {
         </div>
         <div className='flex flex-col items-center justify-center'>
           <div className='w-1/4'>
-            <FormAction handleSubmit={handleSubmit} text="Simpan" />
+            <FormAction loading={loading} handleSubmit={handleSubmit} text="Simpan" />
           </div>
         </div>
         <ToastContainer

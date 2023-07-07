@@ -14,6 +14,7 @@ fields.forEach(field => fieldsState[field.id] = '');
 
 const Login = () => {
     let nav = useNavigate()
+    const [loading, setLoading] = useState(false);
     const [email, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [loginState, setLoginState] = useState(fieldsState);
@@ -29,6 +30,7 @@ const Login = () => {
     //Handle Login API Integration here
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try {
             await axios.post(
                 "https://be-tiketku-production.up.railway.app/api/v1/user/login",
@@ -40,7 +42,7 @@ const Login = () => {
                 async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
-                    cookies.set("token", token, { path: "/" })
+                    cookies.set("token", token, { path: "/beranda" })
                     await toast.success('Login Success, redirect in 3s...', {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -53,8 +55,11 @@ const Login = () => {
                     })
 
                     setTimeout(() => {
-                        nav('/')
-                    }, 1000);
+                        setLoading(false)
+                        setTimeout(() => {
+                            nav('/')
+                        }, 1000);
+                    }, 2000);
 
                 }
             ).catch(
@@ -110,7 +115,7 @@ const Login = () => {
                     theme="light"
                 />
             </div>
-            <FormAction onSubmit={handleSubmit} text="Masuk" />
+            <FormAction onSubmit={handleSubmit} loading={loading} text="Masuk" />
         </form>
     )
 }

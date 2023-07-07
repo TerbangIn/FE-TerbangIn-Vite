@@ -13,6 +13,7 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 function ResetPasswordPage() {
+    const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [resetPassState, setResetPassState] = useState(fieldsState);
     const navigate = useNavigate()
@@ -27,9 +28,10 @@ function ResetPasswordPage() {
     //Handle Reset Password API Integration here
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try {
             await axios.post('https://be-tiketku-production.up.railway.app/api/v1/user/otp', {
-                  email: email
+                email: email
             }).then(res => {
                 toast.success(`${res.data.message}, redirect in 3s...`, {
                     position: "bottom-center",
@@ -41,9 +43,15 @@ function ResetPasswordPage() {
                     progress: undefined,
                     theme: "colored",
                 })
-                navigate("/otp-reset-password", {
-                    state: email
-                })
+
+                setTimeout(() => {
+                    setLoading(false)
+                    setTimeout(() => {
+                        navigate("/otp-reset-password", {
+                            state: email
+                        })
+                    }, 1000);
+                }, 2000);
             }).catch(error => {
                 toast.error(`${error.response.data.message}`, {
                     position: "bottom-center",
@@ -93,7 +101,7 @@ function ResetPasswordPage() {
                     theme="light"
                 />
             </div>
-            <FormAction handleSubmit={handleSubmit} text="Kirim" />
+            <FormAction loading={loading} handleSubmit={handleSubmit} text="Kirim" />
         </form>
     )
 }

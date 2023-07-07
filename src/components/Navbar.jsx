@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Cookies from 'universal-cookie';;
+import Cookies from 'universal-cookie';
 
 import Logo from "../assets/logo (1).png"
 import { Link } from "react-router-dom";
@@ -127,7 +127,7 @@ const CompNavbar = () => {
                             </div>
                             <Link to={"/login"}>
                                 <div className="flex items-center w-26 h-12 rounded-xl bg-primary2 hover:bg-purple1" >
-                                    <Image src={fi_login} alt="login" className="mx-2 pl-1"/>
+                                    <Image src={fi_login} alt="login" className="mx-2 pl-1" />
                                     <div className=" pr-4">Masuk</div>
                                 </div>
                             </Link>
