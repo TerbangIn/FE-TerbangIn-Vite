@@ -33,7 +33,7 @@ function ResetPasswordPage() {
             await axios.post('https://be-tiketku-production.up.railway.app/api/v1/user/otp', {
                 email: email
             }).then(res => {
-                toast.success(`${res.data.message}, redirect in 3s...`, {
+                toast.success(`Email ditemukan, ${res.data.message}, redirect in 3s...`, {
                     position: "bottom-center",
                     autoClose: 2000,
                     hideProgressBar: true,

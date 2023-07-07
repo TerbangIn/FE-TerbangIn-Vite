@@ -8,7 +8,7 @@ import { getFlight } from '../../actions/destinationAction';
 
 function BerandaLogin() {
   const { flightData } = useSelector((state) => state.FlightDestinationReducer)
-  console.log(flightData)
+  // console.log(flightData)
 
   const dispatch = useDispatch();
 
@@ -21,7 +21,7 @@ function BerandaLogin() {
       <Navbar />
       <Banner />
       <JadwalPenerbangan />
-      <Destinasi data={flightData}/>
+      <Destinasi data={flightData} />
     </>
   )
 }
