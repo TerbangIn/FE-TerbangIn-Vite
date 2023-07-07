@@ -75,7 +75,6 @@ function ResetPasswordBaru() {
                 }
             ).catch(
                 function (err) {
-                    console.log(err);
                     toast.error(`${err.response.data.message}`, {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -86,6 +85,7 @@ function ResetPasswordBaru() {
                         progress: undefined,
                         theme: "colored",
                     })
+                    setLoading(false)
                 }
             )
         } catch (error) {

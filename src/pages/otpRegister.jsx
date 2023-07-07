@@ -92,6 +92,7 @@ export default function OTPRegister() {
         progress: undefined,
         theme: "colored",
       })
+      setLoading(false)
     })
   }
 

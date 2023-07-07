@@ -97,6 +97,7 @@ function OTPResetPassword() {
         progress: undefined,
         theme: "colored",
       })
+      setLoading(false)
     })
   }
 

@@ -55,10 +55,10 @@ function Signup() {
         }
       ).then(
         function (res) {
-          console.log(res);
-          const cookies = new Cookies()
-          const token = res.data.data.token
-          cookies.set("token", token, { path: "/login" })
+          // console.log(res);
+          // const cookies = new Cookies()
+          // const token = res.data.data.token
+          // cookies.set("token", token, { path: "/login" })
           toast.success(`${res.data.message}, redirect in 3s...`, {
             position: "bottom-center",
             autoClose: 2000,
@@ -81,7 +81,6 @@ function Signup() {
         }
       ).catch(
         function (error) {
-          console.log(error);
           toast.error(`${error.response.data.message}`, {
             position: "bottom-center",
             autoClose: 2000,
@@ -92,6 +91,7 @@ function Signup() {
             progress: undefined,
             theme: "colored",
           })
+          setLoading(false)
         }
       )
 

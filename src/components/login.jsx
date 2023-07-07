@@ -42,7 +42,7 @@ const Login = () => {
                 async function (res) {
                     const cookies = new Cookies()
                     const token = res.data.data.token
-                    cookies.set("token", token, { path: "/beranda" })
+                    cookies.set("token", token, { path: "/" })
                     await toast.success('Login Success, redirect in 3s...', {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -75,6 +75,7 @@ const Login = () => {
                         progress: undefined,
                         theme: "colored",
                     })
+                    setLoading(false)
                 }
             )
         } catch (error) {

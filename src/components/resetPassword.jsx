@@ -63,6 +63,7 @@ function ResetPasswordPage() {
                     progress: undefined,
                     theme: "colored",
                 })
+                setLoading(false)
             })
         } catch (error) {
             // console.log(error);
