@@ -233,7 +233,7 @@ const JadwalPenerbangan = () => {
                                 <ModalSeatClass value={seatClass} onChange={handleSeatClassChange} />
                             </div>
                             <hr className="flex border-1 w-32 min-[1154px]:ml-[54px] max-[1279px]:ml-[54px] xl:ml-[67px] xl:w-28" />
-                            <hr className="border-1 xl:ml-[14.3rem] lg: md:ml-56 ml-52 xl:w-20 lg:w-16 md:w-40 w-24 mb-5" />
+                            <hr className="border-1 xl:ml-[14.3rem] min-[1155px]:ml-52 max-[1256px]:w-[78px] min-[1155px]:w-[78px] max-[1256px]:ml-52 lg:ml-52 md:ml-56 ml-52 xl:w-20 lg:w-20 md:w-40 w-24 mb-5" />
                         </div>
                     </div>
                 </div>
