@@ -43,7 +43,7 @@ const Login = () => {
                     const cookies = new Cookies()
                     const token = res.data.data.token
                     cookies.set("token", token, { path: "/" })
-                    await toast.success(`${res.data.message}, redirect in 3s...`, {
+                    await toast.success(`${res.data.status}, redirect in 3s...`, {
                         position: "bottom-center",
                         autoClose: 2000,
                         hideProgressBar: true,
