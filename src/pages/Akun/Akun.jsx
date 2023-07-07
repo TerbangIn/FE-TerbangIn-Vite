@@ -14,6 +14,8 @@ import { Divider } from "primereact/divider";
 import { InputText } from "primereact/inputtext";
 import { Panel } from "primereact/panel";
 import { Toast } from 'primereact/toast';
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import axios from "axios";
@@ -25,7 +27,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Akun() {
   const [visible, setVisible] = useState(false);
-  const toast = useRef(null);
+  // const toast = useRef(null);
 
   const accept = () => {
     toast.current.show({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
@@ -34,8 +36,9 @@ function Akun() {
   const reject = () => {
     toast.current.show({ severity: 'warn', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
   }
+  const [userData, setUserData] = useState([]);
+  
   const [pick, setPick] = useState("");
-  const [filter, setfilter] = useState("");
   const overlayRef = useRef(null);
   const [form, setForm] = useState({
     first_name: "",
@@ -44,31 +47,26 @@ function Akun() {
   });
   const cookies = new Cookies()
   const token = cookies.get('token')
-  const [userData, setUserData] = useState([]);
-
+  
   const decode = jwt_decode(token);
-
+  
   let nav = useNavigate()
-    console.log(token)
-
-    useEffect(() => {
-        window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
-
-        if (!token) {
-            nav('/login')
-        }
-    }, [token]);
+  console.log(token)
+  
+  useEffect(() => {
+    window.addEventListener("resize", () => window.innerWidth >= 960);
+    
+    if (!token) {
+      nav('/login')
+    }
+  }, [token]);
   useClickOutside(overlayRef, () => {
     setVisible(false);
   });
-
-  function pickDetailHandler(id) {
-    setVisible(true);
-    setPick(id);
-  }
-  const showSuccess = () => {
-    toast.current.show({ severity: 'success', summary: 'Success', detail: 'Message Content', life: 3000 });
-  }
+  const [email, setEmail] = useState([])
+  const [name, setName] = useState([])
+  const [nomor, setNomor] = useState([])
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -78,44 +76,63 @@ function Akun() {
           }
         });
         setUserData(response?.data?.data);
+        setEmail(response?.data?.data?.email)
+        setName(response?.data?.data?.first_name)
+        setNomor(response?.data?.data?.phone_number)
       } catch (error) {
         console.error(error);
       }
     };
     fetchUserData();
   }, [token]);
-
+  
   const handleSubmit = async () => {
     // try{
-    try {
-      const response = await axios.put(
-        `https://be-tiketku-production.up.railway.app/api/v1/user/${decode.id}`,
-        {
-          first_name: form.first_name,
-          phone_number: form.phone_number,
-          email: form.email,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
+      try {
+        const response = await axios.put(
+          `https://be-tiketku-production.up.railway.app/api/v1/user/${decode.id}`,
+          {
+            first_name: name,
+            phone_number: nomor,
+            email: email,
           },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
         }
-      );
+      )
+      .then(res => {
+        toast.success(`${res.data.status}, Profil anda akan segera terganti ...`, {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        })
+        
+        setTimeout(() => {
+          nav("/akun")
+        }, 2000);
+      })
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
+    // setForm({
+      //   ...form,
+      //   [e.target.name]: e.target.value,
+      // });
+      
+    };
 
-
-  const navigate = useNavigate()
-
+    const navigate = useNavigate()
+    
   const handleLogout = () => {
     cookies.remove('token');
     navigate("/login")
@@ -170,12 +187,12 @@ function Akun() {
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">
                       <InputText
-                        onChange={handleChange}
+                        onChange={(e)=>setName(e.target.value)}
                         className="w-full border border-gray-300 rounded-md outline-none"
-                        placeholder={userData.first_name}
+                        // placeholder={userData.first_name}
                         type="text"
                         id="first_name"
-                        value={form.first_name}
+                        value={name}
                         name="first_name"
                       />
                     </div>
@@ -184,12 +201,12 @@ function Akun() {
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">
                       <InputText
-                        onChange={handleChange}
+                        onChange={(e)=>setNomor(e.target.value)}
                         className="w-full border border-gray-300 rounded-md outline-none"
                         type="text"
-                        placeholder={userData.phone_number}
+                        // placeholder={userData.phone_number}
                         id="phone_number"
-                        value={form.phone_number}
+                        value={nomor}
                         name="phone_number"
                       />
                     </div>
@@ -198,17 +215,29 @@ function Akun() {
                     </div>
                     <div className="col-12 flex-column justify-content-start pb-2">
                       <InputText
-                        onChange={handleChange}
+                        onChange={(e)=>setEmail(e.target.value)}
                         className="w-full border border-gray-300 rounded-md outline-none"
                         type="text"
-                        placeholder={userData.email}
+                        // placeholder={userData.email}
                         id="email"
-                        value={form.email}
+                        value={email}
                         name="email"
                       />
                     </div>
                   </Panel>
-                  <Toast ref={toast} />
+                  {/* <Toast ref={toast} /> */}
+                  <ToastContainer
+                    position="bottom-center"
+                    autoClose={2000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                  />
                   <ConfirmDialog visible={visible} onHide={() => setVisible(false)} message="Anda Yakin Ingin Mengubahnya?"
                     header="Confirmation" icon="pi pi-exclamation-triangle" accept={handleSubmit} reject={reject} />
                   <div className="w-full text-center">

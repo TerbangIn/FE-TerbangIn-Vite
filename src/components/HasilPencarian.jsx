@@ -175,7 +175,6 @@ const HasilPencarian = () => {
     setVisible(false)
   }
 
-
   const formatDate = (data, tipe) => {
     // console.log(new Date("2023-06-27T17:40:57.207Z").getUTCHours());
     let format = ""
@@ -237,6 +236,8 @@ const HasilPencarian = () => {
       }
     });
   }
+
+  console.log(datas);
 
   return (
     <div>
@@ -318,7 +319,7 @@ const HasilPencarian = () => {
             {
               location?.state?.date !== undefined
                 ?
-                datas?.data?.length != 0
+                datas?.length != 0
                   ?
                   (
                     <div className="flex flex-col md:flex-row w-full">

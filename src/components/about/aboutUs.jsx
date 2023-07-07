@@ -38,8 +38,8 @@ function AboutUs() {
                 </div>
             </Card>
             <Card className="w-4/5 mx-auto my-auto">
-                <Panel className="pb-2 rounded-lg" header="C8 BINAR ACADEMY BATCH 4">
-                    <div className="text-2xl font-bold text-900 text-center">TEAM LINEUP</div>
+                <Panel className="pb-2 rounded-lg" header="TIM C8 - BINAR ACADEMY x KAMPUS MERDEKA BATCH 4">
+                    {/* <div className="text-2xl font-bold text-900 text-center mt-5 mb-9">TEAM LINEUP</div> */}
                     <div className="grid grid-cols-4 gap-4">
                         <Card className="hover:scale-105">
                             <div className="text-center">
@@ -69,7 +69,7 @@ function AboutUs() {
                                 <img alt="logo" src={oryza} className="flex w-fit mx-auto mb-2" />
                                 <div className="text-base font-bold text-binar-purple mb-3">Oryza Amaliatuz Zahra</div>
                                 <div className="text-sm text-binar-purple mb-7">Universitas Bina Sarana Informatika</div>
-                                <div className="text-base font-bold text-amber-500 mb-3">Frontend Developer</div>
+                                <div className="text-base font-bold text-amber-500 mb-3">Frontend Web Developer</div>
                                 <a href="https://www.instagram.com/ory.az/"><i className="pi pi-instagram mr-2 hover:scale-105"></i></a>
                                 <a href="https://github.com/OryzaAmaliatuzZahra"><i className="pi pi-github mr-2 hover:scale-105"></i></a>
                                 <a href="https://www.linkedin.com/in/oryza-amaliatuz-zahra-89a934265/"><i className="pi pi-linkedin mr-2 hover:scale-105"></i></a>

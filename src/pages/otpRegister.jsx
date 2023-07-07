@@ -38,7 +38,7 @@ export default function OTPRegister() {
 
   const start =
     <div className="image ms-9">
-      <Image src={Logo} alt="Image" width='20%' />
+      <Image src={Logo} alt="Image" width='200' />
     </div>
 
   const resendOTP = async () => {
@@ -130,7 +130,7 @@ export default function OTPRegister() {
             </Button>
             <label className='text-3xl font-extrabold text-gray-900'>Masukkan OTP</label>
           </div>
-          <div className='mt-10'>
+          <div className='mt-10 flex flex-col items-center justify-center'>
             <h2>Ketik 6 digit kode yang dikirimkan ke <b>{hideEmail(emailHidden)}</b></h2>
 
             <PinInput
