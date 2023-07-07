@@ -52,12 +52,12 @@ function Destinasi() {
 
     return (
         <div className="flex justify-center">
-            <div className="container ml-20 sm:ml- lg:ml-48 xl:ml-56 2xl:ml-64">
+            <div className="container ml-20 sm:ml- lg:ml-[210px] xl:ml-56 2xl:ml-64">
                 <div className="flex flex-row pt-10">
                     <p className="font-sans1 font-bold text-base">Destinasi Favorit</p>
                 </div>
                 <div className="flex mt-4 sm:mt-4 md:mt-4 lg:mt-4">
-                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-6 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+                    <div className="grid gap-4 sm:gap-2 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
                         <Button severity="help" onClick={() => { setFilter("") }} label="Semua" icon="pi pi-search" />
                         <Button severity="help" onClick={() => { setFilter("Asia") }} label="Asia" icon="pi pi-search" />
                         <Button severity="help" onClick={() => { setFilter("America") }} label="Amerika" icon="pi pi-search" />
