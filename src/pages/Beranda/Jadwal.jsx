@@ -16,12 +16,13 @@ import icon_date from "../../assets/images/icon_date.svg"
 import return1 from "../../assets/images/return.svg"
 import airline_seat from "../../assets/images/airline-seat.svg"
 import { Card } from "primereact/card";
+import { Button } from "primereact/button";
 
 const JadwalPenerbangan = () => {
+    const [loading, setLoading] = useState(false);
     const counterAdult = useSelector(state => state.ModalPassengerReducer.counterAdult);
     const counterChild = useSelector(state => state.ModalPassengerReducer.counterChild);
     const counterBaby = useSelector(state => state.ModalPassengerReducer.counterBaby);
-
 
     const { flightData } = useSelector((state) => state.FlightDestinationReducer);
     const [showCalendar, setShowCalendar] = useState(false);
@@ -116,6 +117,7 @@ const JadwalPenerbangan = () => {
     }
 
     const buttonHandler = async () => {
+        setLoading(true)
         if (selectedDate1 == null && passenger.jumlah == 0) {
             await toast.error('Silahkan pilih tanggal dan jumlah penumpang terlebih dahulu', {
                 position: "bottom-center",
@@ -129,18 +131,22 @@ const JadwalPenerbangan = () => {
             })
 
             setTimeout(() => {
+                setLoading(false)
                 navigate('/')
-            }, 1000);
+            }, 2000);
         } else {
-            navigate('/hasil-pencarian', {
-                state: {
-                    from: selectedOptionFrom,
-                    to: selectedOptionTo,
-                    category: seatClass,
-                    date: selectedDate1,
-                    passenger: passenger
-                }
-            });
+            setTimeout(() => {
+                setLoading(false)
+                navigate('/hasil-pencarian', {
+                    state: {
+                        from: selectedOptionFrom,
+                        to: selectedOptionTo,
+                        category: seatClass,
+                        date: selectedDate1,
+                        passenger: passenger
+                    }
+                });
+            }, 2000);
         }
     }
 
@@ -239,7 +245,7 @@ const JadwalPenerbangan = () => {
                 </div>
             </Card>
             <div className="relative bg-primary2 hover:bg-purple1 rounded-b-xl mx-auto sm:w-4/5 md:w-3/4 lg:w-4/6 w-[327px] -mt-4 lg:-mt-4 xl:w-4/6 xl:-mt-4">
-                <p className="text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</p>
+                <Button loading={loading} className="w-full flex justify-center !bg-transparent text-center text-xs lg:text-base text-white font-bold cursor-pointer pt-2 pb-2 lg:pt-4 lg:pb-4 xl:py-3" onClick={buttonHandler}>Cari Penerbangan</Button>
             </div>
         </>
 

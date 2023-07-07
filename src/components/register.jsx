@@ -59,7 +59,7 @@ function Signup() {
           // const cookies = new Cookies()
           // const token = res.data.data.token
           // cookies.set("token", token, { path: "/login" })
-          toast.success(`${res.data.message}, redirect in 3s...`, {
+          toast.success(`${res.data.status}, redirect in 3s...`, {
             position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: true,

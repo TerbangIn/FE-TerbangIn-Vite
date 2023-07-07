@@ -45,7 +45,7 @@ export default function OTPRegister() {
     await axios.post('https://be-tiketku-production.up.railway.app/api/v1/user/otp', {
       email: emailHidden
     }).then(res => {
-      toast.success(`${res.status}, redirect in 3s...`, {
+      toast.success(`${res.data.message}`, {
         position: "bottom-center",
         autoClose: 2000,
         hideProgressBar: true,
