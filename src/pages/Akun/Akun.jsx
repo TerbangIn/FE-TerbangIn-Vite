@@ -48,6 +48,16 @@ function Akun() {
 
   const decode = jwt_decode(token);
 
+  let nav = useNavigate()
+    console.log(token)
+
+    useEffect(() => {
+        window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+
+        if (!token) {
+            nav('/login')
+        }
+    }, [token]);
   useClickOutside(overlayRef, () => {
     setVisible(false);
   });

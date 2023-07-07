@@ -40,6 +40,14 @@ function Checkout() {
     const token = cookies.get('token')
     const decode = jwtDecode(token)
 
+    useEffect(() => {
+        window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+
+        if (!token) {
+            nav('/login')
+        }
+    }, [token]);
+
     // useEffect(() => {
     //     if
     // })
