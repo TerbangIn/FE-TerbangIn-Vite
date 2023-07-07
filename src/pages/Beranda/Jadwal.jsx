@@ -28,7 +28,7 @@ const JadwalPenerbangan = () => {
     const [showCalendar, setShowCalendar] = useState(false);
     const [selectedDate1, setSelectedDate1] = useState(null);
     const [selectedDate2, setSelectedDate2] = useState(null);
-    const [seatClass, setSeatClass] = useState("");
+    const [seatClass, setSeatClass] = useState("bussiness");
     const [passenger, setPassenger] = useState("");
     const [checked, setChecked] = useState(false);
     let optionsFrom = flightData.map((data) => `${data?.source?.country}`);

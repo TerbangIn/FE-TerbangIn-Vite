@@ -14,16 +14,27 @@ import { Card } from 'primereact/card'
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
 function Notifikasi() {
 
     const cookies = new Cookies()
     const token = cookies.get('token')
-
     const [userData, setUserData] = useState([]);
-
     const decode = jwt_decode(token);
+
+
+  let nav = useNavigate()
+    console.log(token)
+
+    useEffect(() => {
+        window.addEventListener("resize", () => window.innerWidth >= 960 && setOpenNav(false));
+
+        if (!token) {
+            nav('/login')
+        }
+    }, [token]);
     useEffect(() => {
         const fetchUserData = async () => {
             try {

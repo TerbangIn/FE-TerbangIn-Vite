@@ -7,6 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import yellowlogo from '../assets/yellowlogo.svg'
 import koper from '../assets/koper.png'
 import panahtermurah from '../assets/panahtermurah.svg'
+import JadwalPenerbangan from "../pages/Beranda/Jadwal";
 // import Navbar from "./Navbar/Navbar";
 // import { Card } from 'primereact/card';
 import './Index.css';
@@ -317,10 +318,9 @@ const HasilPencarian = () => {
             {
               location?.state?.date !== undefined
                 ?
-                datas?.data?.length == 0
+                datas?.data?.length != 0
                   ?
                   (
-
                     <div className="flex flex-col md:flex-row w-full">
                       <div className="md:w-[35%] w-full flex md:mb-0 mb-9">
                         <Card className="h-fit sticky top-40 w-[90%] p-4 shadow-xl shadow-gray-900/2 border-gray-950">
