@@ -457,6 +457,7 @@ function Checkout() {
                                                 Negara Penerbit
                                             </label>
                                             <select onChange={event => handleFormChange(event, index)} id="identity_number_of_country" value={data.identity_number_of_country} placeholder="Select country" className="max-sm:w-[320px] sm:w-[454px] h-10 ps-4 border border-gray-400 rounded-md">
+                                                <option>Silahkan Dipilih Terlebih Dahulu</option>
                                                 <option id="indonesia" value="indonesia">Indonesia</option>
                                                 <option id="malaysia" value="malaysia">Malaysia</option>
                                             </select>
