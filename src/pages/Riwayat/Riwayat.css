@@ -11,3 +11,15 @@
 .p-card-body{
   padding: 0.5rem !important;
 }
+
+.table {
+  border-collapse: collapse;
+}
+
+.table, th{
+  border: 1px solid #A06ECE;
+  background-color: sandybrown; /* Ganti dengan warna yang diinginkan */
+}
+.table, td {
+  border: 1px solid #A06ECE;
+}

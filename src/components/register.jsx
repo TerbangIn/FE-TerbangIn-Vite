@@ -15,6 +15,7 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 function Signup() {
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [telepon, setTelepon] = useState("");
@@ -42,6 +43,7 @@ function Signup() {
   //handle Register API Integration here
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
     try {
       await axios.post(
         "https://be-tiketku-production.up.railway.app/api/v1/user/register",
@@ -53,10 +55,10 @@ function Signup() {
         }
       ).then(
         function (res) {
-          console.log(res);
-          const cookies = new Cookies()
-          const token = res.data.data.token
-          cookies.set("token", token, { path: "/login" })
+          // console.log(res);
+          // const cookies = new Cookies()
+          // const token = res.data.data.token
+          // cookies.set("token", token, { path: "/login" })
           toast.success(`${res.data.message}, redirect in 3s...`, {
             position: "bottom-center",
             autoClose: 2000,
@@ -69,14 +71,16 @@ function Signup() {
           })
 
           setTimeout(() => {
-            navigate("/otp-register", {
-              state: email
-            })
-        },1000);
+            setLoading(false)
+            setTimeout(() => {
+              navigate("/otp-register", {
+                state: email
+              })
+            }, 1000);
+          }, 2000);
         }
       ).catch(
         function (error) {
-          console.log(error);
           toast.error(`${error.response.data.message}`, {
             position: "bottom-center",
             autoClose: 2000,
@@ -87,6 +91,7 @@ function Signup() {
             progress: undefined,
             theme: "colored",
           })
+          setLoading(false)
         }
       )
 
@@ -97,39 +102,39 @@ function Signup() {
 
   return (
     <form className="mt-8 space-y-6 w-screen px-20  md:px-0 md:w-full " onSubmit={handleSubmit}>
-    <div className="space-y-px">
+      <div className="space-y-px">
 
-      {
-        fields.map(field =>
-          <Input
-            key={field.id}
-            handleChange={handleChange}
-            value={signupState[field.id]}
-            labelText={field.labelText}
-            labelFor={field.labelFor}
-            id={field.id}
-            name={field.name}
-            type={field.type}
-            // isRequired={field.isRequired}
-            placeholder={field.placeholder}
-          />
+        {
+          fields.map(field =>
+            <Input
+              key={field.id}
+              handleChange={handleChange}
+              value={signupState[field.id]}
+              labelText={field.labelText}
+              labelFor={field.labelFor}
+              id={field.id}
+              name={field.name}
+              type={field.type}
+              // isRequired={field.isRequired}
+              placeholder={field.placeholder}
+            />
 
-        )
-      }
-      <ToastContainer
-        position="bottom-center"
-        autoClose={2000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+          )
+        }
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
-      <FormAction handleSubmit={handleSubmit} text="Daftar" />
+      <FormAction loading={loading} handleSubmit={handleSubmit} text="Daftar" />
     </form>
   )
 }

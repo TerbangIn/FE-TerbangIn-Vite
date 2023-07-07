@@ -13,6 +13,7 @@ let fieldsState = {};
 fields.forEach(field => fieldsState[field.id] = '');
 
 function ResetPasswordBaru() {
+    const [loading, setLoading] = useState(false);
     const [otp, setOtp] = useState("");
     const [emailHidden, setEmailHidden] = useState()
     const [passwordBaru, setPasswordBaru] = useState("");
@@ -42,6 +43,7 @@ function ResetPasswordBaru() {
     //Handle Reset Passowrd API Integration here
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoading(true)
         try {
             const response = await axios.post(
                 "https://be-tiketku-production.up.railway.app/api/v1/user/forget-password",
@@ -63,13 +65,16 @@ function ResetPasswordBaru() {
                         progress: undefined,
                         theme: "colored",
                     })
+
                     setTimeout(() => {
-                        navigate("/login")
-                    }, 3000);
+                        setLoading(false)
+                        setTimeout(() => {
+                            navigate("/login")
+                        }, 1000);
+                    }, 2000);
                 }
             ).catch(
                 function (err) {
-                    console.log(err);
                     toast.error(`${err.response.data.message}`, {
                         position: "bottom-center",
                         autoClose: 2000,
@@ -80,6 +85,7 @@ function ResetPasswordBaru() {
                         progress: undefined,
                         theme: "colored",
                     })
+                    setLoading(false)
                 }
             )
         } catch (error) {
@@ -119,7 +125,7 @@ function ResetPasswordBaru() {
                     theme="light"
                 />
             </div>
-            <FormAction handleSubmit={handleSubmit} text="Simpan" />
+            <FormAction loading={loading} handleSubmit={handleSubmit} text="Simpan" />
         </form>
     )
 }
