@@ -45,7 +45,7 @@ export default function Input({
         name == "password"
           ?
           <small id="username-help">
-            Password harus berisi 1 huruf besar, 1 simbol, dan 1 angka.
+            Password harus berisi min. 8 karakter, 1 huruf besar, 1 simbol, dan 1 angka.
           </small>
           :
           <></>
